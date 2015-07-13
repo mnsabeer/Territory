@@ -1,0 +1,44 @@
+﻿
+<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+        <div class="popMaincontainer">
+            <div class="popupHeader">
+                User Log  Details
+                <div class="popupclose" ng-click="onUserLogPopUpCloseButtonClicked()">X</div>
+            </div>
+
+            <div class="popupContainerMain">
+                <div class="STDBCustomerListTemplateScrollbarContainer" content-data="UserLogDetailsList" data-ng-scroll-bar>
+                    <div class="scrollbar">
+                        <div class="track">
+                            <div class="thumb">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="viewport">
+                        <div class="overview">
+                            <table class="table-bordered table-striped table-condensed cf" style="margin-top:10px;">
+                                <tbody>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>Time</th>
+                                    </tr>
+                                    <tr class="STDBUserLogListTemplateLogRows" ng-repeat="log in UserLogDetailsList">
+
+                                        <td>{{log.Actionvalue}}</td>
+                                        <td>{{log.AccessedTime}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                            <!-- header ends -->
+                            <div class="clearfix">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>

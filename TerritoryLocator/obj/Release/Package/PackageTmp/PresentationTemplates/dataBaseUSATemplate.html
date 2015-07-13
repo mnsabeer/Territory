@@ -1,0 +1,400 @@
+﻿<div ng-controller="dataBaseUSATemplateController">
+    <!-- ------------------------------------------------- Search section ------------------------------------------------- -->
+    <div ng-show="visiblePortion=='Search'">
+        <div>
+            <div class="PictometrySecHeader">
+                <h3>STDB Business List</h3>
+            </div>
+            <section id="map-canvas" class="block PictometrySec"></section>
+        </div>
+        <div id="pac-controller">
+            <div id="pac-controller-main" class="geography-div">
+                <div class="geography-div-header">
+                    <span>Define Geography</span>
+                </div>
+                <div id="PanelContent" class="geography-div-content">
+                    <span class="menushow">
+                        <input ng-model="selectedOption.value" value="City" name="geometry_option" ng-change="OptionChange()" type="radio"><label> City</label>
+                    </span>
+                    <span class="menuhide">
+                        <input ng-model="selectedOption.value" value="Address" name="geometry_option" ng-change="OptionChange()" type="radio"><label>Address</label>
+                    </span>
+                    <span class="menushow">
+                        <input ng-model="selectedOption.value" value="State" name="geometry_option" ng-change="OptionChange()" type="radio"><label>State</label>
+                    </span>
+                    <span class="menushow">
+                        <input ng-model="selectedOption.value" value="DrawMap" name="geometry_option" ng-change="OptionChange()" type="radio"><label>Draw On Map</label>
+                    </span>
+                    <span class="menushow">
+                        <input ng-model="selectedOption.value" value="Zip" name="geometry_option" ng-change="OptionChange()" type="radio"><label>Zip Code</label>
+                    </span>
+                    <span class="menushow">
+                        <input ng-model="selectedOption.value" value="County" name="geometry_option" ng-change="OptionChange()" type="radio"><label>County</label>
+                    </span>
+                    <div id="_AddressPanel" class="geography-div-address-panel">
+                        <span id="_AddressLabel" class="geography-div-component">Please choose an input type</span>
+                        <br>
+                        <input type="text" id="pac-input" ng-disabled="selectedOption.value == 'DrawMap'||selectedOption.value === undefined" class="addressTxt" ng-show="case">
+                        <input type="text" id="pac-input-cat" ng-model="input_textVal" ng-disabled="" class="addressTxt" ng-show="!case" ng-change="automaticComplete(input_textVal)" />
+                        <input type="button" value="Search" ng-click="SearchClick()" ng-if="!case">
+                    </div>
+                </div>
+                <input type="button" value="Clear Map" ng-click="clearMapClick()" class="buttonstyles clearmap">
+                <input type="submit" value="Next" ng-click="nextClick()" ng-if="selectedOption.value!='Address'&&isSpotted" class="buttonstyles">
+            </div>
+            <div id="pac-controller-address" class="geography-div address" ng-if="selectedOption.value=='Address'&&isSpotted">
+                <div class="geography-div-header">
+                    <span>Define Parameters</span>
+                </div>
+                <div id="PanelContent" class="geography-div-content">
+                    <span class="menushow">
+                        <input ng-model="ParamOption.selected" value="Radius" ng-change="ParamChange()" name="geometry_option" type="radio"><label>Radius Rearch</label>
+                    </span>
+                    <span class="menuhide">
+                        <input ng-model="ParamOption.selected" value="DriveTime" ng-change="ParamChange()" name="geometry_option" type="radio"><label>Drive Time</label>
+                    </span>
+
+                    <div id="_AddressPanel" class="geography-div-address-panel">
+                        <form name="ParameterForm" novalidate>
+                            <span id="_AddressLabel" class="geography-div-component">{{ParamOption.Label}}</span>
+                            <br>
+                            <input type="text" ng-model="ParamOption.value" ng-change="validateParamVal(ParameterForm)" required ng-pattern="onlyNumbers" class="addressTxt" ng-class="{ 'errorcont'   : ((isParameterFormEmpty && ParameterForm.$invalid)||isParameterDataError)}" />
+                            <span class="spanerror" ng-if="((isParameterFormEmpty && ParameterForm.$invalid)||isParameterDataError)">{{ParamOption.Error}}</span><br />
+                            <input type="submit" value="show" ng-click="ParameterOptions(ParameterForm)">
+                        </form>
+                    </div>
+                </div>
+                <input type="submit" value="Next" ng-click="nextClick()" class="buttonstyles">
+            </div>
+        </div>
+    </div>
+    <!-- ------------------------------------------------- SIC section ------------------------------------------------- -->
+    <div ng-if="visiblePortion=='SIC'">
+        <div class="PictometrySecHeader">
+            <h3>STDB Business List</h3>
+            <div class="primarybuttonmain" ng-click="goBack()">Back</div>
+            <div class="primarybuttonmain" ng-click="goHome()">Revise search</div>
+        </div>
+        <section class="block SICCSection">
+            <div class="SICCategories_main">
+                <div class="SICCategories_LeftSectionHeading">
+                    <h3>Search Parameters</h3>
+                    <input type="submit" class="selectionextrabutton" value="Create Report" ng-click="proceedClick()" />
+                    <input type="submit" class="selectionextrabutton" value="Clear Filters" />
+                </div>
+                <div class="SICCategories_LeftSection">
+                    <div class="panel-group" id="accordionmain">
+                        <!--Criteria Start-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordionmain" ng-click="ToggleAccordianMain(1)">
+                                    <h4 class="panel-title">CRITERIA</h4>
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" ng-class="{'in' : (AccordianDisplay.Value==1) }">
+                                <div class="panel-body">
+                                    <div class="CM_Criteria_L_search">
+                                        <label>Business Name</label><input type="text" placeholder="Business Name" />
+                                        <label>Contact Name</label><input type="text" placeholder="First Name" />
+                                        <label></label>
+                                        <input type="text" placeholder="Last Name" />
+                                        <label>Title</label><input type="text" placeholder="Title" />
+                                        <label>Email Address</label><input type="text" placeholder="example@xceligent.com" />
+                                        <label>Reverse Phone Number</label><input type="text" placeholder="Reverse Phone Number" />
+                                    </div>
+                                    <div class="CM_Criteria_L_search">
+                                        <div class="SearchRadioCont">
+                                            <input type="radio" value="private" /><span>Private</span>
+                                        </div>
+                                        <div class="SearchRadioCont">
+                                            <input type="radio" value="private" /><span>Publicly Traded</span>
+                                        </div>
+                                        <div class="SearchRadioCont">
+                                            <input type="radio" value="private" /><span>Both</span>
+                                        </div>
+                                        <label class="right">Location Type</label>
+                                        <div class="SearchRadioCont">
+                                            <input type="checkbox" value="private" /><span>Headquarters</span>
+                                        </div>
+                                        <div class="SearchRadioCont">
+                                            <input type="checkbox" value="private" /><span>Division</span>
+                                        </div>
+                                        <div class="SearchRadioCont">
+                                            <input type="checkbox" value="private" /><span>Branch</span>
+                                        </div>
+                                        <div class="SearchRadioCont">
+                                            <input type="checkbox" value="private" /><span>Franchise</span>
+                                        </div>
+                                        <label>Number of Employees</label>
+                                        <select>
+                                            <option>Select range</option>
+                                        </select>
+                                        <label>Sales Volume</label>
+                                        <select>
+                                            <option>Select range</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--SIC Codes Start-->
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <input type="checkbox" style="  float: left;  margin: 2px 5px 0 0;" ng-model="SicChecked" ng-change="checkAllMenu(SicChecked)" />
+                                <a data-toggle="collapse" data-parent="#accordionmain" ng-click="ToggleAccordianMain(2)">
+                                    <h4 class="panel-title">SIC CODES</h4>
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" ng-class="{'in' : (AccordianDisplay.Value==2) }">
+                                <div class="panel-body">
+                                    <div class="panel-group" id="accordion">
+                                        <div class="panel panel-default" ng-repeat="item in SICAccordianList.Items">
+                                            <!--main accordin menu div-->
+                                            <div class="panel-heading">
+                                                <input type="checkbox" ng-model="item.Checked" ng-change="checkAllsubMenu(item,item.Checked)" /> <!--main accordin menu-->
+                                                <a data-toggle="collapse" data-parent="#accordion" ng-click="ToggleAccordianSub(item.Id)">
+                                                    <h4 class="panel-title">{{item.DisplayName}}</h4><!--01-09 Agriculture, Forestry & Fishing-->
+                                                </a>
+                                            </div>
+                                            <div class="panel-collapse collapse" ng-class="{'in' : (AccordianDisplay.Sub == item.Id) }">
+                                                <div class="panel-body">
+                                                    <ul>
+                                                        <li ng-repeat="sitem in item.SubCategory">
+                                                            <input type="checkbox" ng-model="sitem.Checked" ng-change="checkAllsubMenuList(sitem,sitem.Checked,item)" /><span ng-click="ToggleAccordianSICSub(sitem)">{{sitem.DisplayName}}</span><!--01 - Agricultural Production Crops-->
+                                                            <ul ng-class="{'hideAccordian': (AccordianDisplay.SICSub != sitem.Id)}">
+                                                                <li ng-repeat="sublist in sitem.SubCategory" ng-class="{'hideAccordian': (AccordianDisplay.SICSub != sitem.Id)}">
+                                                                    <input type="checkbox" ng-model="sublist.Checked" ng-change="checkAllsubMenuSubList(sublist,sublist.Checked,sitem,item)" />{{sublist.DisplayName}}<!--Berry Crops-->
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!--NAICS Code Start-->
+                        <div class="panel panel-default" style="display: none">
+                            <div class="panel-heading">
+                                <a data-toggle="collapse" data-parent="#accordionmain" ng-click="ToggleAccordianMain(3)">
+                                    <h4 class="panel-title">NAICS CODES</h4>
+                                </a>
+                            </div>
+                            <div class="panel-collapse collapse" ng-class="{'in' : (AccordianDisplay.Value==3) }">
+                                <div class="panel-body">
+                                    <ul>
+                                        <li>
+                                            <input type="checkbox" />11 Agriculture, Forestry, Fishing and Hunting
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />21 Mining
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />22 Utilities
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />23 Construction
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />31-33 Manufacturing
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />42 Wholesale Trade
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />44-45 Retail Trade
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />48-49 Transportation and Warehousing
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />51 Information
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />52 Finance and Insurance
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />53 Real Estate Rental and Leasing
+                                            <ul>
+                                                <li>
+                                                    <input type="checkbox" />531110 Lessors of Residential Buildings and Dwellings
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531120 Lessors of Nonresidential Buildings (except Miniwarehouses)
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531130 Lessors of Miniwarehouses and Self-Storage Units
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531190 Lessors of Other Real Estate Property
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531210 Offices of Real Estate Agents and Brokers
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531311 Residential Property Managers
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531312 Nonresidential Property Managers
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531320 Offices of Real Estate Appraisers
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />531390 Other Activities Related to Real Estate
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532111 Passenger Car Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532112 Passenger Car Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532120 Truck, Utility Trailer, and RV (Recreational Vehicle) Rental and Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532210 Consumer Electronics and Appliances Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532220 Formal Wear and Costume Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532230 Video Tape and Disc Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532291 Home Health Equipment Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532292 Recreational Goods Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532299 All Other Consumer Goods Rental
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532310 General Rental Centers
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532411 Commercial Air, Rail, and Water Transportation Equipment Rental and Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532412 Construction, Mining, and Forestry Machinery and Equipment Rental and Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532420 Office Machinery and Equipment Rental and Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />532490 Other Commercial and Industrial Machinery and Equipment Rental and Leasing
+                                                </li>
+                                                <li>
+                                                    <input type="checkbox" />533110 Lessors of Nonfinancial Intangible Assets (except Copyrighted Works)
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />54 Professional, Scientific and Technical Services
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />55 Management of Companies and Enterprises
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />56 Administrative and Support and Waste Management and Remediation Services
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />61 Educational Services
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />62 Health Care and Social Assistance
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />71 Arts, Entertainment and Recreation
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />72 Accommodation and Food Services
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />81 Other Services (except Public Administration)
+                                        </li>
+                                        <li>
+                                            <input type="checkbox" />92 Public Administration
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="SICCategories_LeftSectionHeading Leftalign">
+                    <input type="submit" class="selectionextrabutton" value="Clear Filters">
+                    <input type="submit" class="selectionextrabutton" ng-click="proceedClick()" value="Create Report">
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- ------------------------------------------------- Report section ------------------------------------------------- -->
+    <div ng-show="visiblePortion=='Report'">
+        <div class="PictometrySecHeader">
+            <h3>Your report has been generated</h3>
+            <div class="primarybuttonmain" ng-click="downloadListView()">Download Now</div>
+            <div class="primarybuttonmain" ng-click="goBack()">Back</div>
+            <div class="primarybuttonmain" ng-click="goHome()">Revise search</div>
+            <p class="headersubtext">{{ResultCount}} results. Your results may be reviewed in the map/list views below or you may be download the report by clicking the download now button. If you have any questions or issues please contact CCIMTec Support</p>
+        </div>
+        <div class="buttoncontainermain">
+            <div class="primarybuttonleft" ng-class="{ 'active': resultMap}" ng-click="showMap()">Map View</div>
+            <div class="primarybuttonleft" ng-class="{ 'active': !resultMap}" ng-click="showList()">List View</div>
+        </div>
+        <section ng-show="resultMap" id="map-canvas-result" class="block PictometrySec"></section>
+        <section ng-if="!resultMap" class="block">
+            <table class="table table-striped searchresulttbl" style="table-layout: fixed">
+                <thead>
+                    <tr>
+                        <th class="sortingdata">Name</th>
+                        <th class="sortingdata">Address</th>
+                        <th class="sortingdata">City/State</th>
+                        <th class="sortingdata">Zip code</th>
+                        <th class="sortingdata">
+                            Business Status <br />
+                            Code
+                        </th>
+                        <th class="sortingdata">SIC01 Description</th>
+                        <th class="sortingdata">Phone&nbsp;Number</th>
+
+                        <th class="sortingdata">
+                            Total<br />
+                            Employees
+                        </th>
+
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="data in ReportData">
+                        <td>{{data.Company_Name}}</td>
+                        <td>{{data.Physical_Address}}</td>
+                        <td>{{data.Physical_City}}/{{data.Physical_State}}</td>
+                        <td>{{data.Physical_Zip}}</td>
+                        <td>{{data.Business_Status_Code}}</td>
+                        <td>{{data.SIC01_Description}}</td>
+                        <td>{{data.Phone}}</td>
+                        <td>{{data.Employees_Total}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+        <div ng-show="false">
+            <div class="busyindicatorbase" id="busyindicator">
+                <div class="busyindicatormessagetext">
+                    <label>This process may take upto 1 minute. DO NOT close the browser!</label>
+                </div>
+                <div class="busyindicatorspinner">
+                    <img src="../Content/images/ajax-loader.gif" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

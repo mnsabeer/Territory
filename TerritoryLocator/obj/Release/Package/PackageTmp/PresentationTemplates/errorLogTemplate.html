@@ -1,0 +1,68 @@
+﻿
+<div data-ng-controller="errorLogTemplateController">
+    <div class="container no-Space adminhomecontainer">
+        <section class="block transbg">
+
+            <div style="margin-top: 30px;">
+               <h2>Error Details</h2> 
+                </div>
+                <div class="MainContainer_Wrapperinner ErrorLogTableContainer">
+                    <table class="table-bordered table-striped table-condensed cf" ng-if="totalCount>0">
+                        <thead class="cf">
+                            <tr>
+                                <th width="5%" ng-click="onSortButtonClicked(1)" param="1" class="DetailsSortContainer">Error ID</th>
+                                <th width="15%" class="DetailsSortContainer">Error Url</th>
+                                <th width="12%" class="DetailsSortContainer">Error Event</th>
+                                <th width="16%" class="DetailsSortContainer">Error Details</th>
+                                <th width="9%" ng-click="onSortButtonClicked(3)" param="3" class="DetailsSortContainer">Created Date</th>
+                                <th width="6%">Action</th>
+
+                            </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="STDBCustomerListTemplateScrollbarContainer" content-data="ErrorList" data-ng-scroll-bar>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewport">
+                            <div class="overview">
+                                <table class="table-bordered table-striped table-condensed cf" ng-if="totalCount>0">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th width="5%">Error ID</th>
+                                            <th width="15%">Error Url</th>
+                                            <th width="12%">Error Event</th>
+                                            <th width="16%">Error Details</th>
+                                            <th width="9%">Created Date</th>
+                                            <th width="6%">Action</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr class="STDBCustomerListTemplateCustomerRows" ng-repeat="error in ErrorList">
+                                            <td><a class="STDBCustomerItemTemplateUserId">{{error.ErrorID}}</a></td>
+                                            <td style="word-break: break-all;">{{error.ErrorUrl}}</td>
+                                            <td>{{error.ErrorEvent}}</td>
+                                            <td>{{error.ErrorDetails}}</td>
+                                            <td>{{error.ErrorTime | date:'medium'}}</td>
+
+                                            <td><span class="STDBCustomerItemTemplateEditButton linktext" ng-click="onClickViewError(error.ErrorID)">View</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div ng-if="totalCount<=0 && !loading" class="emptyalertmessage">There are no items to display.</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <pagination boundary-links="true" total-items="totalCount" ng-model="offset" page="offset" items-per-page="limit" ng-click="pageChanged(offset)" max-size="paginationMaxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-if="totalCount>0"></pagination>
+
+</section>
+    </div>
+</div>

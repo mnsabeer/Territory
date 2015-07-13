@@ -1,0 +1,44 @@
+﻿
+ 
+
+<div data-ng-controller="indexTemplateController">
+    <section ng-show="!IsLoggedIn" class="block" id="aboutus">
+         
+        <div class="divPageHead"><a>Territories and Companies</a></div>
+        <div class="divUserMenu"><a>Upload Company List</a></div>
+        <div style="clear:both"></div>
+        <div class="container no-Space">
+           
+            <div class="outer-wrapper">
+                <div id="googleMapDummy" style="width:100%;min-height:550px"></div>
+            </div>
+        </div>
+
+        <div class="errormessagecontainer" ng-if="alertList.length>0">
+            
+
+        </div>
+    </section>
+
+    <section ng-show="IsLoggedIn && (MemberLevel==60 || MemberLevel==61 || MemberLevel==78 || MemberLevel==80 || MemberLevel==100 )" class="blockone less-space">
+        <div class="container no-Space">
+           
+        </div>
+        <div class="errormessagecontainer" ng-if="alertList.length>0">
+
+         
+
+        </div>
+
+    </section>
+
+    <section ng-show="IsLoggedIn&&(MemberLevel==30 || MemberLevel==51 || MemberLevel==65)" class="blockone">
+     
+    </section>
+
+  
+    <script>
+
+        
+    </script>
+</div>

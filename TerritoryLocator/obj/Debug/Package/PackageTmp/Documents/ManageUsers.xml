@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Users>
+  <User id="1" Username="Guest" Password="Guest">
+    <TerritoryFile>TerritoryList.xlsx</TerritoryFile>
+    <CompanyFile>CompanyList1.xlsx</CompanyFile>
+  </User>
+  <User id="1" Username="admin" Password="admin">
+    <TerritoryFile>TerritoryList.xlsx</TerritoryFile>
+    <CompanyFile>CompanyList1.xlsx</CompanyFile>
+  </User>
+  <User id="1" Username="sabeer" Password="sabeer">
+    <TerritoryFile>TerritoryList.xlsx</TerritoryFile>
+    <CompanyFile>CompanyList1.xlsx</CompanyFile>
+  </User>
+  <User id="1" Username="sabeer" Password="sabeer">
+    <TerritoryFile>TerritoryList.xlsx</TerritoryFile>
+    <CompanyFile>CompanyList1.xlsx</CompanyFile>
+  </User>
+</Users>

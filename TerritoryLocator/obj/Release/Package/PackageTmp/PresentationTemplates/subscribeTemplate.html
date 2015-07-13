@@ -1,0 +1,183 @@
+﻿<div data-ng-controller="subscribeTemplateController">
+
+
+    <section class="block" id="Subscriber">
+
+        <div class="page-header container">
+            <div>
+                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+            </div>
+            <h2 ng-show="newUser" class="headingnewleft">Become A Member </h2>
+
+            <h2 ng-show="!newUser" class="headingnewleft"> Welcome {{CustomerName}} </h2>
+
+            <div ng-show="hasPlan&&notPersonifyUser" class="heading_Plan_Expiry_Cont">
+                Expires On: {{ExpiryDate | date:'dd-MMM-yyyy'}}
+                &nbsp;  &nbsp; &nbsp; &nbsp;<span ng-show="planExpired">Renew your Membership Now.</span>
+            </div>
+
+
+        </div>
+        <div class="container">
+            <div class="col-lg-10 col-lg-offset-1">
+                <p style="font-size: 22pt; text-align: center; color: #1663A6; "> <b> CCIM Institute Associate Membership Levels</b> </p> 
+
+                <p>
+                    If you want CCIM benefits but don’t plan to earn the CCIM designation, Associate Membership is for you. By becoming an Associate Member, you will be able to take advantage of these great member benefits:
+                    <ul>
+                        <li>Access to STDB, an integrated online service for site analysis, mapping, customized business solutions, and more </li>
+                        <li>50% discount on online CI Intro: Introduction to Commercial Investment Real Estate Analysis</li>
+                        <!--<li>Subscription to RERC/CCIIM <em> Investment Trends Quarterly</em></li>-->
+                        <li>Member tuition for Online Preparing to Negotiate training</li>
+                       <!-- <li> Subscription to CIRE magazine</li>  -->
+                        <li>Online access to CIRE Magazine</li>
+                        <li>Conference discounts</li> 
+                        <!--<li>Conference and publication discounts</li>-->
+</ul>
+
+                </p>
+                <ul class="list-group">
+                    <li class="list-group-item gray-block" ng-if="userPlan.value == 7">
+                        <div class="row rowNoMargin">
+                            <div class="col-md-3 subscriptionone">
+                                <p style="font-size: 19px; padding: 0; margin: 0px; padding-top: 20px; background-color: #ffffff; color: #1FBBA6; width: 150px; height: 30px; padding-top: 4px; font-weight: bold; text-align: center; margin-bottom: 5px; box-shadow: 0px 2px 4px #888; ">CCIM Associate</p>
+                                <p style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; "><em>Lite</em></p>
+                                <p style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; ">{{PlanPrice.lite | currency}}/Year</p>
+                            </div>
+                            <div class="col-md-7" style="margin-top:20px;margin-bottom:20px;">
+                                Access to ESRI Business Analyst Online (BAO) - The most extensive online data, reporting and mapping toolset for demographic and location analysis and interactive Flood Maps.
+                               
+                                <a class="popover_top" style="color:#ff0000!important" data-ng-tool-tip ng-position="right"
+                                   ng-content="&lt;p  style=&quot;color:red;font-weight:bold;&quot;&gt; Lite &lt;/p&gt;
+                                        &nbsp; &bull; &nbsp;Access to ESRI Business Analyst Online (BAO) - The most extensive online geospatial toolset for demographic and location analysis.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Demographic Data - ESRI demographic data with 5 year projections. US demographics data including population, households, income, age, housing, race, and ethnicity.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Census an ACS - Census and American Community Survey (ACS) data on poverty status, education, labor force, journey to work, marital status, languages spoken, age, home value, and more.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Tapestry Segmentation - Detailed description of US residential neighborhoods divided into 67 distinctive segments based on socioeconomic and demographic characteristics that provides insights into customers' lifestyle and behaviors.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Consumer Spending - Data about products and services US consumers are buying for more than 20 categories, including apparel, food and beverage, financial, and more.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Market Potential - Data on products and services consumers want to have, including expected number of consumers and Market Potential Index (MPI) for goods, services, attitudes, and activities.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Retail Marketplace - Compare retail sales to consumer spending to identify any gap between supply and demand. Learn where consumer spending might be leaking out of a market area and find opportunities to supply goods and services to new customers.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Major Shopping Centers - Statistics for nearly 7,000 major US shopping centers including name, total sales, and more.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Crime Indexes - Statistics about major categories of personal and property crime. Available at multiple geographies down to the block group level.&lt;br/&gt;
+                                        &nbsp; &bull; &nbsp;Global Datasets - Business Analyst Online includes global datasets that range from population and households to consumer spending and purchasing power. Access recent demographics about total population, family size, household income, unemployment, and more. Data on spending for categories such as food, medical, electronics, and more.&lt;br/&gt;
+                                        &lt;p  style=&quot;color:red;font-weight:bold;&quot;&gt;RiskMeter Online&lt;/p&gt;
+                                       &nbsp; &bull; &nbsp;Flood Maps from RiskMeter offer digital representations of the FEMA Flood Maps which can be overlaid on a street or hybrid aerial map.&lt;br/&gt;
+                                        &lt;p  style=&quot;color:red;font-weight:bold;&quot;&gt;$895 / year&lt;/p&gt;">
+                                    Mouse over for definition of STDB features:
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-warning pull-right" data-ng-click="BuyNowClick(7)" style="margin-top:20px;">Join Now</button>
+                                <button class="btn btn-default pull-right" data-ng-click="CompareClick()" style="line-height: 110%; font-size: 12px !important; margin-top: 10px; width: 114px; display:none;">Compare<br />Subscriptions</button>
+                            </div>
+                        </div>
+                    </li>
+
+                    <li class="list-group-item gray-block">
+                        <div class="row rowNoMargin">
+                            <div class="col-md-3 subscriptiontwo">
+                                <p style="font-size: 19px; padding: 0; margin: 0px; padding-top: 20px; background-color: #ffffff; color: #1FBBA6; width: 150px; height: 30px; padding-top: 4px; font-weight: bold; text-align: center; margin-bottom: 5px; box-shadow: 0px 2px 4px #888; ">CCIM Associate</p>
+                                <p class="p0margins" style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; "><em>Professional</em></p>
+                                <p class="p0margins" style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; ">{{PlanPrice.professional | currency}}/Year</p>
+                            </div>
+                            <div class="col-md-7" style="margin-top:20px;margin-bottom:20px;">
+                                <span ng-if="userPlan.value == 7"> Lite plus Database USA business directory, incredible map sharing, interactive mapping and access to more mobile and desktop applications.<br />  </span>
+                                <span ng-if="userPlan.value != 7">Access to ArcGIS Online and ESRI Business Analyst Online (BAO) - The most extensive online data, reporting and mapping toolset for demographic and location analysis. As well as the Database USA Business Directory and interactive Flood Maps..  </span>
+                                <a class="popover_top" style="color:#ff0000!important" data-ng-tool-tip ng-position="right" ng-if="userPlan.value != 7"
+                                   ng-content="&lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; Professional &lt;/p&gt;
+                                    &nbsp; &bull; &nbsp; Access to ESRI Business Analyst Online (BAO) - The most extensive online geospatial toolset for demographic and location analysis.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp; &lt;b&gt; Demographic Data &lt;/b&gt; - ESRI demographic data with 5 year projections. US demographics data including population, households, income, age, housing, race, and ethnicity.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Census an ACS&lt;/b&gt; - Census and American Community Survey (ACS) data on poverty status, education, labor force, journey to work, marital status, languages spoken, age, home value, and more.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Tapestry Segmentation&lt;/b&gt; - Detailed description of US residential neighborhoods divided into 67 distinctive segments based on socioeconomic and demographic characteristics that provides insights into customers' lifestyle and behaviors.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Consumer Spending&lt;/b&gt; - Data about products and services US consumers are buying for more than 20 categories, including apparel, food and beverage, financial, and more.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Market Potential&lt;/b&gt; - Data on products and services consumers want to have, including expected number of consumers and Market Potential Index (MPI) for goods, services, attitudes, and activities.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Retail Marketplace&lt;/b&gt; - Compare retail sales to consumer spending to identify any gap between supply and demand. Learn where consumer spending might be leaking out of a market area and find opportunities to supply goods and services to new customers.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Major Shopping Centers&lt;/b&gt; - Statistics for nearly 7,000 major US shopping centers including name, total sales, and more.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Crime Indexes&lt;/b&gt; - Statistics about major categories of personal and property crime. Available at multiple geographies down to the block group level.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;&lt;b&gt;Global Datasets&lt;/b&gt; - Business Analyst Online includes global datasets that range from population and households to consumer spending and purchasing power. Access recent demographics about total population, family size, household income, unemployment, and more. Data on spending for categories such as food, medical, electronics, and more.&lt;br/&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;RiskMeter Online&lt;/p&gt;
+                                   Flood Maps from RiskMeter offer digital representations of the FEMA Flood Maps which can be overlaid on a street or hybrid aerial map.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;Access to ESRI ArcGIS Online&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;Create and share interactive maps.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;Upload map and analyze your own private data.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;Create and share interactive applications for desktop and mobile.&lt;br/&gt;
+                                    &nbsp; &bull; &nbsp;Connections to an enormous collection of public and private datasets including authoritative data curated by CCIM.&lt;br/&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;Database USA&lt;/p&gt;
+                                    &nbsp; &bull; &nbsp;Database USA is a prospecting tool to identify and download business lists based on size, type, geography and more.&lt;br/&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;$1,295 / year&lt;/p&gt;">
+                                    Mouse over for definition of STDB features:
+                                </a>
+
+                                <a ng-if="userPlan.value == 7" class="popover_top" style="color:#ff0000!important" data-ng-tool-tip ng-position="right"
+                                   ng-content="&lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; Professional &lt;/p&gt;
+                                    &lt;p&gt; &lt;/p&gt;
+                                    &lt;p style=&quot;font-weight:bold;&quot;&gt;All that is included with the Lite subscription and…&lt;/p&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;Access to ESRI ArcGIS Online&lt;/p&gt;
+                                    Create and share interactive maps.
+                                    Upload map and analyze your own private data.
+                                    Create and share interactive applications for desktop and mobile.
+                                    Connections to an enormous collection of public and private datasets including authoritative data curated by CCIM.
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;Database USA&lt;/p&gt;
+                                    Database USA is a prospecting tool to identify and download business lists based on size, type, geography and more.
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt;$1,295 / year&lt;/p&gt;
+                                     ">
+                                    Mouse over for definition of STDB features:
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-warning pull-right" data-ng-click="BuyNowClick(51)" style="margin-top:20px;">Join Now</button>
+                                <button class="btn btn-default pull-right" data-ng-click="CompareClick()" style="line-height: 110%; font-size: 12px !important; margin-top: 10px; width: 114px;display:none;">Compare<br />Subscriptions</button>
+                            </div>
+                        </div>
+                    </li>
+
+
+                    <li class="list-group-item gray-block">
+                        <div class="row rowNoMargin">
+                            <div class="col-md-3 subscriptionthree">
+                                <p style="font-size: 19px; padding: 0; margin: 0px; padding-top: 20px; background-color: #ffffff; color: #F8A32F; width: 150px; height: 30px; padding-top: 4px; font-weight: bold; text-align: center; margin-bottom: 5px; box-shadow: 0px 2px 4px #888;" >CCIM Associate</p>
+                                <p style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; "><em>Platinum</em></p>
+                                <p style="color: white; font-size: 19pt; font-weight: bold; padding: 0; margin: 0px; ">{{PlanPrice.platinum | currency}}/Year</p>
+                            </div>
+                            <div class="col-md-7" style="margin-top:20px;margin-bottom:20px;">
+                                <span ng-if="userPlan.value == 7">Lite, Professional and the addition of Pictometry oblique aerial imagery.<br /></span>
+                                <span ng-if="userPlan.value != 7">The Platinum level of CCIM Associate Membership includes everything in the Professional level plus the addition of Pictometry oblique aerial imagery. </span>
+                                <a class="popover_top" style="color:#ff0000!important" data-ng-tool-tip ng-position="top"
+                                   ng-content=" &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; Platinum &lt;/p&gt;
+                                    &lt;p&gt; &lt;/p&gt;
+                                    &lt;p&gt;Provides members with all the features of the Professional level plus:   &lt;/p&gt;
+                                    &lt;p&gt; &lt;/p&gt;
+                                    &lt;p&gt; &nbsp; &bull; &nbsp;&nbsp; &lt;b&gt; Pictometry Images&nbsp; &lt;/b&gt;- High quality oblique images &lt;br/&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; $1,595 / year &lt;/p&gt;  ">
+                                    Mouse over for definition of STDB features:
+                                </a>
+                            </div>
+                            <div class="col-md-2">
+                                <button class="btn btn-warning pull-right" data-ng-click="BuyNowClick(60)" style="margin-top:20px;">Join Now</button>
+                                <button class="btn btn-default pull-right" data-ng-click="CompareClick()" style="line-height: 110%; font-size: 12px!important; margin-top: 10px; width: 114px; display:none;">Compare<br />Subscriptions</button>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <p class="col-md-offset-3" style="font-size:20pt;color:gray;display:none;">
+                    <a class="popover_top popover-dismiss" data-ng-tool-tip ng-position="top"
+                       ng-content=" &lt;p&gt; If you want CCIM benefits but don’t plan to earn the CCIM designation, Associate Membership is for you. You’ll have access to the new STDB featuring Esri’s BAO and ArcGIS Online platforms.  These tools are traditionally available only to candidates and designees. &lt;/p&gt;
+                    &lt;p&gt; &lt;/p&gt;
+                    &lt;p&gt;&lt;em&gt;&lt;b&gt;To learn more, click: &lt;br/&gt;
+                    &lt;a href=&quot;http://www.ccim.com/membership/associate-membership&quot; target=&quote;_blank&quote;&gt; http://www.ccim.com/membership/associate-membership &lt;/a&gt;   &lt;/p&gt;
+                    &lt;p&gt; &lt;/p&gt;
+                    &lt;p&gt;For information about becoming a CCIM Associate member contact
+                    sales@ccimtech.com &lt;/b&gt; &lt;/em&gt;&lt;/p&gt;  ">
+                        <span style="font-size:16pt;">STDB</span><em><b> CCIM Institute Associate Level</b></em>
+                    </a>
+                </p>
+            </div>
+        </div>
+    </section>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[data-toggle='tooltip']").tooltip({ html: true });
+        $(".popover_top").popover({ html: true });
+
+    });
+</script>

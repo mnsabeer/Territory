@@ -1,0 +1,110 @@
+﻿<div ng-controller="developmentAdminTemplateController">
+    <div  id="Document"> <!--style="height:880px;"-->
+        <section class="block" id="developDocumentSection">
+            <div class="page-header container">
+                <span class="text-primary" style="font-size:16pt;">Development Admin</span><br />
+            </div>
+            <div class="container">
+                <label>Select your choice:</label>&nbsp;&nbsp;
+                <select id="drpChoice" ng-change="OptionSelected()" ng-model="documentChoice">
+                    <option value="databaseUSA">databaseUSA</option>
+                    <option value="pictometry">Pictometry</option>
+                    <option value="riskMeter">Risk Meter</option>
+                </select>
+                <br />
+            </div>
+            <div id="dvAddNode" class="container" style="margin-top:20px;">
+                <div class="tabs">
+                    <ul class="tab-links">
+                        <li class="active"><a href="#tab1">Document</a></li>
+                        <li><a href="#tab2">Inactive Tab</a></li>
+                    </ul>
+                    <div class="tab-contents">
+                        <div id="tab1" class="tab active">
+                            <form id="DevelopmentAdminTemplateForm" name="DevelopmentAdminTemplateForm">
+                                <table class="documentTable">
+                                    <tr>
+                                        <td><label id="lblQuestionNo">Question No</label></td>
+                                        <td><input id="txtQuestionNo" ng-model="questionModel.QId" type="text" disabled /></td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="lblQuestion">Question</label></td>
+                                        <td>
+
+                                        
+                                            <textarea id="txtareaQuestion" ng-class="{'errorcont'   :DevelopmentAdminTemplateForm.txtareaQuestion.$error.required&&!isQuestionEntered}" name="txtareaQuestion" rows="2" cols="100" ng-model="questionModel.Question" required></textarea>
+                                            <span class="ErrorMessageDetails" ng-show="DevelopmentAdminTemplateForm.txtareaQuestion.$error.required&&!isQuestionEntered">Required</span>
+                                          
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td><label id="lblQuestion">Answer</label></td>
+                                        <td>
+                                            <div>
+                                                <span class="ErrorMessageDetails" style="float:right" ng-show="!isAnswerEntered">Required</span>
+                                                <textarea id="txtEditRichEditor" name="txtEditRichEditor" class="mceEditor"  required rows="100" cols="100" style="width:100%!important;height:100%"></textarea>
+
+                                              
+                                               </div>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td></td>
+                                        <td style="text-align: right; text-align: -moz-right;" ng-if="isAddNewData">
+                                            <input type="button" class="btnDevelopmentAddXmlNode" id="btnAddXmlNode" ng-click="AddXmlElement(DevelopmentAdminTemplateForm)">
+                                        </td>
+                                        <td style="text-align: right; text-align: -moz-right;" ng-if="isEditData">
+                                            <input type="button" class="btnDevelopmentAddXmlNode" ng-click="SaveEditedXmlElement(DevelopmentAdminTemplateForm)">
+                                        </td>
+
+                                    </tr>
+                                </table>
+                            </form>
+                        </div>
+                        <div id="tab2" class="tab">
+                            not active tab
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div ng-model="resultantSet" ng-show="showXml" class="container" style="margin-top: 20px; padding-left:0px;">
+                <!--<div id="result_content" class="container"></div>-->
+
+                <table id="results" class="tableDevelopment" cellpadding="5">
+                    <thead>
+                        <tr>
+                            <th class=" tblHeader Qno" width="1%">Question No</th>
+                            <th class="tblHeader" width="15%">Question</th>
+                            <th class=" tblHeader" width="15%">Answer</th>
+                            <th class=" tblHeader" width="4%">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbodyDevelopment">
+                        <tr ng-repeat="query in queryPage">
+                            <td class="tblColumns">{{query.QId}}</td>
+                            <td class="tblColumns" style="width: 350px;">{{query.Question}}</td>
+                            <td class="tblColumns" style="width: 350px;"><span ng-bind-html="convertToHtml(query.Answer)"></span></td>
+                            <td class="tblColumns" >
+                                <span ng-click="EditXmlElement(query.QId)" style="cursor:pointer">
+                                    Edit
+                                </span> |
+
+                                <span ng-click="deleteXmlElement(query)" style="cursor:pointer">
+                                      Delete</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <pagination boundary-links="true" ng-if="pageModel.totalCount>0" total-items="pageModel.totalCount" ng-model="pageModel.offset" page="pageModel.offset" items-per-page="pageModel.limit" ng-click="pageChanged(pageModel.offset)" max-size="paginationMaxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;"></pagination>
+                <!--<div id="pageNavPosition"></div>
+                <div id="pageNav" class="container" style="padding-top: 10px;">
+                    <span ng-click="firstPage()" class="pg-disabled" id="first"> First </span>
+                    <span ng-click="prevPage()" class="pg-disabled" id="prev"> &#171 Prev</span>
+                    <span ng-repeat="i in pageItem" ng-class="{'pg-selected' : (i.id==1),'{{i.class}}': (i.id != 1)}" id="pg{{i.id}}" ng-click="showPage(i.id)">{{i.id}} </span>
+                    <span ng-click="nextPage()" class="pg-normal" id="nxt"> Next &#187;</span>
+                    <span ng-click="lastPage()" class="pg-normal" id="last"> Last </span>
+                </div>-->
+            </div>
+        </section>
+    </div>
+</div>

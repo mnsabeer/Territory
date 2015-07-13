@@ -1,0 +1,146 @@
+﻿<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+        <div class="popMaincontainer">
+            <div class="popupHeader">
+                PLEASE CORRECT THE FOLLOWING ERRORS
+                <div class="popupclose" ng-click="onPopUpCloseButtonClicked()">X</div>
+            </div>
+            <div class="popupContainerMain bulkuploadpopuptables">
+                <!--<h2 class="tabledheading">  PLEASE CORRECT THE FOLLOWING ERRORS</h2>-->
+                <div class="popcontall" ng-class="{'nospace': isCCIMUsersAvailable }" ng-if="isInvalidUserAvailable">
+                    <table class="table-bordered table-striped table-condensed cf upload_from_error">
+                        <tbody>
+                            <tr>
+                                <th width="20%">First Name</th>
+                                <th width="20%">Last Name</th>
+                                <th width="30%">Email Address</th>
+                                <th width="20%">Expiry Date</th>
+                                <th width="10%">Skip</th>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <form name="BulkUserRegistrationValidationForm" id="BulkUserRegistrationValidationForm" novalidate>
+                        <div ng-class="{'STDBBulkUserRegistrationDualScrollbarContainer'   : (isCCIMUsersAvailable), 'STDBCustomerListTemplateScrollbarContainer' : (!isCCIMUsersAvailable)}" content-data="InValidUserList" data-ng-scroll-bar>
+                            <div class="scrollbar">
+                                <div class="track">
+                                    <div class="thumb">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="viewport">
+                                <div class="overview">
+                                    <table class="table-bordered table-striped table-condensed cf upload_from_error">
+                                        <tbody>
+                                            <tr>
+                                                <th width="20%">First Name</th>
+                                                <th width="20%">Last Name</th>
+                                                <th width="30%">Email Address</th>
+                                                <th width="20%">Expiry Date</th>
+                                                <th width="10%">Skip</th>
+                                            </tr>
+                                            <tr ng-repeat="user in InvalidList">
+                                                <td>
+                                                    <input type="text" name="FirstName{{user.Index}}" ng-class="{'errorcont'   : (!user.IsSkipped && !user.FirstName && !IsValidForm)}" ng-model="user.FirstName" ng-disabled="user.IsSkipped" />
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && !user.FirstName && !IsValidForm)">* Required</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" name="LastName{{user.Index}}" ng-class="{'errorcont'   : (!user.IsSkipped && !user.LastName && !IsValidForm)}" ng-model="user.LastName" ng-disabled="user.IsSkipped" />
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && !user.LastName && !IsValidForm)">* Required</span>
+                                                </td>
+                                                <td>
+                                                    <input type="text" style="width:100%" ng-class="{'errorcont'   : (!user.IsSkipped && (!user.IsValidEmailAddress || user.IsDuplicateEmail || !user.EmailAddress) && !IsValidForm)}" ng-change="validateEmail(user)" name="EmailText{{user.Index}}" ng-model="user.EmailAddress" ng-disabled="user.IsSkipped" />
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && !user.EmailAddress && !IsValidForm)">* Required</span>
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && user.EmailAddress && !user.IsValidEmailAddress && !IsValidForm)">* Invalid Email Address</span>
+                                                    <span class="ErrorMessageDetails" ng-if="(user.EmailAddress && user.IsDuplicateEmail && !IsValidForm)">* Duplicate Email Exists</span>
+                                                </td>
+                                                <td class="table-datepickerfix" ng-class="{'datepicker-smaller' : (isCCIMUsersAvailable)}">
+                                                    <!--<input type=" text" name="ExpiryDate{{user.Index}}" ng-model="user.ExpiryDate" ng-class="{'errorcont'   : (!user.IsSkipped && user.IsExpired && !IsValidForm)}" ng-disabled="user.IsSkipped" />-->
+                                                    <input type="text" name="ExpiryDate{{user.Index}}" ng-class="{'errorcont' : (!user.IsSkipped && user.IsExpired && !IsValidForm)}" ng-disabled="user.IsSkipped"
+                                                           maxlength="0"
+                                                           ng-model="user.ExpiryDate" ng-change="ExpiryDateChange(user)"
+                                                           class="form-control_date"
+                                                           alt=""
+                                                           datepicker-popup="dd-MMM-yyyy"
+                                                           is-open="enddateopened"
+                                                           min="minDate"
+                                                           show-weeks="false"
+                                                           show-button-bar="false"
+                                                           datepicker-options="dateOptions"
+                                                           position="{{user.position}}"
+                                                           close-text="Close">
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && !user.ExpiryDate && !IsValidForm)">* Required.</span>
+                                                    <span class="ErrorMessageDetails" ng-if="(!user.IsSkipped && user.IsExpired && !IsValidForm)">* Invalid Expiry Date.</span>
+                                                </td>
+                                                <td>
+                                                    <input type="checkbox" ng-model="user.IsSkipped" ng-change="OnSkipUser()" />
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+                        </div>
+                    </form>
+                </div>
+
+                <div ng-if="isCCIMUsersAvailable">
+                    <div class="popcontall" ng-class="{'nospace': isInvalidUserAvailable }">
+                        <label>Already CCIM Members</label>
+                    </div>
+                    <div class="popcontall">
+                        <table class=" table-bordered table-striped table-condensed cf">
+                        <tbody>
+                            <tr>
+                                <th width="25%">First Name</th>
+                                <th width="25%">Last Name</th>
+                                <th width="30%">Email Address</th>
+                                <th width="20%">Expiry Date</th>
+                            </tr>
+                        </tbody>
+                        </table>
+                        <div ng-class="{'STDBBulkUserRegistrationDualScrollbarContainer'   : (isInvalidUserAvailable), 'STDBCustomerListTemplateScrollbarContainer' : (!isInvalidUserAvailable)}" content-data="CCIMUsers" data-ng-scroll-bar>
+                            <div class="scrollbar">
+                                <div class="track">
+                                    <div class="thumb">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="viewport">
+                                <div class="overview">
+                                    <table class="table-bordered table-striped table-condensed cf">
+                                        <tbody>
+                                            <tr>
+                                                <th width="25%">First Name</th>
+                                                <th width="25%">Last Name</th>
+                                                <th width="30%">Email Address</th>
+                                                <th width="20%">Expiry Date</th>
+                                            </tr>
+                                            <tr ng-repeat="user in CCIMUsers">
+                                                <td>
+                                                    <span>{{user.FirstName}}</span>
+                                                </td>
+                                                <td>
+                                                    <span>{{user.LastName}}</span>
+                                                </td>
+                                                <td>
+                                                    <span>{{user.EmailAddress}}</span>
+                                                </td>
+                                                <td>
+                                                    <span>{{user.ExpiryDate | date:'dd-MMM-yyyy'}}</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input class="submitButton" type="button" value="Skip All" ng-click="onClickSkipAll()" />
+                <input class="submitButton" type="button" value="Save & Continue" ng-click="onClickSaveAndContinue()" />
+            </div>
+        </div>
+    </div>

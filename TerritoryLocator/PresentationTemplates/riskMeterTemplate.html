@@ -1,0 +1,246 @@
+﻿<div data-ng-controller="riskMeterTemplateController">
+
+    <div ng-show="!isDataSubmitted&&!isEmailPdfClicked&&!isEmailConfirmation">
+        <div class="PictometrySecHeader">
+            <h3>Choose Location</h3>
+        
+
+            <div class="GerPictometryImg" ng-class="{'disabled' : !isLocated}" ng-click="onGetResultclick()">Get Results</div>
+        </div>
+        <input id="pac-input" type="text" placeholder="Search Box">
+        <section id="map-canvas" class="block PictometrySec"></section>
+    </div>
+
+    <!--ng-if="isDataSubmitted"-->
+    <section class="block" ng-if="isDataSubmitted">
+        <div class="container no-Space" style="margin-top:30px">
+            <div class="col-md-12">
+                <div class="Function_Cont_main">
+                    <input type="button" class="MainButton" ng-click="onEmailPdfClicked()" value="Email PDF">
+                    <input type="button" class="MainButton" ng-click="onDownLoadPdfClicked()" value="Download PDF">
+                    <input type="button" class="MainButton" value="Print" ng-print print-element-id="dummyprint">
+                    <input type="button" class="MainButton" value="New Address" ng-click="SearchNewAddress()">
+                </div>
+                <h3 class="headdeta">Location Report</h3>
+                <p>You are currently logged in as: ({{CustomerId}}) on {{date|date:'dd-MMM-yyyy'}}</p>
+
+                <div class="location_heading_main">Address Entered</div>
+                <div class="location_inner_main">
+                    <!--<p><label class="leftlabels">Policy #</label>  <label class="rightlabels">: </label></p>-->
+                    <p><label class="leftlabels">Street</label>    <label class="rightlabels">: {{LocationDetailsSent.Street}}</label></p>
+                    <p><label class="leftlabels">City</label>      <label class="rightlabels">: {{LocationDetailsSent.City}}</label></p>
+                    <p><label class="leftlabels">State</label>     <label class="rightlabels">: {{LocationDetailsSent.State}}</label></p>
+                    <p><label class="leftlabels">ZIP Code</label>  <label class="rightlabels">: {{LocationDetailsSent.Zip}}</label></p>
+                </div>
+
+                <div class="location_heading_main">Address Returned</div>
+                <div class="location_inner_main">
+                    <!--<p><label class="leftlabels">Policy #</label>  <label class="rightlabels">: 2378</label></p>-->
+                    <p><label class="leftlabels">Street</label>    <label class="rightlabels">: {{LocationDetailsReturned.Details.Street}}</label></p>
+                    <p><label class="leftlabels">City</label>      <label class="rightlabels">: {{LocationDetailsReturned.Details.City}}</label></p>
+                    <p><label class="leftlabels">State</label>     <label class="rightlabels">: {{LocationDetailsReturned.Details.State}}</label></p>
+                    <p><label class="leftlabels">ZIP Code</label>  <label class="rightlabels">: {{LocationDetailsReturned.Details.Zip}}</label></p>
+                    <p><label class="leftlabels">Latitude</label>  <label class="rightlabels">: {{LocationDetailsReturned.Details.Latitude}}</label></p>
+                    <p><label class="leftlabels">Longitude</label> <label class="rightlabels">: {{LocationDetailsReturned.Details.Longitude}}</label></p>
+                    <p class="bottom_container_main">
+                        <label class="leftlabels">Geocoding Accuracy</label>
+                        <label class="rightlabels" ng-if="IsManuallyPlaced">: (*)<i>Location placed manually by user</i>(MP)</label>
+                        <label class="rightlabels" ng-if="!IsManuallyPlaced">: <a ng-href="{{LocationDetailsReturned.Details.GeocodingResultLink}}" target="_blank">{{LocationDetailsReturned.Details.GeocodingAccuracy}}</a></label>
+                    </p>
+                </div>
+                <div class="location_inner_main_map">
+                    <div style=" width: 785px; height: 785px; float: left;">
+                        <div id="busyind" class="busyindicator">
+                            <img src="../Content/images/ajax-loader.gif" />
+                        </div>
+                        <img ng-dynamic-src="MapImageAddress" id="MapImage" ng-busy-indicator-id="busyind" ng-click="ProcessImage($event)" class="mapimagesec">
+                    </div>
+                    <div class="mapoptionscontainer">
+                        <div class="location_heading_main">Map Options</div>
+                        <div class="location_inner_main">
+                            <table>
+                                <tr>
+                                    <td colspan="4"><h3>Layer Selection</h3></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" colspan="2"><label>Flood Map</label></td>
+                                    <td></td>
+                                    <td colspan="2"><input type="checkbox" ng-model="FloodMapView.value" ng-change="redrawMap(0)" /><label class="labeltext">On/Off</label></td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" colspan="2"><label>Zoom</label></td>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <div class="zoomlevelslidercontainer">
+                                            <div class="zoomlevelslider" ng-slider min=" 13" max="19" ng-model="zoomLevel" ng-change="redrawMap(1)" />
+                                            <input maxlength="3" disabled class="zoomlevelslidertext" type="text" ng-model="zoomLevel" ng-blur="redrawMap(1)" ng-show="false" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" colspan="2"><label>Layer Transparency</label></td>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <div class="zoomlevelslidercontainer">
+                                            <div ng-disabled="!FloodMapView.value" class="zoomlevelslider" ng-slider ng-model="LayerTransparency" min="0" max="10" ng-change="redrawMap(1)"></div>
+                                            <input maxlength="3" disabled class="zoomlevelslidertext" type="text" ng-model="LayerTransparency" ng-blur="redrawMap(1)" ng-show="false" />
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="width: 40%;" colspan="2"><label>Switch Map To</label></td>
+                                    <td></td>
+                                    <td colspan="2"><select ng-options="P.value for P in MapTypes" ng-model="selectedMapType.value" ng-change="redrawMap(0)"></select></td>
+                                </tr>
+                                <tr>
+                                    <td colspan="5">
+                                        <input type="radio" name="MapOptions" value="ManualPlacement" ng-model="manualPlacement.value" ng-mouseup="radioButton(1)" ng-change="radioButtonChange(1)" /><label class="labeltext">Manual Placement</label>
+                                        <input type="radio" name="MapOptions" value="Distance" ng-model="distance.value" ng-mouseup="radioButton(2)" ng-change="radioButtonChange(2)" /><label class="labeltext">Distance</label>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+                    <div class="locationreportcontainer">
+                        <div class="location_heading_main">Location Report</div>
+                        <div class="location_inner_main" style="padding: 0 2px 0 2px;">
+                            <table class="table table-striped locationdesc">
+                                <thead>
+                                    <tr>
+                                        <th style="width:130px">Flood Zone Determinations</th>
+                                        <!--<th> 
+                                            <!-- open in new tab if url available,else stay on the same page
+                                            <a ng-href="{{LocationDetailsReturned.Details.ReportDescriptionLink}}" target="_blank" ng-if="LocationDetailsReturned.Details.ReportDescriptionLink!='#'">Report Description</a>
+                                            <a ng-href="{{LocationDetailsReturned.Details.ReportDescriptionLink}}" ng-if="LocationDetailsReturned.Details.ReportDescriptionLink=='#'">Report Description</a>
+                                        </th>-->
+										<th>
+											<a ng-href="http://stdblearningcenter.com/uploads/fema-flood-zone-definitions.pdf" target="_blank">Report Description</a>
+										</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Panel Date</td>
+                                        <td>{{LocationDetailsReturned.Details.Date}}</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Map Number</td>
+                                        <td>{{LocationDetailsReturned.Details.MapNumber}}</td>
+                                    </tr>
+                                    <tr><td>FIPS Code</td><td>{{LocationDetailsReturned.Details.FIPSCode}}</td></tr>
+                                    <tr><td>Census Tract</td><td>{{LocationDetailsReturned.Details.CensusTrack}}</td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+
+                    <div class="FLOOD_CONTAINER">
+                        <img ng-src="{{FloodZoneDetailsImage}}" />
+                    </div>
+
+                    <div id="dummyprint" style="font-family:arial!important" hidden="hidden">
+                        <div style="width: 98%; border: 1px solid gray;  position: relative; padding:10px; margin:0 auto;">
+                            <div>
+                                <div style="float:left;">
+                                    <img ng-src="{{BaseUrl}}/Content/images/STDBGoodLogo.jpg" style="float:right" />
+                                </div>
+                                <div style="text-align:right;font:11px verdana;margin-right:5px;color:#808080;margin-bottom:5px;float:right;width:75%">
+                                    <p style="margin:0 0 5px 0">You are currently logged in as: ({{CustomerId}}) on {{date|date:'dd-MMM-yyyy'}} </p>
+                                    <p style="margin:0 0 5px 0">{{LocationDetailsSent.Street}}, {{LocationDetailsSent.City}}, {{LocationDetailsSent.State}}</p>
+                                    <p style="margin:0 0 5px 0">{{LocationDetailsReturned.Details.Street}}, {{LocationDetailsReturned.Details.City}}, {{LocationDetailsReturned.Details.State}}</p>
+                                </div>
+                            </div>
+                            <div style="width:100%;margin-top:53px">
+                                <div style="width:100%;margin:3px 0px 3px 0px;text-align:center">
+                                    <img ng-src="{{MapImageAddress}}" style="width: 650px; max-height: 500px; overflow: hidden">
+                                </div>
+                                <table style="width:100%">
+                                    <tr>
+                                        <td style="width: 31%;" valign="top">
+                                            <font color="#000000" size="2"><strong><u>MAP DATA</u></strong></font> <br />
+                                            <p style="margin:0 0 5px 0">Map Number :<strong>{{LocationDetailsReturned.Details.MapNumber}}</strong></p>
+                                            <p style="margin:0 0 5px 0">Panel Date :<strong>{{LocationDetailsReturned.Details.Date}}</strong></p>
+                                            <p style ="margin:0 0 5px 0">FIPS Code : <strong>{{LocationDetailsReturned.Details.FIPSCode}}</strong></p>
+                                        </td>
+                                        <td style="width: 3%;"></td>
+                                        <td style="width: 35%;" valign="top">
+                                            <br />
+                                            <p style="margin:0 0 5px 0">Census Tract : <strong>{{LocationDetailsReturned.Details.CensusTrack}}</strong></p>
+                                            <p style="margin:0 0 5px 0">Geo Result :<strong>{{LocationDetailsReturned.Details.GeocodingAccuracy}}</strong></p>
+                                        </td>
+                                        <td style="width:5%;"></td>
+                                        <td style=" width: 15%;" valign="top">
+                                            <!--<font color="#006666"><strong><u>MAP LEGEND</u></strong></font><br />-->
+                                            <img ng-src="{{FloodZoneDetailsImage}}">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>                          
+                        </div>
+                        <div style="height: 50px; width: 100%;">
+                         
+                            
+                            <!--<img ng-src="{{BaseUrl}}/Content/images/STDBGoodLogo.jpg" style="float:right" />-->
+                            <span style="font-size: 8px;">© 2015 - STDB. All rights reserved</span><br />
+                            <span style="font-size: 8px; text-align: justify; text-justify: inter-word; ">This Report is for the sole benefit of the Customer that ordered and paid for the Report and is based on the property information provided by that Customer. That Customer's use of this Report is subject to the terms agreed to by that Customer when accessing this product. No third party is authorized to use or rely on this Report for any purpose. THE SELLER OF THIS REPORT MAKES NO REPRESENTATIONS OR WARRANTIES TO ANY PARTY CONCERNING THE CONTENT, ACCURACY OR COMPLETENESS OF THIS REPORT, INCLUDING ANY WARRANTY OF MERCHANTABILITY OR FITNESS FOR A PARTICULAR PURPOSE. The seller of this Report shall not have any liability to any third party for any use or misuse of this Report.
+</span>
+                        </div>
+                    </div>
+
+
+                    <div id="editor"></div>
+                </div>
+    </section>
+
+    <!--email form-->
+
+    <section class="block" ng-if="isEmailPdfClicked">
+
+        <div class="riskMeter-emailForm-container">
+
+            <div class="riskmeter-email-header">
+                <h3>Email PDF Report</h3>
+                <p>Enter an email address below to send report. </p>
+            </div>
+
+            <div class="emailForm">
+                <form name="riskMeterTemplateEmailForm" id="riskMeterTemplateEmailForm">
+
+                    Recipients Name <br />
+                    <input type="text" name="RecipientName" ng-model="Email.RecipientName" ng-class="{'errorcont':riskMeterTemplateEmailForm.RecipientName.$error.required&&!IsValidEmailForm}" required />
+                    <span class="ErrorMessageDetails" ng-show="riskMeterTemplateEmailForm.RecipientName.$error.required&&!IsValidEmailForm">Required</span>
+                    <br />
+                    Recipients Email <br />
+                    <input type="text" name="RecipientEmail" ng-pattern="emailPattern" ng-model="Email.RecipientEmail" ng-class="{'errorcont':riskMeterTemplateEmailForm.RecipientEmail.$error.required&&!IsValidEmailForm}" required />
+                    <span class="ErrorMessageDetails" ng-show="riskMeterTemplateEmailForm.RecipientEmail.$error.required&&!IsValidEmailForm">Required</span>
+                    <span class="ErrorMessageDetails" ng-show="riskMeterTemplateEmailForm.RecipientEmail.$error.pattern&&!IsValidEmailForm">Invalid Email </span>
+                    <br />
+                    Subject <br />
+                    <input type="text" name="Subject" ng-model="Email.Subject" ng-class="{'errorcont':riskMeterTemplateEmailForm.Subject.$error.required&&!IsValidEmailForm}" required />
+                    <span class="ErrorMessageDetails" ng-show="riskMeterTemplateEmailForm.Subject.$error.required&&!IsValidEmailForm">Required</span>
+                    <br />
+                  
+                    <input type="button" ng-click="onSendEmailClicked(riskMeterTemplateEmailForm)" value="Submit" />
+                    &nbsp;&nbsp;
+                    <input type="button" ng-click="onCancelEmailFormClicked()" value="Cancel" />
+
+
+                </form>
+            </div>
+        </div>
+
+    </section>
+
+    <section class="block" ng-if="isEmailConfirmation">
+        <div class="riskMeter-emailFormConfirmation-container">
+
+
+            <div class="riskmeter-email-header">
+                <h3> Email Confirmation</h3>
+                <p>  An email with an attached PDF report has been sent to the specified address. Thank you for using RiskMeter Online.</p>
+            </div>
+            <input type="button" ng-click="onCancelConfirmationClicked()" value="OK" />
+        </div>
+    </section>

@@ -1,0 +1,188 @@
+﻿
+    <div class="popupwrap" id="modalWindowPopUpContainer">
+        <!-- content starts -->
+        <div id="popupContent">
+            <div class="popMaincontainer">
+                <div class="popupHeader">
+                    Customer Details
+                    <div class="popupclose" ng-click="onPopUpCloseButtonClicked()">X</div>
+                </div>
+
+                <div class="popupContainerMain">
+                    <h2 class="tabledheading">Customer Details</h2>
+                    <table class="table-bordered table-striped table-condensed cf">
+                        <tbody>
+                            <tr>
+                                <th>Customer Address</th>
+                                <th>Billing Address</th>
+                                <th>Additional Members</th>
+                            </tr>
+                            <tr >
+
+
+                                <td ng-show="ProfileInfo!=null">
+                                    <span ng-show="ProfileInfo.Address1!=null"> 
+                                      {{ProfileInfo.Address1}} <br></span>
+                                    <span ng-show="ProfileInfo.Address2!=null">
+                                        {{ProfileInfo.Address2}} <br>
+                                    </span>
+                                    <span ng-show="ProfileInfo.City!=null">
+                                        {{ProfileInfo.City}},
+                                    </span>
+                                    <span ng-show="ProfileInfo.StateCode!=null">
+                                        {{ProfileInfo.StateCode}}
+                                    </span>
+                                    <span ng-show="ProfileInfo.PostalCode!=null">
+                                        {{ProfileInfo.PostalCode}}  <br>
+                                    </span>
+                                    <span ng-show="ProfileInfo.PhoneNumber!=null">
+                                        Telephone:  {{ProfileInfo.PhoneNumber}}
+                                    </span>
+                                  </td>
+                                <td ng-show="ProfileInfo==null">
+                                    No information found.
+                                </td>
+                                <td ng-show="BillingInfo!=null">
+                                    <span ng-show="BillingInfo.Address1!=null">
+                                        {{BillingInfo.Address1}} <br>
+                                    </span>
+                                    <span ng-show="BillingInfo.Address2!=null">
+                                        {{BillingInfo.Address2}} <br>
+                                    </span>
+                                    <span ng-show="BillingInfo.City!=null">
+                                        {{BillingInfo.City}},
+                                    </span>
+                                    <span ng-show="BillingInfo.StateCode!=null">
+                                        {{BillingInfo.StateCode}}
+                                    </span>
+                                    <span ng-show="BillingInfo.PostalCode!=null">
+                                        {{BillingInfo.PostalCode}}  <br>
+                                    </span>
+                                    <span ng-show="BillingInfo.PhoneNumber!=null">
+                                        Telephone: {{BillingInfo.PhoneNumber}}
+                                    </span>
+                                </td>
+                                <td ng-show="BillingInfo==null">
+                                    No information found.
+                                </td>
+                                <td ng-show="Emails.length>0" ng-repeat="email in Emails">
+
+                                    {{email.EmailAddress}}
+
+                                </td>
+                                <td ng-show="Emails.length<=0">
+                                    No information found.
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h2 class="tabledheading">Order Details</h2>
+
+                    <div ng-show="Orders.length>0" class="MainContainer_Wrapperinner">
+                        <table class="table-bordered table-striped table-condensed cf nobordersing">
+                            <tbody>
+                                <tr>
+                                    <th style="width:10%">Order Id</th>
+                                    <th style="width:25%">Order Date</th>
+                                    <th style="width:10%">Plan Name</th>
+                                    <th style="width:25%">Transaction Id</th>
+                                    <th style="width:10%">Quantity</th>
+                                    <th style="width:10%">Unit Price</th>
+                                    <th style="width:10%">Order Price</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="STDBCustomerDetailsPopUpTemplateOrderDetailsScrollbarContainer" content-data="Orders" data-ng-scroll-bar>
+                            <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
+                            <div class="viewport">
+                                <div class="overview">
+                                    <table class="table-bordered table-striped table-condensed cf nobordersing">
+                                        <tbody>
+                                            <tr>
+                                                <th style="width:10%">Order Id</th>
+                                                <th style="width:25%">Order Date</th>
+                                                <th style="width:10%">Plan Name</th>
+                                                <th style="width:25%">Transaction Id</th>
+                                                <th style="width:10%">Quantity</th>
+                                                <th style="width:10%">Unit Price</th>
+                                                <th style="width:10%">Order Price</th>
+
+                                            </tr>
+
+                                            <tr ng-repeat="order in Orders">
+                                                <td>{{order.Id}}</td>
+                                                <td>{{order.OrderDate}}</td>
+                                                <td>{{order.PlanId}}</td>
+                                                <td>{{order.TransactionId}}</td>
+                                                <td>{{order.Quantity}}</td>
+                                                <td>{{order.UnitPrice}}</td>
+                                                <td style="font-weight:600">{{order.TotalPrice}}</td>
+                                            </tr>
+
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p ng-show="Orders.length<=0" class="noinfomessage">No Order Information Found</p>
+
+
+                    <h2 class="tabledheading">Audit</h2>
+
+
+                    <div ng-show="AuditLog.length>0" class="MainContainer_Wrapperinner">
+                        <table class="table-bordered table-striped table-condensed cf nobordersing">
+                            <tbody>
+                                <tr>
+
+                                    <th style="width:24%">Field</th>
+                                    <th style="width:24%">Modified Date</th>
+                                    <th style="width:25%">Previous Value</th>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="STDBCustomerDetailsPopUpTemplateAuditScrollbarContainer" content-data="AuditLog" data-ng-scroll-bar>
+                            <div class="scrollbar"><div class="track"><div class="thumb"></div></div></div>
+                            <div class="viewport">
+                                <div class="overview">
+                                    <table class="table-bordered table-striped table-condensed cf nobordersing">
+                                        <tbody>
+                                            <tr>
+
+                                                <th style="width:25%">Field</th>
+                                                <th style="width:25%">Modified Date</th>
+                                                <th style="width:25%">Previous Value</th>
+                                            </tr>
+
+                                            <tr ng-repeat="audit in AuditLog">
+
+                                                <td>{{audit.Field}}</td>
+                                                <td>{{audit.ModifiedDateString}}</td>
+                                                <td>{{audit.Value}}</td>
+                                            </tr>
+
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <p ng-show="AuditLog.length<=0" class="noinfomessage">No Audit Information Found</p>
+                </div>
+            </div>
+        </div>
+        <!-- content ends -->
+        <!-- header start -->
+        <div class="popupfieldwrap">
+            <div id="popupHeading"><h1>Customer Details</h1></div>
+            <a href="#" class="windowclose" data-dismiss="modal"></a>
+        </div>
+        <!-- header ends -->
+        <div class="clearfix">
+        </div>
+    </div>

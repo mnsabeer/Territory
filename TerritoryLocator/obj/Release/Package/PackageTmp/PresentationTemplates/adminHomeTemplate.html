@@ -1,0 +1,292 @@
+﻿<div data-ng-controller="adminHomeTemplateController">
+
+    <section class="block transbg">
+       
+        <tabset style="margin-top: 80px; margin-bottom: -69px; margin-left: 109px; width: 50%;">
+
+            <tab heading="Manage Customer" style="cursor:pointer;" select="manageCustomer()" />
+            <tab heading="Manage Alerts" style="cursor:pointer;" select="manageAlerts()" />
+            <tab heading="User Log" style="cursor:pointer;" select="showUserLog()" />
+
+        </tabset>
+
+        <div ng-if="isCustomerVisible&&!isAlertVisible">
+            <div class="Main_Whole_inner">
+                <div class="MainContainer_Wrapper">
+                    <form name="adminHomeTemplateSearchForm" novalidate>
+                        <label class="SearchText">Search Text</label>
+                        <input type="text" placeholder="Enter search text" class="searchboxcont" name="SearchVar" ng-class=" {'errorcont'   :adminHomeTemplateSearchForm.SearchVar.$error.required&&isInValid}" required data-ng-model="SearchParam" ng-model-onblur ng-change="onSearchButtonClicked(adminHomeTemplateSearchForm,SearchParam)">
+                        <span class="spanerror" ng-show="adminHomeTemplateSearchForm.SearchVar.$error.required&&isInValid">Enter Search parameter</span>
+                        <div class="searchbutton" ng-click="onSearchButtonClicked(adminHomeTemplateSearchForm,SearchParam)">Search</div>
+                        <div ng-if="SearchResult" class="Searchresultcontainer STDBCustomerListTemplateSearchResultContainer">
+                            <div class="Searchresultcontainer_searchresult"><span class="STDBCustomerListTemplateSearchResultCount">{{SearchResultCount}}</span> Results Found</div>
+                            <div class="searchclose STDBCustomerListTemplateSearchClose" ng-click="onSearchCloseButtonClicked()">x</div>
+                        </div>
+                        <label class="instruction" ng-if="!SearchResult">( Can enter email address, first name or last name to search )</label>
+                        <input type="button" class="AddCustomerButton" ng-click="onAddCustomerClicked()" value="Add Customer">
+                    </form>
+                </div>
+
+                <div class="MainContainer_Wrapperinner">
+                    <table class="table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                            <tr>
+                                <th width="10%" ng-click="onSortButtonClicked(1)" param="1" class="DetailsSortContainer">Customer ID</th>
+                                <th width="18%" ng-click="onSortButtonClicked(9)" param="9" class="DetailsSortContainer">User ID</th>
+                                <th width="9%" ng-click="onSortButtonClicked(3)" param="3" class="DetailsSortContainer">First Name</th>
+                                <th width="9%" ng-click="onSortButtonClicked(5)" param="5" class="DetailsSortContainer">Last Name</th>
+                                <th width="11%" ng-click="onSortButtonClicked(7)" param="7" class="DetailsSortContainer">Member Class</th>
+                                <th width="10%" ng-click="onSortButtonClicked(11)" param="11" class="DetailsSortContainer">Expiry Date</th>
+                                <th width="8%" ng-click="onSortButtonClicked(13)" param="13" class="DetailsSortContainer">Expired</th>
+                                <th width="12%" ng-click="onSortButtonClicked(15)" param="15" class="DetailsSortContainer">Last login date</th>
+                                <th width="6%">Action</th>
+                                <th width="7%">Password</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="STDBCustomerListTemplateScrollbarContainer" content-data="CustomerList" data-ng-scroll-bar>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewport">
+                            <div class="overview">
+                                <table class="table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th width="10%">Customer ID</th>
+                                            <th width="18%">User ID</th>
+                                            <th width="9%">First Name</th>
+                                            <th width="9%">Last Name</th>
+                                            <th width="11%">Member Class</th>
+                                            <th width="10%">Expiry Date</th>
+                                            <th width="8%">Expired</th>
+                                            <th width="12%">Last login date</th>
+                                            <th width="6%">Action</th>
+                                            <th width="7%">Password</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        <tr class="STDBCustomerListTemplateCustomerRows" ng-repeat="customer in CustomerList">
+                                            <td><a class="STDBCustomerItemTemplateUserId" ng-click="showCustomerDetails(customer.Id)">{{customer.Id}}</a></td>
+                                            <td style="word-break: break-all;">{{customer.UserId}}</td>
+                                            <td>{{customer.FirstName}}</td>
+                                            <td>{{customer.LastName}}</td>
+                                            <td>{{customer.MemberClassDescription}}</td>
+                                            <td>{{customer.ExpDate}}</td>
+                                            <td ng-if="customer.Expired">Yes</td>
+                                            <td ng-if="!customer.Expired">No</td>
+                                            <td>{{customer.Lastlogindate}}</td>
+                                            <td><a class="STDBCustomerItemTemplateEditButton" ng-click="onEditButtonClicked(customer.Id,customer.ExpDate,customer.Expired,customer.MemberClass,customer.UserId)">Edit</a><a></a></td>
+                                            <td><a ng-show="customer.MemberClass!=100" class="STDBCustomerItemTemplatePasswordResetButton" ng-click="onResetButtonClicked(customer.Id)" customerid="1" expdate="19-Dec-2014" expired="true" memclass="51">Reset</a><a></a></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <pagination boundary-links="true" total-items="totalCount" ng-model="offset" page="offset" items-per-page="limit" ng-click="pageChanged(offset)" max-size="paginationMaxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-if="totalCount>0"></pagination>
+
+
+
+            </div>
+        </div>
+        <div ng-if="!isCustomerVisible&&isAlertVisible">
+            <div class="Main_Whole_inner">
+                <div class="MainContainer_Wrapper">
+                    <form name="adminHomeTemplateSearchForm" novalidate>
+                        <input type="button" class="AddCustomerButton" ng-click="onAddAlertClicked()" value="Add Alert">
+                    </form>
+                </div>
+                <div class="MainContainer_Wrapperinner">
+                    <table class="table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                            <tr>
+                            <tr>
+                                <th style="width:20px;">Select</th>
+                                <th style="width:249px;">Header Text</th>
+                                <th style="width:500px;">Alert Text</th>
+                                <th style="width:100px;">Published</th>
+                                <th style="width:75px;">View</th>
+                                <th style="width:75px;">Edit</th>
+                                <th style="width:75px;">Delete</th>
+                            </tr>
+                            </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="STDBCustomerListTemplateScrollbarContainer" content-data="AlertList" data-ng-scroll-bar>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewport">
+                            <div class="overview">
+                                <table class="table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th style="width:20px;">Select</th>
+                                            <th style="width:249px;">Header Text</th>
+                                            <th style="width:500px;">Alert Text</th>
+                                            <th style="width:100px;">Published</th>
+                                            <th style="width:75px;"> View</th>
+                                            <th style="width:75px;">Edit</th>
+                                            <th style="width:75px;">Delete</th>
+
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="STDBCustomerListTemplateCustomerRows" ng-repeat="alert in AlertList">
+                                            <td style="width:20px;">
+                                                <input type="checkbox" ng-model="alert.IsSelected" />
+                                            </td>
+
+                                            <td style="width:249px;">{{alert.Header}}</td>
+                                            <td style="width:500px;">{{alert.AlertMinText}}</td>
+                                            <td style="width:100px;">{{alert.IsPublished}}</td>
+                                            <td style="width:75px;"><div ng-click="onViewAlertButtonClicked(alert.Id)" tooltip="{{alert.AlertText}} " tooltip-placement="bottom" style="width: 50%; height: 20px; background-image: url(../Content/images/view.png); background-repeat: no-repeat; align-content: center; cursor: pointer;"></div></td>
+                                            <td style="width:75px;"><div ng-click="onEditAlertButtonClicked(alert.Id)" style="width: 50%; height: 20px; background-image: url(../Content/images/edit.png);background-repeat:no-repeat;align-content:center;cursor:pointer;"></div></td>
+                                            <td style="width:75px;"><div ng-confirm-text="Do you want to delete this alert?" ng-confirm-click="onDeleteAlertButtonClicked(alert)" data-ng-confirm-message style="width: 50%; height: 20px; background-image: url(../Content/images/delete.png); background-repeat: no-repeat; align-content: center;cursor:pointer;"></div></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                                <button ng-click="onAlertCheckedForPublishing()" value="PUBLISH" style="width: 70px;                                height 35px;
+                                        background:#2e94d6;
+                                        color:#ffffff;
+                                        padding:4px 10px;
+                                        cursor:pointer;
+                                        border:1px solid #066b83;
+                                        float:left;
+                                        font-size:13px;
+                                        text-transform:uppercase;">
+                                    Publish
+                                </button>
+
+                                <button ng-click="onAlertCheckedForUnPublishing()" value="UNPUBLISH" style="width: 90px;                                height 35px;
+                                        background:#2e94d6;
+                                        color:#ffffff;
+                                        padding:4px 10px;
+                                        cursor:pointer;
+                                        border:1px solid #066b83;
+                                        float:left;
+                                        font-size:13px;margin-left:10px;
+                                        text-transform:uppercase;">
+                                    UnPublish
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<pagination boundary-links="true" total-items="totalCount" ng-model="offset" page="offset" items-per-page="limit" ng-click="pageChanged(offset)" max-size="paginationMaxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-if="totalCount>0"></pagination>-->
+            </div>
+        </div>
+
+        <div ng-if="isUserLogVisible">
+            <div class="Main_Whole_inner">
+                <div class="MainContainer_Wrapper">
+                    <form name="adminHomeTemplateUserLogForm" novalidate>
+                        <select id="STDBCustomerListTemplateMapType" class="form-control_select">
+                            <option value="1" ng-selected="true">Pictometry</option>
+                            <!--<option value="2">Riskmeter</option>-->
+                        </select>
+                        <label class="form-control_label" style="margin-left: 5px;">Start Date:</label>
+                        <input type="text" name="StartDate" ng-model="StartDate" required
+                               class="form-control_date"
+                               alt=""
+                               datepicker-popup="dd-MMM-yyyy"
+                               is-open="opened"
+                               min-date="minDate"
+                               max-date="'2090-06-22'"
+                               show-weeks="false"
+                               show-button-bar="false"
+                               datepicker-options="dateOptions"
+                               close-text="Close"
+                               ng-class="{'onerror' : (adminHomeTemplateUserLogForm.StartDate.$error.required) }">
+                        <span class="spanerror" ng-if="adminHomeTemplateUserLogForm.StartDate.$error.required " style="margin-left: 250px; margin-top: 20px;">*Required</span>
+
+                        <label class="form-control_label" style="margin-left: 100px;">End Date:</label>
+                        <input type="text" name="EndDate" ng-model="EndDate" required
+                               class="form-control_date"
+                               alt=""
+                               datepicker-popup="dd-MMM-yyyy"
+                               is-open="enddateopened"
+                               min-date="minDate"
+                               max-date="'2090-06-22'"
+                               show-weeks="false"
+                               show-button-bar="false"
+                               datepicker-options="dateOptions"
+                               close-text="Close"
+                               ng-class="{'onerror' : (adminHomeTemplateUserLogForm.EndDate.$error.required) }">
+                       
+                        <span class="spanerror" ng-if="adminHomeTemplateUserLogForm.EndDate.$error.required " style="margin-left: 600px; margin-top: 20px;">*Required</span>
+                        <input type="button" class="AddCustomerButton form-control_button" style="margin-top: -27px;" id="adminHomeTemplateUserLogFormGo" ng-click="showUserLogOnButtonClick(adminHomeTemplateUserLogForm,StartDate,EndDate)" value="GO">
+                    </form>
+                </div>
+                <div class="MainContainer_Wrapperinner">
+                    <table class="table-bordered table-striped table-condensed cf">
+                        <thead class="cf">
+                                <tr>                         
+                                <th width="15%">Customer Id</th>
+                                    <th width="20%" >Full Name<div ng-show="userLogIsSearch" ng-click="onClearSearchClicked()" style="float: right; text-decoration: underline; cursor: pointer; color: rgb(39, 39, 52); font-size: 12px; ">Close Filter</div></th>
+                                    <th width="15%" ng-click="onUserLogSortButtonClicked(1)" param="1" class="DetailsSortContainer">Time</th>
+                                    <th width="40%">Details</th>
+                                    <th width="10%">View</th>                             
+                           </tr>
+                        </thead>
+                    </table>
+
+
+                    <div class="STDBCustomerListTemplateScrollbarContainer" content-data="UserLogList" data-ng-scroll-bar>
+                        <div class="scrollbar">
+                            <div class="track">
+                                <div class="thumb">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="viewport">
+                            <div class="overview">
+                                <table class="table-bordered table-striped table-condensed cf">
+                                    <thead class="cf">
+                                        <tr>
+                                            <th width="15%">Customer Id</th>
+                                            <th width="20%">Full Name</th>
+                                            <th width="15%">Time</th>
+                                            <th width="40%">Details</th>
+                                            <th width="10%">View</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="STDBCustomerListTemplateCustomerRows" ng-repeat="log in UserLogList">
+                                            
+                                            <td>{{log.CustomerId}}</td>
+                                            <td ng-click="searchNameClicked(log.Name)"><a style="text-decoration:underline;">{{log.Name}}</a></td>
+                                            <td>{{log.AccessedTime}}</td>
+                                            <td>{{log.Deatils}}</td>
+                                            <td><div ng-click="onViewUserLogClicked(log.Id)" style="width: 50%; height: 20px; background-image: url(../Content/images/view.png); background-repeat: no-repeat; align-content: center; cursor: pointer;"></div></td>
+                                          
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br />
+                             
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <pagination boundary-links="true" total-items="userlogtotalCount" ng-model="userlogoffset" page="userlogoffset" items-per-page="userloglimit" ng-click="userlogpageChanged(userlogoffset)" max-size="paginationMaxSize" class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;" first-text="&laquo;" last-text="&raquo;" ng-if="userlogtotalCount>0"></pagination>
+            </div>
+        </div>
+    </section>
+
+</div>

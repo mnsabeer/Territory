@@ -1,0 +1,342 @@
+﻿<div data-ng-controller="sampleTemplateController">
+    <section class="block" id="aboutus">
+        <div class="page-header container">
+            <span class="text-primary" style="font-size:16pt;">CCIM Associate Samples Gallery</span>
+        </div>
+        <div class="container">
+            <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+
+
+                <h1 class="heading_primary lite">CCIM Associate Lite</h1>
+
+                <div class="col-sm-8 col-md-8 col-lg-8">
+                    <div class="col-lg-12">
+                        <figure class="col-sm-4 col-md-4 col-lg-4 noPaddingTop">
+                            <div ng-click="ShowPopUp('STDBLite/Standard_Site_Map.jpg','Site Map')" class="imagethumpnail_150x150 Standard_Site_Map"></div>
+                            <figcaption>Site Map</figcaption>
+                        </figure>
+                        <figure class="col-sm-4 col-md-4 col-lg-4 noPaddingTop">
+                            <div ng-click="ShowPopUp('STDBLite/Satellite_Hybrid_Map.jpg','Satellite/Hybrid Map')" class="imagethumpnail_150x150 Satellite_Hybrid_Map"></div>
+                            <figcaption>Satellite/Hybrid Map</figcaption>
+                        </figure>
+                        <figure class="col-sm-4 col-md-4 col-lg-4 noPaddingTop">
+                            <div ng-click="ShowPopUp('STDBLite/Flood_Map.jpg','Flood Map')" class="imagethumpnail_150x150 Flood_Map"></div>
+                            <figcaption>Flood Map</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <ul class="listdetails_sample lite">
+                        <li ng-click="ShowPopUp('STDBLite/Demographic_and_Income_Profile.pdf','Demographic and Income Profile')">Demographic and Income Profile</li>
+                        <li ng-click="ShowPopUp('STDBLite/Executive_Summary.pdf','Executive Summary')">Executive Summary</li>
+                        <li ng-click="ShowPopUp('STDBLite/Market_Profile.pdf','Market Profile')">Market Profile</li>
+                        <li ng-click="ShowPopUp('STDBLite/2010_Census_Profile.pdf','Census 2010 Profile')">Census 2010 Profile</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!--Professional-->
+            <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="heading_primary professional">CCIM Associate Professional includes all reports and maps in the Lite Level PLUS:</h1>
+
+                <div class="col-sm-8 col-md-8 col-lg-8">
+
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/radii-map.jpg','Radii Map')" class="imagethumpnail_150x150 radii-map"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/donuts-map.jpg','Donuts Map')" class="imagethumpnail_150x150 donuts-map"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/drive-times-map.jpg','Drive Times Map')" class="imagethumpnail_150x150 drive-times-map"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <figcaption>Create areas based on Radii, Donuts or Drive Times</figcaption>
+                    </figure>
+
+                    <div class="col-lg-12">
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/hand-draw-polygon.jpg','Hand Draw Polygon')" class="imagethumpnail_150x150 hand-draw-polygon"></div>
+                            <figcaption>Hand Draw Polygon</figcaption>
+                        </figure>
+                        <figure class="col-lg-8">
+
+                            <div ng-click="ShowPopUp('STDBProfessional/select-submarkets.jpg','Select submarkets or standard geographies')" class="imagethumpnail_300x140 select-submarkets"></div>
+                            <figcaption>Select submarkets or standard geographies</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-lg-12">
+                        <h1 class="text-primary" style="font-size: 16pt; font-weight: 600 !important; float: left; width: 100%; margin: 0; ">Map types</h1>
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/street-map.jpg','Street')" class="imagethumpnail_150x150 street-map"></div>
+                            <figcaption>Street</figcaption>
+                        </figure>
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/Satellite_Hybrid_Map.jpg','Satellite-Hybrid')" class="imagethumpnail_150x150 Satellite_Hybrid_Map"></div>
+                            <figcaption>Satellite-Hybrid</figcaption>
+                        </figure>
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/usgs-topography.jpg','USGS Topography')" class="imagethumpnail_150x150 usgs-topography"></div>
+                            <figcaption>USGS Topography</figcaption>
+                        </figure>
+                    </div>
+                    <div class="col-lg-12">
+                        <figure class="col-lg-4">
+                            <div class="imagethumpnail_150x150 community-topography" ng-click="ShowPopUp('STDBProfessional/community-topography.jpg','Community Topography')"></div>
+                            <figcaption>Community Topography</figcaption>
+                        </figure>
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/Flood_Map.jpg','Flood Map')" class="imagethumpnail_150x150 Flood_Map"></div>
+                            <figcaption>Flood Map</figcaption>
+                        </figure>
+                        <figure class="col-lg-4">
+                            <div ng-click="ShowPopUp('STDBProfessional/shaded-relief.jpg','Shaded Relief')" class="imagethumpnail_150x150 shaded-relief"></div>
+                            <figcaption>Shaded Relief</figcaption>
+                        </figure>
+                    </div>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/comparison-report.jpg','Comparison Report')" class="imagethumpnail_220x140 comparison-report"></div>
+                        <figcaption>Comparison Report</figcaption>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/compare-areas-tools.jpg','Compare Areas Tool')" class="imagethumpnail_220x140 compare-areas-tools"></div>
+                        <figcaption>Compare Areas Tool</figcaption>
+                    </figure>
+
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/graphic-profile.jpg','Graphic Profile')" class="imagethumpnail_220x140 graphic-profile"></div>
+                        <figcaption>Graphic Profile</figcaption>
+                    </figure>
+
+                    <h1 class="text-primary" style="font-size:16pt; font-weight:600!important; float:left;width:100%; margin:0;">Map Layer</h1>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/traffic-map.jpg','Traffic')" class="imagethumpnail_220x140 traffic-map"></div>
+                        <figcaption>Traffic</figcaption>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/walk-score-heat-map.jpg','Walk Score Heat Map')" class="imagethumpnail_220x140 walk-score-heat-map"></div>
+                        <figcaption>Walk Score Heat Map</figcaption>
+                    </figure>
+
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/retail-centers.jpg','Retail Centers')" class="imagethumpnail_220x140 retail-centers"></div>
+                        <figcaption>Retail Centers</figcaption>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/measure-distance.jpg','Measure Distance')" class="imagethumpnail_220x140 measure-distance"></div>
+                        <figcaption>Measure Distance</figcaption>
+                    </figure>
+
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/measure-area.jpg','Measure Area')" class="imagethumpnail_220x140 measure-area"></div>
+                        <figcaption>Measure Area</figcaption>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/median-household-income.jpg','Median Household Income')" class="imagethumpnail_220x140 median-household-income"></div>
+                        <figcaption>Median Household Income</figcaption>
+                    </figure>
+
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBProfessional/map-crime-index.jpg','Map Crime Index')" class="imagethumpnail_220x140 map-crime-index"></div>
+                        <figcaption>Map Crime Index</figcaption>
+                    </figure>
+                    <p style="width: 100%; float: left;"></p>
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/map-customers.jpg','Map Customers')" class="imagethumpnail_150x150 map-customers"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/employees-map.jpg','Map Employees')" class="imagethumpnail_150x150 employees-map"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                        <div ng-click="ShowPopUp('STDBProfessional/map-single-or-multiple.jpg','Map Single or Multiple Businesses')" class="imagethumpnail_150x150 map-single-or-multiple"></div>
+                    </figure>
+                    <figure class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <figcaption>Map Customers, Employees, etc.    Map Single or Multiple Businesses</figcaption>
+                    </figure>
+
+                </div>
+                <!-- <a  onclick="OpenModalImage('../../Content/images/samplespage/xxxxxx/zzzzzzzz.png')"> -->
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">ACS Reports</li>
+                        <li ng-click="ShowPopUp('ACSReports/ACS_Housing_Summary.pdf','ACS Population Summary Report')">ACS Population Summary Report</li>
+                        <li ng-click="ShowPopUp('ACSReports/ACS_Population_Summary.pdf','ACS Housing Summary Report')">ACS Housing Summary Report</li>
+                    </ul>
+
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Age Reports</li>
+                        <li ng-click="ShowPopUp('AgeReports/Age_50Plus_Profile.pdf','Age 50+')">Age 50+</li>
+                        <li ng-click="ShowPopUp('AgeReports/Age_By_Sex_Profile.pdf','Age by Sex Profile')">Age by Sex Profile</li>
+                        <li ng-click="ShowPopUp('AgeReports/Age_by_Sex_by_Race_Profile.pdf','Age by Sex by Race Profile')">Age by Sex by Race Profile</li>
+                        <li ng-click="ShowPopUp('AgeReports/Detailed_Age_Profile.pdf','Detailed Age Profile')">Detailed Age Profile</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Business Lists</li>
+                        <li><a href="../../Content/images/samplespage/BusinessLists/Businesses_by_area_and_Business_Type.csv">Businesses by area and business type</a></li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Business Locators</li>
+                        <li ng-click="ShowPopUp('BusinessReports/Business_Summary.pdf','Business Summary Report')">Business Summary Report</li>
+                        <li ng-click="ShowPopUp('BusinessReports/Retail_Planet_Locator_Report.pdf','Retail Planet Locator Report')">Retail Planet Locator Report</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Census Reports</li>
+                        <li ng-click="ShowPopUp('CensusReports/2010_Census_Profile.pdf','Census 2010 Profile Report')">Census 2010 Profile Report</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Comparison Reports</li>
+                        <li><a href="../../Content/images/samplespage/ComparisonReports/Side_By_Side_Comparison_Report.xls">side by side comparison report</a></li>
+                        <li ng-click="ShowPopUp('ComparisonReports/compare-areas-tools.jpg','Compare Areas Graphic Tool')">Compare Areas Graphic Tool</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Consumer Spending Reports</li>
+                        <li ng-click="ShowPopUp('Automotive_Aftermarket_Expenditures.pdf','Automotive Aftermarket Expenditures')">Automotive Aftermarket Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/Financial_Expenditures.pdf','Financial Expenditures')">Financial Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/House_and_Home_Expenditures.pdf','House and Home Expenditures')">House and Home Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/Household_Budget_Expenditures.pdf','Household Budget Expenditures')">Household Budget Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/Medical_Expenditures.pdf','Medical Expenditures')">Medical Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/Recreation_Expenditures.pdf','Recreation Expenditures')">Recreation Expenditures</li>
+                        <li ng-click="ShowPopUp('ConsumerSpending/Retail_Goods_and_Services_Expenditures.pdf','Retail Goods and Services Expenditures')">Retail Goods and Services Expenditures</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Demographic Reports</li>
+                        <li ng-click="ShowPopUp('DemographicReports/Demographic_and_Income_Profile.pdf','Demographic and Income Profile')">Demographic and Income Profile</li>
+                        <li ng-click="ShowPopUp('DemographicReports/Executive_Summary.pdf','Executive Summary')">Executive Summary</li>
+                        <li ng-click="ShowPopUp('DemographicReports/Graphic_Profile.pdf','Graphic Profile')">Graphic Profile</li>
+                        <li ng-click="ShowPopUp('DemographicReports/Market_Profile.pdf','Market Profile')">Market Profile</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Housing Reports</li>
+                        <li ng-click="ShowPopUp('HousingReports/Housing_Profile.pdf','Housing Profile')">Housing Profile</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Income Reports</li>
+                        <li ng-click="ShowPopUp('IncomeNetWorth/Disposable_Income_Profile.pdf','Disposable Income Profile')">Disposable Income Profile</li>
+                        <li ng-click="ShowPopUp('IncomeNetWorth/Household_Income_Profile.pdf','Household Income Profile')">Household Income Profile</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Map Layers</li>
+                        <li ng-click="ShowPopUp('MapLayers/retail-centers.jpg','Retail Center locations')">Retail Center locations</li>
+                        <li ng-click="ShowPopUp('MapLayers/traffic-map.jpg','Interactive Traffic Counts')">Interactive Traffic Counts</li>
+                        <li ng-click="ShowPopUp('MapLayers/School_District.png','School District Boundaries')">School District Boundaries</li>
+                        <li ng-click="ShowPopUp('MapLayers/38Geographic_Boundaries.jpg','Geographic Boundaries')">Geographic Boundaries</li>
+                        <li ng-click="ShowPopUp('MapLayers/39Walk_Score.jpg','Walk Score Heat Map')">Walk Score Heat Map</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Map Types</li>
+                        <li ng-click="ShowPopUp('MapTypes/40Streets.jpg','Street Map')">Street Map</li>
+                        <li ng-click="ShowPopUp('MapTypes/Satellite_Hybrid_Map.jpg','Satellite and Hybrid Maps')">Satellite and Hybrid Maps</li>
+                        <li ng-click="ShowPopUp('MapTypes/42Community_Topo.jpg','Community Topo Map')">Community Topo Map</li>
+                        <li ng-click="ShowPopUp('MapTypes/43USGS_Topo.jpg','USGS Topo Map')">USGS Topo Map</li>
+                        <li ng-click="ShowPopUp('MapTypes/44Shaded_Relief.jpg','Shaded Relief Map')">Shaded Relief Map</li>
+                        <li ng-click="ShowPopUp('MapTypes/Flood_Map.jpg','Flood Map')">Flood Map</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Market Potential Reports</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Electronics_and_Internet_Market_Potential.pdf','Electronics and Internet Market Potential')">Electronics and Internet Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Finances_Market_Potential.pdf','Financial Investments Market Potential')">Financial Investments Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Health_and_Beauty_Market_Potential.pdf','Health and Beauty Market Potential')">Health and Beauty Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Pets_and_Products_Market_Potential.pdf','Pets and Products Market Potential')">Pets and Products Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Restaurant_Market_Potential.pdf','Restaurant Market Potential')">Restaurant Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Retail_Market_Potential.pdf','Retail Market Potential')">Retail Market Potential</li>
+                        <li ng-click="ShowPopUp('MarketPotential/Sports_and_Leisure_Market_Potential.pdf','Sports and Leisure Market Potential')">Sports and Leisure Market Potential</li>
+                    </ul>
+
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Measuring Tools</li>
+                        <li ng-click="ShowPopUp('MeasuringTools/53Freehand_Distance.jpg','Freehand Distance Measuring Tool')">Freehand Distance Measuring Tool</li>
+                        <li ng-click="ShowPopUp('MeasuringTools/54Point_and_Click.jpg','Point and Click Distance Measuring Tool')">Point and Click Distance Measuring Tool</li>
+                        <li ng-click="ShowPopUp('MeasuringTools/55Measure_Area.jpg','Polygon Tool for Measuring Area')">Polygon Tool for Measuring Area</li>
+                        <li ng-click="ShowPopUp('MeasuringTools/56Graticule.png','Graticule (Grid) Measuring Tool')">Graticule (Grid) Measuring Tool</li>
+                    </ul>
+
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Retail Reports</li>
+                        <li ng-click="ShowPopUp('Retail/Retail_MarketPlace_Profile.pdf','Retail MarketPlace Profile (Gap Analysis)')">Retail MarketPlace Profile (Gap Analysis)</li>
+                        <li class="subheading">All <span style="font-weight:600">Consumer Spending Reports</span> listed above <br />All <span style="font-weight:600">Market Potential Reports</span> listed above</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Tapestry Segmentation</li>
+                        <li ng-click="ShowPopUp('TapestrySegmentation/Dominant_Tapestry_Site_Map.pdf','Dominant Tapestry Map')">Dominant Tapestry Map</li>
+                        <li ng-click="ShowPopUp('TapestrySegmentation/Tapestry_Segmentation_Area_Profile.pdf','Tapestry Area Segmentation Profile')">Tapestry Area Segmentation Profile</li>
+                        <li ng-click="ShowPopUp('TapestrySegmentation/Lifestyle_Report.pdf','Lifestyle Report')">Lifestyle Report</li>
+                    </ul>
+
+
+                    <ul class="listdetails_sample professional">
+                        <li class="subheading"><span style="font-weight:600">Thematic Map</span>(Map over 5,000 different variables)</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">Traffic Reports</li>
+                        <li ng-click="ShowPopUp('Traffic/Traffic_Count_Map.pdf','Traffic Count Map')">Traffic Count Map</li>
+                        <li ng-click="ShowPopUp('Traffic/Traffic_Count_Profile.pdf','Traffic Count Profile')">Traffic Count Profile</li>
+                        <li ng-click="ShowPopUp('Traffic/Traffic_Count_MapClose_Up.pdf','Traffic Count Closeup')">Traffic Count Closeup</li>
+                    </ul>
+
+                    <ul class="listdetails_sample professional">
+                        <li class="heading">User Points (A few examples listed)</li>
+                        <li class="subheading">Competition Maps</li>
+                        <li class="subheading">Customer Spotting Maps</li>
+                        <li class="subheading">Amenity Businesses Maps</li>
+                        <li class="subheading">Map Customers, Employees, Prospects, etc</li>
+                        <li class="subheading">Sales Revenue by Area</li>
+                    </ul>
+
+
+
+
+
+
+
+                </div>
+            </div>
+            <!--Platinum-->
+            <div class=" row col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                <h1 class="heading_primary platinum">CCIM Associate Platinum includes all reports and maps in the Lite and Professional levels plus:</h1>
+
+                <div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBPlatinum/map-annotations-1.jpg','Map Annotations 1')" class="imagethumpnail_220x140 map-annotations-1"></div>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBPlatinum/map-annotations-2.jpg','Map Annotations 2')" class="imagethumpnail_220x140 map-annotations-2"></div>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBPlatinum/pictometry-1.jpg','Pictometry 1')" class="imagethumpnail_220x140 pictometry-1"></div>
+                    </figure>
+                    <figure class="col-lg-6">
+                        <div ng-click="ShowPopUp('STDBPlatinum/pictometry-2.jpg','Pictometry 2')" class="imagethumpnail_220x140 pictometry-2"></div>
+
+                </div>
+                <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
+                    <dl>
+                        <dt>Map Annotations</dt>
+                        <dd>Create annotated maps to include logos, texts, shapes, images, boundaries, etc. Can be saved and edited at any time in the future.</dd>
+                    </dl>
+                    <dl>
+                        <dt>Pictometry Images</dt>
+                        <dd>Export flown, oblique, high quality images available in most of the U.S.</dd>
+                    </dl>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>

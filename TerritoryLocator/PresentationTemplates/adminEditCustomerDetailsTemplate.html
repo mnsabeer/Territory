@@ -1,0 +1,62 @@
+﻿<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+
+        <div class="popupHeader">
+            Edit Customer
+            <div class="popupclose" ng-click="onClosePopUpClicked()">
+                X
+            </div>
+        </div>
+        <div>
+            <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+        </div>
+            <div class="popupContainerMain">
+                <div class="popcontall">
+                    <label>Member Class</label>
+                    <select class="selectdata" data-ng-model="User.selectedItem" ng-options="item.Description for item in MemberClassList">
+                        <option value="0" disabled="disabled">--Select--</option>
+
+                    </select>
+                </div>
+                <div class="popcontall">
+                    <label>Expiry Date</label>
+                    <input type="text" name="ExpDate" data-ng-model="Customer.ExpDate" ng-class="{'errorcont'   :IsExpDateRequired} class=" form-control calenderpick" datepicker-popup="dd-MMM-yyyy" is-open="opened" min-date="minDate" max-date="'2015-06-22'" show-weeks="false" show-button-bar="false" datepicker-options="dateOptions" date-disabled="disabled(date, mode)" ng-required="true" close-text="Close" ng-keypress="onExpDateKeyChanged($event)" ng-keydown="onExpDateKeyChanged($event)">
+                    <!--<span class="spanerror" ng-if="(STDBEditPopUpTemplateEmailTextBoxForm.ExpDate.$error.required)&&(InvalidData)">Required</span>-->
+                </div>
+                <form name="STDBEditPopUpTemplateEmailTextBoxForm">
+                    <div class="popcontall">
+                        <label>Email</label>
+
+                        <input type="email" name="Email" ng-class="{'errorcont'   :( EmailAlreadyExists)||(InvalidEmail)||(STDBEditPopUpTemplateEmailTextBoxForm.Email.$error.pattern)||(STDBEditPopUpTemplateEmailTextBoxForm.Email.$error.required)}" class="calenderpick" ng-pattern="emailPattern" ng-model="Customer.UserId" required >
+                        <div class="STDBEditPopUpTemplateCheckerDiv emailid-check emailid-no" ng-if="EmailAlreadyExists&&!InvalidEmail"></div>
+                        <div class="STDBEditPopUpTemplateCheckerDiv emailid-check emailid-yes" ng-if="!EmailAlreadyExists&&!InvalidEmail"></div>
+                        <!--<span class="spanerror" ng-if="EmailAlreadyExists">Email Already Exists</span>-->
+                        <!--<span class="spanerror" ng-if="(STDBEditPopUpTemplateEmailTextBoxForm.Email.$error.required)&&(InvalidEmail)">Required</span>
+            <span class="spanerror" ng-if="STDBEditPopUpTemplateEmailTextBoxForm.Email.$error.pattern&&InvalidData">Invalid email</span>-->
+
+                    </div>
+                    <div class="popcontall">
+                        <label></label>
+                        <label><input type="checkbox" ng-model="Customer.Expired" style="float: left;margin-right: 4px;"> Expired</label>
+                    </div>
+                    <div class="popcontall">
+                        <label></label>
+                        <div class="submitButton" ng-click="onSaveButtonClicked(STDBEditPopUpTemplateEmailTextBoxForm)">Save</div>
+                        <div class="submitButton popupclose" ng-click="onClosePopUpClicked()">Cancel</div>
+                    </div>
+                </form>
+            </div>
+    
+            </div>
+
+    <!-- content ends -->
+    <!-- header start -->
+    <div class="popupfieldwrap">
+        <div id="popupHeading"><h1>Edit customer</h1></div>
+        <a href="#" class="windowclose" data-dismiss="modal"></a>
+    </div>
+    <!-- header ends -->
+    <div class="clearfix">
+    </div>
+</div>

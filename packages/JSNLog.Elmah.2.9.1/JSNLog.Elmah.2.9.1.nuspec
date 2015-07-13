@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package xmlns="http://schemas.microsoft.com/packaging/2011/08/nuspec.xsd">
+  <metadata>
+    <id>JSNLog.Elmah</id>
+    <version>2.9.1</version>
+    <title>JSNLog.Elmah - JavaScript Logging for Elmah</title>
+    <authors>Matt Perdeck</authors>
+    <owners>Matt Perdeck</owners>
+    <projectUrl>http://jsnlog.com/</projectUrl>
+    <iconUrl>http://jsnlog.com/Nuget/icon.png</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Log JavaScript errors and other client side events in your Elmah server side log. Installs JSNLog and configures it for use with Elmah.</description>
+    <copyright>Copyright 2014</copyright>
+    <tags>JavaScript logging exceptions Elmah</tags>
+    <dependencies>
+      <dependency id="Common.Logging" version="3.0.0" />
+      <dependency id="Common.Logging.Elmah.v2" version="1.0.1" />
+      <dependency id="JSNLog" version="2.9.1" />
+    </dependencies>
+  </metadata>
+</package>

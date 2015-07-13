@@ -1,0 +1,1108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{FF8645E3-BAD4-4832-8B29-6168F80F121E}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TerritoryLocator</RootNamespace>
+    <AssemblyName>TerritoryLocator</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Common.Logging">
+      <HintPath>..\packages\Common.Logging.3.0.0\lib\net40\Common.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Core">
+      <HintPath>..\packages\Common.Logging.Core.3.0.0\lib\net40\Common.Logging.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Common.Logging.Elmah.v2">
+      <HintPath>..\packages\Common.Logging.Elmah.v2.1.0.1\lib\net45\Common.Logging.Elmah.v2.dll</HintPath>
+    </Reference>
+    <Reference Include="Elmah">
+      <HintPath>..\packages\elmah.corelibrary.1.2.2\lib\Elmah.dll</HintPath>
+    </Reference>
+    <Reference Include="JSNLog">
+      <HintPath>..\packages\JSNLog.2.9.1.0\lib\net40\JSNLog.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Mono.Security">
+      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Mono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Npgsql">
+      <HintPath>..\packages\Npgsql.2.2.5\lib\net45\Npgsql.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Transactions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="WebActivatorEx">
+      <HintPath>..\packages\WebActivatorEx.2.0.6\lib\net40\WebActivatorEx.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.Data, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.Data.2.0.30506.0\lib\net40\WebMatrix.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.WebPages.OAuth, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.OAuth.2.0.30506.0\lib\net40\Microsoft.Web.WebPages.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.Tracing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Tracing.4.0.30506\lib\net40\System.Web.Http.Tracing.dll</HintPath>
+    </Reference>
+    <Reference Include="WebMatrix.WebData, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.WebData.2.0.30506.0\lib\net40\WebMatrix.WebData.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.1.4.12333\lib\net45-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.1.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.1.4.12333\lib\net45-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.OData, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.OData.4.0.30506\lib\net40\System.Web.Http.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.Edm, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.Edm.5.2.0\lib\net40\Microsoft.Data.Edm.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Data.OData, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Data.OData.5.2.0\lib\net40\Microsoft.Data.OData.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Spatial, Version=5.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\System.Spatial.5.2.0\lib\net40\System.Spatial.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.3.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationConstants\ApplicationConstants.cs" />
+    <Compile Include="ApplicationService\HomeApplicationService.cs" />
+    <Compile Include="ApplicationService\IHomeApplicationService.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\JSNLogConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
+    <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
+    <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageAreaRegistration.cs" />
+    <Compile Include="Areas\HelpPage\HelpPageConfigurationExtensions.cs" />
+    <Compile Include="Areas\HelpPage\Models\HelpPageApiModel.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\HelpPageSampleKey.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ImageSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\InvalidSample.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\ObjectGenerator.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
+    <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
+    <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Base\ApiControllerBase.cs" />
+    <Compile Include="Base\ApplicationServiceBase.cs" />
+    <Compile Include="Base\Attributes\ApiControllerExceptionFilterAttribute.cs" />
+    <Compile Include="Base\Extentions.cs" />
+    <Compile Include="Base\MvcControllerBase.cs" />
+    <Compile Include="Base\Validation\ValidationException.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\TodoController.cs" />
+    <Compile Include="Controllers\TodoListController.cs" />
+    <Compile Include="DataLayer\GenericDataLayer.cs" />
+    <Compile Include="DataLayer\IGenericDataLayer.cs" />
+    <Compile Include="EmailManager\Mailer.cs" />
+    <Compile Include="EmailManager\model\EmailAddress.cs" />
+    <Compile Include="EmailManager\model\EmailConfig.cs" />
+    <Compile Include="EmailManager\model\EMailPayload.cs" />
+    <Compile Include="Encryptor\ExceligentPasswordEncryptor.cs" />
+    <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
+    <Compile Include="Filters\ValidateHttpAntiForgeryTokenAttribute.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\Extentions.cs" />
+    <Compile Include="Helpers\LoginHelper.cs" />
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\TodoItemDto.cs" />
+    <Compile Include="Models\TodoListDto.cs" />
+    <Compile Include="Models\TodoList.cs" />
+    <Compile Include="Models\TodoItem.cs" />
+    <Compile Include="Models\TodoItemContext.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\Model\SessionData.cs" />
+    <Compile Include="Security\Session\Session.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="App_Readme\Elmah.txt" />
+    <Content Include="Areas\HelpPage\HelpPage.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\images\37School_District.png" />
+    <Content Include="Content\images\38Geographic_Boundaries.jpg" />
+    <Content Include="Content\images\39Walk_Score.jpg" />
+    <Content Include="Content\images\3people_computer.jpg" />
+    <Content Include="Content\images\40Streets.jpg" />
+    <Content Include="Content\images\42Community_Topo.jpg" />
+    <Content Include="Content\images\43USGS_Topo.jpg" />
+    <Content Include="Content\images\44Shaded_Relief.jpg" />
+    <Content Include="Content\images\53Freehand_Distance.jpg" />
+    <Content Include="Content\images\54Point_and_Click.jpg" />
+    <Content Include="Content\images\55Measure_Area.jpg" />
+    <Content Include="Content\images\56Graticule.png" />
+    <Content Include="Content\images\about-circles.png" />
+    <Content Include="Content\images\about.png" />
+    <Content Include="Content\images\addtocart.png" />
+    <Content Include="Content\images\addtocart3.gif" />
+    <Content Include="Content\images\ajax-loader.gif" />
+    <Content Include="Content\images\ArcGISScreenShot.jpg" />
+    <Content Include="Content\images\ArcGISScreenShot480x240.jpg" />
+    <Content Include="Content\images\arcgis_logo.png" />
+    <Content Include="Content\images\backtohome.jpg" />
+    <Content Include="Content\images\banner-slide001.png" />
+    <Content Include="Content\images\banner.png" />
+    <Content Include="Content\images\BAOLogo.png" />
+    <Content Include="Content\images\bg.jpg" />
+    <Content Include="Content\images\bgmain.jpg" />
+    <Content Include="Content\images\bgsub.jpg" />
+    <Content Include="Content\images\blog_post.jpg" />
+    <Content Include="Content\images\body_bg.jpg" />
+    <Content Include="Content\images\buynow.png" />
+    <Content Include="Content\images\calc.gif" />
+    <Content Include="Content\images\cardcvv.png" />
+    <Content Include="Content\images\CCIM-biglogo.png" />
+    <Content Include="Content\images\CCIM-TECH-logo.png" />
+    <Content Include="Content\images\CCIM.png" />
+    <Content Include="Content\images\CCIMTECH-biglogo.png" />
+    <Content Include="Content\images\checkout %281%29.gif" />
+    <Content Include="Content\images\checkout.gif" />
+    <Content Include="Content\images\checkoutnow.png" />
+    <Content Include="Content\images\client-cocacola.png" />
+    <Content Include="Content\images\client-daftpunk.png" />
+    <Content Include="Content\images\client-nike.png" />
+    <Content Include="Content\images\client-playstation.png" />
+    <Content Include="Content\images\clipboard-icon.png" />
+    <Content Include="Content\images\CloseIcon.png" />
+    <Content Include="Content\images\collage.png" />
+    <Content Include="Content\images\community-topography-150x150.jpg" />
+    <Content Include="Content\images\community-topography.jpg" />
+    <Content Include="Content\images\compare-areas-tools.jpg" />
+    <Content Include="Content\images\compare-areas-tools220X140.jpg" />
+    <Content Include="Content\images\comparison-report.jpg" />
+    <Content Include="Content\images\comparison-report220X140.jpg" />
+    <Content Include="Content\images\content-bg.jpg" />
+    <Content Include="Content\images\continueshop.gif" />
+    <Content Include="Content\images\crumbs.gif" />
+    <Content Include="Content\images\crumbs.png" />
+    <Content Include="Content\images\database_logo.png" />
+    <Content Include="Content\images\delete.png" />
+    <Content Include="Content\images\delete_icon_red.png" />
+    <Content Include="Content\images\devices.png" />
+    <Content Include="Content\images\donuts-map-150x150.jpg" />
+    <Content Include="Content\images\donuts-map.jpg" />
+    <Content Include="Content\images\drive-times-map-150x150.jpg" />
+    <Content Include="Content\images\drive-times-map.jpg" />
+    <Content Include="Content\images\edit.png" />
+    <Content Include="Content\images\employees-map-150x150.jpg" />
+    <Content Include="Content\images\employees-map.jpg" />
+    <Content Include="Content\images\esri_logo.png" />
+    <Content Include="Content\images\facebook_32.png" />
+    <Content Include="Content\images\favicon.ico" />
+    <Content Include="Content\images\feature-1.png" />
+    <Content Include="Content\images\feature1.jpg" />
+    <Content Include="Content\images\feature2.jpg" />
+    <Content Include="Content\images\feature3.jpg" />
+    <Content Include="Content\images\fet-img-1.jpg" />
+    <Content Include="Content\images\fet-img-2.jpg" />
+    <Content Include="Content\images\fet-img-3.jpg" />
+    <Content Include="Content\images\fet-img-4.jpg" />
+    <Content Include="Content\images\floodhorz.png" />
+    <Content Include="Content\images\floodzones.png" />
+    <Content Include="Content\images\Flood_Map-150x150 %281%29.jpg" />
+    <Content Include="Content\images\Flood_Map-150x150.jpg" />
+    <Content Include="Content\images\Flood_Map.jpg" />
+    <Content Include="Content\images\graphic-profile.jpg" />
+    <Content Include="Content\images\graphic-profile220X140.jpg" />
+    <Content Include="Content\images\hand-draw-polygon-150x150.jpg" />
+    <Content Include="Content\images\hand-draw-polygon.jpg" />
+    <Content Include="Content\images\header-bg.jpg" />
+    <Content Include="Content\images\icon-arrow-small-up.png" />
+    <Content Include="Content\images\Icon-Sprite-Set.png" />
+    <Content Include="Content\images\icon_small_down_arrow_open.gif" />
+    <Content Include="Content\images\laptop01-BG.png" />
+    <Content Include="Content\images\learnMainPageScreenShot.jpg" />
+    <Content Include="Content\images\linkedin_32.png" />
+    <Content Include="Content\images\live-chat-img.png" />
+    <Content Include="Content\images\loading.gif" />
+    <Content Include="Content\images\loadingAnimation.gif" />
+    <Content Include="Content\images\loadingme.gif" />
+    <Content Include="Content\images\logo.png" />
+    <Content Include="Content\images\Map Annotation 1.jpg" />
+    <Content Include="Content\images\map-annotations-1.jpg" />
+    <Content Include="Content\images\map-annotations-1220X140.jpg" />
+    <Content Include="Content\images\map-annotations-2.jpg" />
+    <Content Include="Content\images\map-annotations-2220X140.jpg" />
+    <Content Include="Content\images\map-crime-index.jpg" />
+    <Content Include="Content\images\map-crime-index220X140.jpg" />
+    <Content Include="Content\images\map-customers-150x150.jpg" />
+    <Content Include="Content\images\map-customers.jpg" />
+    <Content Include="Content\images\map-single-or-multiple-150x150.jpg" />
+    <Content Include="Content\images\map-single-or-multiple.jpg" />
+    <Content Include="Content\images\measure-area.jpg" />
+    <Content Include="Content\images\measure-area220X140.jpg" />
+    <Content Include="Content\images\measure-distance.jpg" />
+    <Content Include="Content\images\measure-distance220X140.jpg" />
+    <Content Include="Content\images\median-household-income.jpg" />
+    <Content Include="Content\images\median-household-income220X140.jpg" />
+    <Content Include="Content\images\memberlogin.png" />
+    <Content Include="Content\images\odelete.gif" />
+    <Content Include="Content\images\ok1.png" />
+    <Content Include="Content\images\ok2.png" />
+    <Content Include="Content\images\ok3.png" />
+    <Content Include="Content\images\ok4.png" />
+    <Content Include="Content\images\pic1.jpg" />
+    <Content Include="Content\images\pictometry-1.jpg" />
+    <Content Include="Content\images\pictometry-1220X140.jpg" />
+    <Content Include="Content\images\pictometry-2.jpg" />
+    <Content Include="Content\images\pictometry-2220X140.jpg" />
+    <Content Include="Content\images\pictometry_logo.png" />
+    <Content Include="Content\images\pic_blog.png" />
+    <Content Include="Content\images\placeHolderImg.png" />
+    <Content Include="Content\images\print.png" />
+    <Content Include="Content\images\project.jpg" />
+    <Content Include="Content\images\QuickDemoGraphics.png" />
+    <Content Include="Content\images\QuickMaps.png" />
+    <Content Include="Content\images\radii-map-150x150.jpg" />
+    <Content Include="Content\images\radii-map.jpg" />
+    <Content Include="Content\images\REIWise_Logo.png" />
+    <Content Include="Content\images\retail-centers.jpg" />
+    <Content Include="Content\images\retail-centers220X140.jpg" />
+    <Content Include="Content\images\RiskMeter_Logo.png" />
+    <Content Include="Content\images\samplespage\AnalysisAreas\Bands.png" />
+    <Content Include="Content\images\samplespage\AnalysisAreas\Drivetime.png" />
+    <Content Include="Content\images\samplespage\AnalysisAreas\Handdrawnpolygon.png" />
+    <Content Include="Content\images\samplespage\AnalysisAreas\Radii.png" />
+    <Content Include="Content\images\samplespage\AnalysisAreas\StandardGeography.png" />
+    <Content Include="Content\images\samplespage\ComparisonReports\compare-areas-tools.jpg" />
+    <Content Include="Content\images\samplespage\ComparisonReports\ComparisonReportGraph.png" />
+    <Content Include="Content\images\samplespage\DemoAnalysisAreas\Bands %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoAnalysisAreas\Drive time %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoAnalysisAreas\Hand-drawn polygon %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoAnalysisAreas\Radii %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoAnalysisAreas\Standard Geography %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMaps with Data\Smart Map Search %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Satellite Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Satellite-Hybrid Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Street Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Topographic Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Web Map %28Image%29.PNG" />
+    <Content Include="Content\images\samplespage\Files\Images\BandsImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\ColorCodedMap.png" />
+    <Content Include="Content\images\samplespage\Files\Images\Comparison Report GraphImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\CompetitionMap.png" />
+    <Content Include="Content\images\samplespage\Files\Images\DominantTapestryMap.png" />
+    <Content Include="Content\images\samplespage\Files\Images\DrivetimeImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\FloodmapStreet.png" />
+    <Content Include="Content\images\samplespage\Files\Images\Hand-drawnpolygonImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\National Geo.PNG" />
+    <Content Include="Content\images\samplespage\Files\Images\PictometryImage1.png" />
+    <Content Include="Content\images\samplespage\Files\Images\PictometryImage2.png" />
+    <Content Include="Content\images\samplespage\Files\Images\PictometryImage3.png" />
+    <Content Include="Content\images\samplespage\Files\Images\RadiiImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\Satellite-Hybrid MapImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\SatelliteMapImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\SmartMapSearchImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\StandardGeographyImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\StreetMapImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\Topographic MapImage.png" />
+    <Content Include="Content\images\samplespage\Files\Images\WebMapImage.PNG" />
+    <Content Include="Content\images\samplespage\Files\Reports\Analysis Areas\BandsImage.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Analysis Areas\DrivetimeImage.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Analysis Areas\Hand-drawnpolygonImage.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Analysis Areas\RadiiImage.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Analysis Areas\Standard GeographyImage.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Comparison Reports\Comparison Report Graph %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Maps with Data\Smart Map Search %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\National Geo.PNG" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Satellite Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Satellite-Hybrid Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Street Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Topographic Map %28Image%29.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Web Map %28Image%29.PNG" />
+    <Content Include="Content\images\samplespage\Files\Reports\Pictometry Imagery\PictometryImage1.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Pictometry Imagery\PictometryImage2.png" />
+    <Content Include="Content\images\samplespage\Files\Reports\Pictometry Imagery\PictometryImage3.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\BandsImage.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\BandsImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\ColorCodedMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\Comparison Report Graph_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\CompetitionMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\DominantTapestryMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\DrivetimeImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\FloodmapStreet_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\Hand-drawnpolygonImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\NationalGeo_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\PictometryImage1_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\PictometryImage2_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\PictometryImage3_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\RadiiImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\Satellite-HybridMapImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\SatelliteMapImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\SmartMapSearch_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\StandardGeographyImage_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\StreetMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\TopographicMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\Files\Thumbails\WebMap_thumbnail.png" />
+    <Content Include="Content\images\samplespage\MapLayers\37School_District.png" />
+    <Content Include="Content\images\samplespage\MapLayers\38Geographic_Boundaries.jpg" />
+    <Content Include="Content\images\samplespage\MapLayers\39Walk_Score.jpg" />
+    <Content Include="Content\images\samplespage\MapLayers\retail-centers.jpg" />
+    <Content Include="Content\images\samplespage\MapLayers\traffic-map.jpg" />
+    <Content Include="Content\images\samplespage\MapswithData\SmartMapSearch.png" />
+    <Content Include="Content\images\samplespage\MapTypes\40Streets.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\42Community_Topo.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\43USGS_Topo.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\44Shaded_Relief.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\Flood_Map.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\SatelliteHybridMap.png" />
+    <Content Include="Content\images\samplespage\MapTypes\SatelliteMap.png" />
+    <Content Include="Content\images\samplespage\MapTypes\Satellite_Hybrid_Map.jpg" />
+    <Content Include="Content\images\samplespage\MapTypes\StreetMap.png" />
+    <Content Include="Content\images\samplespage\MapTypes\TopographicMap.png" />
+    <Content Include="Content\images\samplespage\MeasuringTools\53Freehand_Distance.jpg" />
+    <Content Include="Content\images\samplespage\MeasuringTools\54Point_and_Click.jpg" />
+    <Content Include="Content\images\samplespage\MeasuringTools\55Measure_Area.jpg" />
+    <Content Include="Content\images\samplespage\MeasuringTools\56Graticule.png" />
+    <Content Include="Content\images\samplespage\STDBLite\Flood_Map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBLite\Flood_Map.jpg" />
+    <Content Include="Content\images\samplespage\STDBLite\Satellite_Hybrid_Map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBLite\Satellite_Hybrid_Map.jpg" />
+    <Content Include="Content\images\samplespage\STDBLite\Standard_Site_Map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBLite\Standard_Site_Map.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\Map Annotation 1.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\map-annotations-1.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\map-annotations-1220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\map-annotations-2.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\map-annotations-2220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\pictometry-1.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\pictometry-1220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\pictometry-2.jpg" />
+    <Content Include="Content\images\samplespage\STDBPlatinum\pictometry-2220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\community-topography-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\community-topography.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\compare-areas-tools.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\compare-areas-tools220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\comparison-report.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\comparison-report220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\donuts-map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\donuts-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\drive-times-map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\drive-times-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\employees-map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\employees-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\Flood_Map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\Flood_Map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\graphic-profile.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\graphic-profile220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\hand-draw-polygon-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\hand-draw-polygon.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\Map Annotation 1.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-annotations-1.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-annotations-1220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-annotations-2.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-annotations-2220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-crime-index.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-crime-index220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-customers-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-customers.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-single-or-multiple-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\map-single-or-multiple.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\measure-area.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\measure-area220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\measure-distance.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\measure-distance220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\median-household-income.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\median-household-income220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\pictometry-1.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\pictometry-1220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\pictometry-2.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\pictometry-2220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\radii-map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\radii-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\retail-centers.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\retail-centers220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\Satellite_Hybrid_Map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\Satellite_Hybrid_Map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\select-submarkets.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\select-submarkets300.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\select-submarkets300X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\shaded-relief-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\shaded-relief.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\street-map-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\street-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\traffic-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\traffic-map220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\usgs-topography-150x150.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\usgs-topography.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\walk-score-heat-map.jpg" />
+    <Content Include="Content\images\samplespage\STDBProfessional\walk-score-heat-map220X140.jpg" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\BandsImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Bands_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Comparison Report Graph %28Image%29.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\ComparisonReportGraph_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\DrivetimeImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Drivetime_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Hand-drawnpolygonImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Handdrawnpolygon_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage1.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage1_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage2.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage2_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage3.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\PictometryImage3_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Radii150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\RadiiImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Satellite-HybridMapImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\Satellite-HybridMap_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\SatelliteMapImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\SatelliteMap_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\SmartMapSearchImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\SmartMapSearch_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\StandardGeographyImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\StandardGeography_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\StandardGeography_300X140.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\StreetMapImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\StreetMapImage_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\TopographicMapImage.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\TopographicMap_150X150.png" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\WebMapImage.PNG" />
+    <Content Include="Content\images\samplespage\STDBSampleDemo\WebMap_150X150.png" />
+    <Content Include="Content\images\Satellite_Hybrid_Map-150x150 %281%29.jpg" />
+    <Content Include="Content\images\Satellite_Hybrid_Map-150x150.jpg" />
+    <Content Include="Content\images\Satellite_Hybrid_Map.jpg" />
+    <Content Include="Content\images\screens.jpg" />
+    <Content Include="Content\images\SDTB_head_Bg.png" />
+    <Content Include="Content\images\SDTB_head_Bg_lite.png" />
+    <Content Include="Content\images\SDTB_head_Bg_platinum.png" />
+    <Content Include="Content\images\SDTB_head_Bg_professional.png" />
+    <Content Include="Content\images\select-submarkets.jpg" />
+    <Content Include="Content\images\select-submarkets300.jpg" />
+    <Content Include="Content\images\select-submarkets300X140.jpg" />
+    <Content Include="Content\images\shaded-relief-150x150.jpg" />
+    <Content Include="Content\images\shaded-relief.jpg" />
+    <Content Include="Content\images\shapedraw.png" />
+    <Content Include="Content\images\slide11-3800x280.jpg" />
+    <Content Include="Content\images\slide21-3800x280.jpg" />
+    <Content Include="Content\images\slide3-3800x280.jpg" />
+    <Content Include="Content\images\slide4-3800x280.jpg" />
+    <Content Include="Content\images\slide5-3800x280.jpg" />
+    <Content Include="Content\images\slide6-3800x280.jpg" />
+    <Content Include="Content\images\slide7-3800x280.jpg" />
+    <Content Include="Content\images\slideshow_icon_active.png" />
+    <Content Include="Content\images\slideshow_icon_inactive.png" />
+    <Content Include="Content\images\Standard_Site_Map-150x150.jpg" />
+    <Content Include="Content\images\Standard_Site_Map.jpg" />
+    <Content Include="Content\images\StarYourServiceNow.png" />
+    <Content Include="Content\images\STDB Site Analysis.png" />
+    <Content Include="Content\images\STDB-biglogo.png" />
+    <Content Include="Content\images\stdb-blog.png" />
+    <Content Include="Content\images\STDBGoodLogo.jpg" />
+    <Content Include="Content\images\STDBplat_60.gif" />
+    <Content Include="Content\images\STDB_logo.png" />
+    <Content Include="Content\images\street-map-150x150.jpg" />
+    <Content Include="Content\images\street-map.jpg" />
+    <Content Include="Content\images\Submit.png" />
+    <Content Include="Content\images\subscription-1.png" />
+    <Content Include="Content\images\subscription-2.png" />
+    <Content Include="Content\images\subscription-3.png" />
+    <Content Include="Content\images\subscription-bg.png" />
+    <Content Include="Content\images\subscription_B.png" />
+    <Content Include="Content\images\success.png" />
+    <Content Include="Content\images\tb-close.png" />
+    <Content Include="Content\images\testimon-img-300x228.png" />
+    <Content Include="Content\images\testimonials_piece.jpg" />
+    <Content Include="Content\images\thumb_gallery.jpg" />
+    <Content Include="Content\images\thumb_more.png" />
+    <Content Include="Content\images\traffic-map.jpg" />
+    <Content Include="Content\images\traffic-map220X140.jpg" />
+    <Content Include="Content\images\twitter_32.png" />
+    <Content Include="Content\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\images\updatequqntity.png" />
+    <Content Include="Content\images\usernameloading.gif" />
+    <Content Include="Content\images\usernameno.png" />
+    <Content Include="Content\images\usernameok.png" />
+    <Content Include="Content\images\usgs-topography-150x150.jpg" />
+    <Content Include="Content\images\usgs-topography.jpg" />
+    <Content Include="Content\images\USTargetMap.jpg" />
+    <Content Include="Content\images\USTargetMapOnScreens.jpg" />
+    <Content Include="Content\images\USTargetMapWithScreens.jpg" />
+    <Content Include="Content\images\USTargetMapWithScreens2.jpg" />
+    <Content Include="Content\images\view.png" />
+    <Content Include="Content\images\walk-score-heat-map.jpg" />
+    <Content Include="Content\images\walk-score-heat-map220X140.jpg" />
+    <Content Include="Content\images\X-LOGO-BiG.png" />
+    <Content Include="Content\images\X-LOGOmk5TAG-HI.png" />
+    <Content Include="Content\images\Xceligent-logo.png" />
+    <Content Include="Content\images\__utm.gif" />
+    <Content Include="Content\jquery-ui.css" />
+    <Content Include="Content\TerritoryMain.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Content\ZClip\ZeroClipboard.swf" />
+    <Content Include="Documents\ManageUsers.xml" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Areas\HelpPage\Views\Web.config" />
+    <Content Include="Areas\HelpPage\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Index.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\TextSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Samples.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\Parameters.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\InvalidSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ImageSample.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\HelpPageApiModel.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
+    <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="Content\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\images\samplespage\ACSReports\ACS_Housing_Summary.pdf" />
+    <Content Include="Content\images\samplespage\ACSReports\ACS_Population_Summary.pdf" />
+    <Content Include="Content\images\samplespage\AgeReports\Age_50Plus_Profile.pdf" />
+    <Content Include="Content\images\samplespage\AgeReports\Age_by_Sex_by_Race_Profile.pdf" />
+    <Content Include="Content\images\samplespage\AgeReports\Age_By_Sex_Profile.pdf" />
+    <Content Include="Content\images\samplespage\AgeReports\Detailed_Age_Profile.pdf" />
+    <Content Include="Content\images\samplespage\BusinessLists\BusinessesbyTypeorName.xlsx" />
+    <Content Include="Content\images\samplespage\BusinessLists\Businesses_by_area_and_Business_Type.csv" />
+    <Content Include="Content\images\samplespage\BusinessReports\Business_Locator.pdf" />
+    <Content Include="Content\images\samplespage\BusinessReports\Business_Summary.pdf" />
+    <Content Include="Content\images\samplespage\BusinessReports\Retail_Planet_Locator_Report.pdf" />
+    <Content Include="Content\images\samplespage\CensusReports\2010_Census_Profile.pdf" />
+    <Content Include="Content\images\samplespage\CensusReports\ACS_Housing_Summary.pdf" />
+    <Content Include="Content\images\samplespage\CensusReports\ACS_Population_Summary.pdf" />
+    <Content Include="Content\images\samplespage\ComparisonReports\CustomizeComparisons.xlsx" />
+    <Content Include="Content\images\samplespage\ComparisonReports\Side_By_Side_Comparison_Report.xls" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Automotive_Aftermarket_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Financial_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Household_Budget_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\House_and_Home_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Medical_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Recreation_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\ConsumerSpending\Retail_Goods_and_Services_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoAgeReports\Age By Sex By Race Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoAgeReports\Age50plusProfile.pdf" />
+    <Content Include="Content\images\samplespage\DemoAgeReports\Detailed Age Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoBusinessLists\Businesses by Type or Name.xlsx" />
+    <Content Include="Content\images\samplespage\DemoBusinessReports\Business Locator Report.pdf" />
+    <Content Include="Content\images\samplespage\DemoBusinessReports\Business Summary Report.pdf" />
+    <Content Include="Content\images\samplespage\DemoCensusReports\2010 Census Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoCensusReports\ACS Housing Summary.pdf" />
+    <Content Include="Content\images\samplespage\DemoCensusReports\ACS Population Summary.pdf" />
+    <Content Include="Content\images\samplespage\DemoComparisonReports\Customized Comparisons.xlsx" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\Automotive Aftermarket Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\Financial Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\House and Home Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\Household Budget Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\Recreation Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoConsumerSpending\Retail Goods and Services Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoDatabase USA\Database USA Business List Example.csv" />
+    <Content Include="Content\images\samplespage\DemoDemographicReports\Demographic and Income Comparison Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoDemographicReports\Demographic and Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoDemographicReports\Executive Summary.pdf" />
+    <Content Include="Content\images\samplespage\DemoDemographicReports\Graphic Profile %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoDemographicReports\Market Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemographicReports\Demographic_and_Income_Comparison_Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemographicReports\Demographic_and_Income_Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemographicReports\Executive_Summary.pdf" />
+    <Content Include="Content\images\samplespage\DemographicReports\Graphic_Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemographicReports\Market_Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoHousingReports\Household Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoHousingReports\Housing Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoIncomeNet Worth\Disposable Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoIncomeNet Worth\Net Worth Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoLifestyleTapestryReports\Dominant Tapestry Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoLifestyleTapestryReports\Tapestry Segmentation Area Profile.pdf" />
+    <Content Include="Content\images\samplespage\DemoMaps with Data\Color Coded Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoMaps with Data\Competition Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Flood Map Hybrid %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoMapTypes\Flood Map Street %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Electronics and Internet Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Finances Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Healthy and Beauty Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Pets and Products Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Restaurant Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Retail Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMarket Potential\Sports and Leisure Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\DemoMedical Expenditure\Medical Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\DemoRetail\Major Shopping Center Locator.pdf" />
+    <Content Include="Content\images\samplespage\DemoRetail\Retail MarketPlace Profile %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoTraffic\Traffic Count Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoTraffic\Traffic Count Map - Closeup %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\DemoTraffic\Traffic Count Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Age Reports\Age 50plusProfile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Age Reports\Age By Sex By Race Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Age Reports\Detailed Age Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Business Lists\Businesses by Type or Name.xlsx" />
+    <Content Include="Content\images\samplespage\Files\Reports\Business Reports\Business Locator Report.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Business Reports\Business Summary Report.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Census Reports\2010 Census Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Census Reports\ACS Housing Summary.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Census Reports\ACS Population Summary.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Comparison Reports\Customized Comparisons.xlsx" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\Automotive Aftermarket Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\Financial Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\House and Home Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\Household Budget Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\Recreation Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Consumer Spending\Retail Goods and Services Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Database USA\Database USA Business List Example.csv" />
+    <Content Include="Content\images\samplespage\Files\Reports\Demographic Reports\Demographic and Income Comparison Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Demographic Reports\Demographic and Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Demographic Reports\Executive Summary.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Demographic Reports\Graphic Profile %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Demographic Reports\Market Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Housing Reports\Household Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Housing Reports\Housing Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Income-Net Worth\Disposable Income Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Income-Net Worth\Net Worth Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Lifestyle Tapestry Reports\Dominant Tapestry Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Lifestyle Tapestry Reports\Tapestry Segmentation Area Profile.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Maps with Data\Color Coded Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Maps with Data\Competition Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Flood Map Hybrid %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\MapTypes\Flood Map Street %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Electronics and Internet Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Finances Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Healthy and Beauty Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Pets and Products Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Restaurant Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Retail Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Market Potential\Sports and Leisure Market Potential.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Medical Expenditure\Medical Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Retail\Major Shopping Center Locator.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Retail\Retail MarketPlace Profile %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Traffic\Traffic Count Map %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Traffic\Traffic Count Map - Closeup %28Image%29.pdf" />
+    <Content Include="Content\images\samplespage\Files\Reports\Traffic\Traffic Count Profile.pdf" />
+    <Content Include="Content\images\samplespage\HousingReports\Household_Income_Profile.pdf" />
+    <Content Include="Content\images\samplespage\HousingReports\Housing_Profile.pdf" />
+    <Content Include="Content\images\samplespage\IncomeNetWorth\Disposable_Income_Profile.pdf" />
+    <Content Include="Content\images\samplespage\IncomeNetWorth\Household_Income_Profile.pdf" />
+    <Content Include="Content\images\samplespage\IncomeNetWorth\Net_Worth_Profile.pdf" />
+    <Content Include="Content\images\samplespage\LifestyleTapestryReports\Dominant_Tapestry_Map.pdf" />
+    <Content Include="Content\images\samplespage\LifestyleTapestryReports\Tapestry_Segmentation_Area_Profile.pdf" />
+    <Content Include="Content\images\samplespage\MapswithData\ColorCodedMap.pdf" />
+    <Content Include="Content\images\samplespage\MapswithData\CompetitionMap.pdf" />
+    <Content Include="Content\images\samplespage\MapTypes\FloodMap.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Electronics_and_Internet_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Finances_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Health_and_Beauty_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Pets_and_Products_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Restaurant_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Retail_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MarketPotential\Sports_and_Leisure_Market_Potential.pdf" />
+    <Content Include="Content\images\samplespage\MedicalExpenditure\Medical_Expenditures.pdf" />
+    <Content Include="Content\images\samplespage\Retail\Major_Shopping_Center_Locator.pdf" />
+    <Content Include="Content\images\samplespage\Retail\Retail_MarketPlace_Profile.pdf" />
+    <Content Include="Content\images\samplespage\STDBLite\2010_Census_Profile.pdf" />
+    <Content Include="Content\images\samplespage\STDBLite\Demographic_and_Income_Profile.pdf" />
+    <Content Include="Content\images\samplespage\STDBLite\Executive_Summary.pdf" />
+    <Content Include="Content\images\samplespage\STDBLite\Market_Profile.pdf" />
+    <Content Include="Content\images\samplespage\TapestrySegmentation\Dominant_Tapestry_Site_Map.pdf" />
+    <Content Include="Content\images\samplespage\TapestrySegmentation\Lifestyle_Report.pdf" />
+    <Content Include="Content\images\samplespage\TapestrySegmentation\Tapestry_Segmentation_Area_Profile.pdf" />
+    <Content Include="Content\images\samplespage\Traffic\Traffic_Count_Map.pdf" />
+    <Content Include="Content\images\samplespage\Traffic\Traffic_Count_MapClose_Up.pdf" />
+    <Content Include="Content\images\samplespage\Traffic\Traffic_Count_Profile.pdf" />
+    <Content Include="Documents\TerritoryList.xlsx" />
+    <None Include="Properties\PublishProfiles\TerritoryPublish.pubxml" />
+    <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="NuGet\readme.txt" />
+    <Content Include="PresentationTemplates\aboutSTDBTemplate.html" />
+    <Content Include="PresentationTemplates\adminAddAlertTemplate.html" />
+    <Content Include="PresentationTemplates\adminAddCustomerTemplate.html" />
+    <Content Include="PresentationTemplates\adminEditCustomerDetailsTemplate.html" />
+    <Content Include="PresentationTemplates\adminHomeTemplate.html" />
+    <Content Include="PresentationTemplates\applicationHeaderTemplate.html" />
+    <Content Include="PresentationTemplates\bulkUserPasswordResetErrorListPopUpTemplate.html" />
+    <Content Include="PresentationTemplates\bulkUserPasswordResetInvalidEmailPopUpTemplate.html" />
+    <Content Include="PresentationTemplates\bulkUserRegistrationErrorCorrectionPopupTemplate.html" />
+    <Content Include="PresentationTemplates\compareSubscriptionTemplate.html" />
+    <Content Include="PresentationTemplates\customerDetailsPopUpTemplate.html" />
+    <Content Include="PresentationTemplates\dataBaseUSATemplate.html" />
+    <Content Include="PresentationTemplates\developmentAdminTemplate.html" />
+    <Content Include="PresentationTemplates\developmentDocumentTemplate.html" />
+    <Content Include="PresentationTemplates\errorLogTemplate.html" />
+    <Content Include="PresentationTemplates\indexTemplate.html" />
+    <Content Include="PresentationTemplates\MailTemplate\email.html" />
+    <Content Include="PresentationTemplates\MailTemplate\emailErrorLog.html" />
+    <Content Include="PresentationTemplates\pictometryTemplate.html" />
+    <Content Include="PresentationTemplates\resetCustomerPasswordTemplate.html" />
+    <Content Include="PresentationTemplates\riskMeterTemplate.html" />
+    <Content Include="PresentationTemplates\sampleDemoTemplate.html" />
+    <Content Include="PresentationTemplates\SamplePopupTemplate.html" />
+    <Content Include="PresentationTemplates\sampleTemplate.html" />
+    <Content Include="PresentationTemplates\showDataBaseUSAResultCountTemplate.html" />
+    <Content Include="PresentationTemplates\subscribeBuyNowTemplate.html" />
+    <Content Include="PresentationTemplates\subscribeTemplate.html" />
+    <Content Include="PresentationTemplates\termsOfServiceTemplate.html" />
+    <Content Include="PresentationTemplates\userLogDetailsPopupTemplate.html" />
+    <Content Include="PresentationTemplates\viewErrorDetailsPopUpTemplate.html" />
+    <Content Include="Scripts\affix.js" />
+    <Content Include="Scripts\alert.js" />
+    <Content Include="Scripts\angular.js" />
+    <Content Include="Scripts\bootbox.js" />
+    <Content Include="Scripts\button.js" />
+    <Content Include="Scripts\carousel.js" />
+    <Content Include="Scripts\collapse.js" />
+    <Content Include="Scripts\dropdown.js" />
+    <Content Include="Scripts\file-upload-angular.js" />
+    <Content Include="Scripts\file-upload-angular.min.js" />
+    <Content Include="Scripts\Framework\actions.js" />
+    <Content Include="Scripts\Framework\ClipBoard.js" />
+    <Content Include="Scripts\Framework\communicationService.js" />
+    <Content Include="Scripts\Framework\configuration.js" />
+    <Content Include="Scripts\Framework\constants.js" />
+    <Content Include="Scripts\Framework\directives.js" />
+    <Content Include="Scripts\Framework\fileUploadService.js" />
+    <Content Include="Scripts\Framework\Language\TerritoryLocator-en-GB.js" />
+    <Content Include="Scripts\Framework\popUpService.js" />
+    <Content Include="Scripts\Framework\session.js" />
+    <Content Include="Scripts\globalize.js" />
+    <Content Include="Scripts\GoogleMap.js" />
+    <Content Include="Scripts\HomeScriptController\IndexRootController.js" />
+    <Content Include="Scripts\HomeScriptController\LayOutRootController.js" />
+    <None Include="Scripts\jquery-1.7.1-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-1.8.2.js" />
+    <Content Include="Scripts\jquery-1.8.2.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.js" />
+    <Content Include="Scripts\jquery-ui-1.8.24.min.js" />
+    <Content Include="Scripts\jquery-ui-multiselect.js" />
+    <Content Include="Scripts\jquery.blockUI.js" />
+    <Content Include="Scripts\jquery.form.js" />
+    <Content Include="Scripts\jquery.maskedinput.js" />
+    <Content Include="Scripts\jquery.tinyscrollbar.js" />
+    <Content Include="Scripts\jquery.tooltip.js" />
+    <Content Include="Scripts\jquery.tooltipster.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\jquery.watermark.js" />
+    <Content Include="Scripts\jquery.zclip.js" />
+    <Content Include="Scripts\jquery.zclip.min.js" />
+    <Content Include="Scripts\jsnlog.js" />
+    <Content Include="Scripts\jsnlog.min.js" />
+    <Content Include="Scripts\knockout-2.2.0.debug.js" />
+    <Content Include="Scripts\knockout-2.2.0.js" />
+    <Content Include="Scripts\modal.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\PresentationController\adminHomeTemplateController.js" />
+    <Content Include="Scripts\PresentationController\applicationHeaderTemplateController.js" />
+    <Content Include="Scripts\PresentationController\errorLogTemplateController.js" />
+    <Content Include="Scripts\PresentationController\indexTemplateController.js" />
+    <Content Include="Scripts\ResponsiveIframe.js" />
+    <Content Include="Scripts\scrollspy.js" />
+    <Content Include="Scripts\tab.js" />
+    <Content Include="Scripts\tooltip.js" />
+    <Content Include="Scripts\transition.js" />
+    <Content Include="Scripts\ui-bootstrap-tpls-0.10.0.js" />
+    <Content Include="Scripts\xml2json.js" />
+    <Content Include="Web.config" />
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\TodoList.css" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="Scripts\app\ajaxlogin.js" />
+    <Content Include="Scripts\app\todo.viewmodel.js" />
+    <Content Include="Scripts\app\todo.bindings.js" />
+    <Content Include="Scripts\app\todo.datacontext.js" />
+    <Content Include="Scripts\app\todo.model.js" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_UserSettings.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\_Login.cshtml" />
+    <Content Include="Views\Home\_Register.cshtml" />
+    <Content Include="Scripts\jsnlog.js.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\images\samplespage\Thumbnail\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49904</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:49904/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.                                                                                      
+       Other similar extension points exist, see Microsoft.Common.targets.                                                                                                                
+  <Target Name="BeforeBuild">                                                                                                                                                             
+  </Target>                                                                                                                                                                               
+  <Target Name="AfterBuild">                                                                                                                                                              
+  </Target> -->
+</Project>

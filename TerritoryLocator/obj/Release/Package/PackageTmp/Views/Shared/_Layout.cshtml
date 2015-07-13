@@ -1,0 +1,75 @@
+﻿@using TerritoryLocator.Helpers
+<!DOCTYPE html>
+<html data-ng-app="TerritoryLocator">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    @Scripts.Render("https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false&libraries=drawing,places")
+    @Scripts.Render("~/Scripts/Territory_JS")
+    @Scripts.Render("~/Scripts/GoogleMapController")
+    @Scripts.Render("~/Scripts/LayOutController")
+    @Styles.Render("~/Content/Territory_CSS")
+    @Styles.Render("~/Content/BootStrap_CSS")
+    <link href='https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,900,200italic,300italic,400italic,600italic,700italic,900italic' rel='stylesheet' type='text/css'>
+
+    <script type="text/javascript">
+        /* <![CDATA[ */
+        document.write(
+          '<img src="http://marketing.xceligent.com/acton/bn/12163/visitor.gif?ts=' +
+          new Date().getTime() +
+          '&ref=' + escape(document.referrer) + '">'
+        );
+        var aoAccountId = '12163';
+        var aoCookieMode = 'STANDARD';
+        var aoCookieDomain = 'xceligent.com';
+        var aoServerContext = 'http://marketing.xceligent.com/acton';
+        /* ]]> */
+    </script>
+    <script>
+        function initializeGoogleMap() {
+            var mapProp = {
+                center: new google.maps.LatLng(51.508742, -0.120850),
+                zoom: 5,
+                mapTypeId: google.maps.MapTypeId.ROADMAP
+            };
+            var map = new google.maps.Map(document.getElementById("googleMapDummy"), mapProp);
+        }
+        google.maps.event.addDomListener(window, 'load', initializeGoogleMap);
+    </script>
+</head>
+<body>
+    @{
+        var jss = new System.Web.Script.Serialization.JavaScriptSerializer();
+        var userInfoJson = jss.Serialize(ViewBag.UserInfo);
+    }
+    <script type="text/javascript">
+        var domain = { path: '@Url.Content("~")' };
+        var currentUser = JSON.parse('@Html.Raw(userInfoJson)');
+    </script>
+    <div data-ng-controller="LayOutRootController">
+        <div ng-include src="headerTemplate">
+        </div>
+        @RenderBody()
+        <footer id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <p>Copyright Will be here</p>
+                    </div>
+                    <div class="col-lg-6 pull-right">
+                        <div class="social">
+                            @*<a href="https://www.facebook.com/ccimtech" target="_blank"><div class="facebook_cont"></div></a>
+                            <a href="http://www.linkedin.com/company/ccim-technologies-inc-?trk=tabs_biz_home" target="_blank"><div class="linkedin_cont"></div></a>
+                            <a href="https://twitter.com/STDB_Inc" target="_blank"><div class="twitter_cont"></div></a>
+                            <a href="http://www.ccim.com/" target="_blank"><div class="CCIM_cont"></div></a>*@
+                            @*<a class="gplus" href="#"><i class="icon-google-plus"></i></a>
+                                <a class="github" href="#"><i class="icon-github-alt"></i></a>*@
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

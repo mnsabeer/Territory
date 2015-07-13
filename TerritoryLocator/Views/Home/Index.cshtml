@@ -1,0 +1,12 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@Scripts.Render("~/Scripts/IndexController")
+<script type="text/javascript">
+    var loadedPage = { url: index };
+</script>
+<div data-ng-controller="IndexRootController" class="Main_Container_All">
+    <div ng-include src="indexTemplate" >
+    </div>
+</div>

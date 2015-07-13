@@ -1,0 +1,250 @@
+﻿<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+        <div class="popMaincontainer">
+            <div class="popupHeader">
+                Add Customer<div class="popupclose STDBAddCustomerPopUpTemplateCancelButton" ng-click="onClosePopUpClicked()">
+                    X
+                </div>
+            </div>
+            <div class="STDBAddCustomerPopUpTemplateinformationcontainerScrollbarContainer">
+                <div class="scrollbar disable" style="height: 510px;">
+                    <div class="track" style="height: 510px;">
+                        <div class="thumb" style="top: 0px; height: 30px;">
+                        </div>
+                    </div>
+                </div>
+                <div class="viewport">
+                    <div class="overview" style="top: 0px;" ng-class="adminAddCustomerTemplateController">
+                        <form name="STDBAddCustomerPopUpTemplateAddCustomerForm" id="STDBAddCustomerPopUpTemplateAddCustomerForm" novalidate="novalidate">
+                            <div class="popupContainerMain">
+                                <div class="STDBAddCustomerPopUpContainer">
+                                </div>
+                                <div class="informationcontainer_wrapper">
+                                    <!--Customer Details Start-->
+                                    <div class="informationcontainer Largewidth">
+                                        <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="95%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="tdContentBar">
+                                                        Customer Details
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td nowrap="" align="left">
+                                                        <table class="Section_new" cellpadding="2" cellspacing="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td nowrap="" align="right">
+                                                                        <font color="#FF0000">*</font>First Name:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" name="FirstName" required ng-model="BasicDetails.FirstName" class="STDBAddCustomerPopUpTemplateReadOnly " ng-class="{'onerror' : STDBAddCustomerPopUpTemplateAddCustomerForm.FirstName.$error.required && isBasicDetailsInvalid}">
+                                                                        <span class="spanerror" class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.FirstName.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                    </td>
+                                                                    <td nowrap="" align="right">
+                                                                        MI:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" name="MI" ng-model="BasicDetails.MI" class="STDBAddCustomerPopUpTemplateReadOnly">
+                                                                    </td>
+                                                                    <td nowrap="" align="right">
+                                                                        <font color="#FF0000">*</font>Last Name:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" name="LastName" required ng-model="BasicDetails.LastName" class="STDBAddCustomerPopUpTemplateReadOnly " ng-class="{'onerror' : STDBAddCustomerPopUpTemplateAddCustomerForm.LastName.$error.required && isBasicDetailsInvalid}">
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.LastName.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="" align="right">
+                                                                        <font color="#FF0000">*</font>Email:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" name="Email" ng-pattern="emailPattern" ng-model="BasicDetails.Email" required class="STDBAddCustomerPopUpTemplateReadOnly " ng-class="{'onerror' : (STDBAddCustomerPopUpTemplateAddCustomerForm.Email.$error.required || STDBAddCustomerPopUpTemplateAddCustomerForm.Email.$error.pattern) && isBasicDetailsInvalid}">
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.Email.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.Email.$error.pattern && isBasicDetailsInvalid">*Invalid</span>
+                                                                    </td>
+                                                                    <td nowrap="" align="right">
+                                                                        Phone:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-text-mask="(999)999-9999" maxlength="10" name="Phone" required ng-disabled="isBasicDetailsSaved" ng-model="BasicDetails.PhoneNumber" class="STDBAddCustomerPopUpTemplateReadOnly">
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.Phone.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.Phone.$error.pattern && isBasicDetailsInvalid">*Invalid</span>
+                                                                    </td>
+                                                                    <td nowrap="" align="right">
+                                                                        Fax:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" ng-model="BasicDetails.Fax" class="STDBAddCustomerPopUpTemplateReadOnly">
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td nowrap="" align="right">
+                                                                        <font color="#FF0000">*</font>Member Class:
+                                                                    </td>
+                                                                    <td nowrap="">
+                                                                        <select ng-disabled="isBasicDetailsSaved" required name="MemberClass" ng-model="BasicDetails.MemberClass" class="STDBAddCustomerPopUpTemplateReadOnly" ng-class="{'onerror' : (STDBAddCustomerPopUpTemplateAddCustomerForm.MemberClass.$error.required) && isBasicDetailsInvalid}">
+                                                                            <option value="">--Select--</option>
+                                                                            <option value="7">Lite</option>
+                                                                            <option value="51">Professional</option>
+                                                                            <option value="60">Platinum</option>
+                                                                        </select>
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.MemberClass.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                    </td>
+                                                                    <td nowrap="" align="right">
+                                                                        Expiry Date:
+                                                                    </td>
+                                                                    <td colspan="3">
+
+                                                                        <input type="text" ng-disabled="isBasicDetailsSaved" name="ExpiryDate" ng-model="BasicDetails.ExpiryDate" required
+                                                                               class="form-control"
+                                                                               alt=""
+                                                                               datepicker-popup="dd-MMM-yyyy"
+                                                                               is-open="opened"
+                                                                               min-date="minDate"
+                                                                               max-date="'2015-06-22'"
+                                                                               show-weeks="false"
+                                                                               show-button-bar="false"
+                                                                               datepicker-options="dateOptions"
+                                                                               date-disabled="disabled(date, mode)"
+                                                                               close-text="Close"
+                                                                               ng-class="{'onerror' : (STDBAddCustomerPopUpTemplateAddCustomerForm.ExpiryDate.$error.required) && isBasicDetailsInvalid}">
+                                                                        <span class="spanerror" ng-if="STDBAddCustomerPopUpTemplateAddCustomerForm.ExpiryDate.$error.required && isBasicDetailsInvalid">*Required</span>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <div class="popcontall" style="margin: 15px 0 0px 0;">
+                                                                            <div ng-hide="isBasicDetailsSaved" class="submitButton STDBAddCustomerPopUpTemplateReadOnly" ng-click="onBasicDetailsSave(STDBAddCustomerPopUpTemplateAddCustomerForm)" id="STDBAddCustomerPopUpTemplateCustomerDetailsSaveButton">
+                                                                                Save
+                                                                            </div>
+                                                                            <div ng-hide="isBasicDetailsSaved" ng-click="onCancelClick()" class="submitButton popupclose STDBAddCustomerPopUpTemplateCancelButton">
+                                                                                Cancel
+                                                                            </div>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <!--Customer Details End-->
+                                    <!--Order Details Start-->
+                                    <div class="informationcontainer Largewidth" ng-if="isBasicDetailsSaved" id="STDBAddCustomerPopUpTemplateOrderDetails" style="">
+                                        <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="95%">
+                                            <tbody>
+                                                <tr>
+                                                    <td class="tdContentBar">
+                                                        Order Information
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td nowrap="" align="left">
+                                                        <table class="Section_new" cellpadding="2" cellspacing="0" border="0">
+                                                            <tbody>
+                                                                <tr>
+                                                                    <td align="right">
+                                                                        Quantity
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="Quantity" required ng-pattern="numberPattern" ng-model="OrderInfo.Quantity" ng-change="QuantityPrice()" class="quantityinp" placeholder="Enter Quantity">
+                                                                        <span class="spanerror" ng-if="IsOrderInfoInValid && STDBAddCustomerPopUpTemplateAddCustomerForm.Quantity.$error.required">*Required</span>
+                                                                        <span class="spanerror" ng-if="IsOrderInfoInValid && STDBAddCustomerPopUpTemplateAddCustomerForm.Quantity.$error.pattern">*Invalid</span>
+                                                                    </td>
+                                                                    <td align="right">
+                                                                        Unit Price
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="text" name="UnitPrice" ng-pattern="numberPattern" ng-model="OrderInfo.UnitPrice" ng-change="QuantityPrice()">
+                                                                        <span class="spanerror" ng-if="IsOrderInfoInValid && STDBAddCustomerPopUpTemplateAddCustomerForm.UnitPrice.$error.required">*Required</span>
+                                                                        <span class="spanerror" ng-if="IsOrderInfoInValid && STDBAddCustomerPopUpTemplateAddCustomerForm.UnitPrice.$error.pattern">*Invalid</span>
+                                                                    </td>
+                                                                    <td align="right">
+                                                                        Total Price
+                                                                    </td>
+                                                                    <td style="font-weight: 600">
+                                                                        <div id="STDBAddCustomerPopUpTemplateTotalPrice">{{OrderInfo.TotalPrice | currency}}</div>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td colspan="6">
+                                                                        <!--Additional Email Container start-->
+                                                                        <div id="STDBAddCustomerPopUpTemplateAdditionalInformationTable" ng-if="OrderInfo.Quantity > 1">
+                                                                            <h2 class="tabledheading">
+                                                                                Additional Information
+                                                                            </h2>
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="readonlydetails bottoms" style="margin-top: 0px; margin-bottom: 0">
+                                                                                <tbody>
+                                                                                    <tr>
+                                                                                        <th width="50%">
+                                                                                            Email Address
+                                                                                        </th>
+                                                                                        <th width="25%">
+                                                                                            Current Expiration Date
+                                                                                        </th>
+                                                                                        <th width="25%">
+                                                                                            New Expiration Date
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="readonlydetails bottoms" style="margin-top: 0px">
+                                                                                <tbody>
+                                                                                    <tr ng-repeat="user in AdditionalInformation">
+                                                                                        <td width="50%">
+                                                                                            <input style="width:300px;" type="email" ng-pattern="emailPattern" name="userId" ng-class="{'onerror'   : user.Invalid}" ng-model="user.UserId" ng-model-onblur ng-change="ValidateCustomer(user.UserIndex)" required />
+                                                                                            <span class="spanerror" ng-show="user.Invalid && user.userIdAlreadyEntered">User already exists</span>
+                                                                                            <span class="spanerror" ng-show="user.Invalid && user.InvalidEmail">Invalid Email</span>
+                                                                                            <span class="spanerror" ng-show="user.userIdAlreadyEntered">Already entered the Email</span>
+                                                                                            <!--<span class="spanerror" ng-show="user.IsExists">User already exists in personify</span>-->
+                                                                                            <!--<span class="spanerror" ng-show="user.userIdNotEntered">Enter user id</span>-->
+                                                                                            <div class="inputbuttondeletenomar" data-ng-click="RemoveAdditionalInformation(user.UserIndex)"></div>
+                                                                                        </td>
+                                                                                        <td>{{user.ExpDate}}</td>
+                                                                                        <td>{{user.NextExpDate}}</td>
+                                                                                    </tr>
+                                                                                </tbody>
+                                                                            </table>
+                                                                        </div>
+                                                                        <!--Additional Email Container start-->
+                                                                    </td>
+                                                                </tr>
+                                                            </tbody>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                        <div class="popcontall" style="margin: 15px 0 0px 0;">
+                                            <div class="submitButton" ng-click="onAdditionalDetailsSave()">
+                                                Save
+                                            </div>
+                                            <div class="submitButton popupclose STDBAddCustomerPopUpTemplateCancelButton" ng-click="onCancelClick()">
+                                                Cancel
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--Order Details End-->
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- content ends -->
+    <!-- header start -->
+    <div class="popupfieldwrap">
+        <div id="popupHeading"><h1>Add Customer</h1></div>
+        <a href="#" class="windowclose" data-dismiss="modal"></a>
+    </div>
+    <!-- header ends -->
+    <div class="clearfix">
+    </div>
+</div>

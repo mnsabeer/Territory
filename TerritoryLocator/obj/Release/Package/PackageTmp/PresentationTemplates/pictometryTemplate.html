@@ -1,0 +1,30 @@
+﻿<div ng-controller="pictometryTemplateController">
+    <div ng-hide="isPictometryImageVisible">
+        <div class="PictometrySecHeader">
+            <h3>Pictometry Aerial Imagery</h3>
+            <div class="GerPictometryImg" ng-class="{'disabled':!isLocated}" ng-click="GetPictometryImage('User clicked on GET PICTOMETRY IMAGE')">Get Pictometry Image</div>
+        </div>
+        <input id="pac-input" type="text" placeholder="Search Box">
+        <section id="map-canvas" class="block PictometrySec"></section>
+    </div>
+
+    <div ng-if="isPictometryImageVisible">
+
+        <div class="PictometrySecHeader">
+            <div class="SavePictometryImg BackIco" ng-click="goBack()">Back</div>
+            <h3>Pictometry® Aerial Imagery</h3>
+            <div class="SavePictometryImg Saveico" ng-click="SavePictometry()">Save</div>
+            <div class="exportoptioncont"><label>Image Type</label>
+            <select data-ng-options="item.name for item in exportOptions" data-ng-model="item" data-ng-change="exportOptionChange(item)"></select></div>            
+        </div>
+
+     <section class="block PictometrySec" ng-class="{'dualmode':isDualView}" style="height: 700px;">
+                 
+	<div id="pictometry">
+		<iframe id="stdbPictometryFrame" width="100%" height="100%" style="" src="#"></iframe><!--height: 74vh;-->
+		<!--<iframe id="stdbPictometryFrame"   style="z-index:10000;height: 550px;width:100% !important;" src="#"></iframe><!--height: 74vh;-->
+	</div>
+          
+        </section>
+    </div>
+</div>

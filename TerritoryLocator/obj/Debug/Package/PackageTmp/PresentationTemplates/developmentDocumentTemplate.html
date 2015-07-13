@@ -1,0 +1,32 @@
+﻿<div ng-controller="developmentDocumentTemplateController">
+    <div style="height:580px;">
+        <section class="block" id="developDocumentQuery">
+            <div class="page-header container">
+                <span class="text-primary" style="font-size:16pt;">Development Document</span><br />
+            </div>
+            <div class="container">
+            <label>Select your choice:</label>&nbsp;&nbsp;
+                <select id="drpChoice" ng-change="OptionSelected()" ng-model="documentChoice" >
+                    <option value="databaseUSA">databaseUSA</option>
+                    <option value="pictometry">Pictometry</option>
+                    <option value="riskMeter">Risk Meter</option>
+                </select>
+            </div>
+            <div class="container" ng-model="resultantSet" ng-show="showXml">
+                    <div id="result_content"></div>
+                    <div id="pageNavPosition"></div>
+                    <div id="pageNav">
+                        <span ng-click="firstPage()" class="pg-disabled" id="first"> First </span>
+                        <span ng-click="prevPage()" class="pg-disabled" id="prev"> &#171 Prev</span>
+                        <span ng-repeat="i in pageItem" ng-class="{'pg-selected' : (i.id==1),'{{i.class}}': (i.id != 1)}" id="pg{{i.id}}" ng-click="showPage(i.id)">{{i.id}} </span>
+                        <span ng-click="nextPage()" class="pg-normal" id="nxt"> Next &#187;</span>
+                        <span ng-click="lastPage()" class="pg-normal" id="last"> Last </span>
+                    </div>
+                </div>
+
+        </section>
+    </div>
+
+   
+
+</div>

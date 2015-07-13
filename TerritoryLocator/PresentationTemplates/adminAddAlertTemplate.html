@@ -1,0 +1,94 @@
+﻿<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+        <div class="popMaincontainer" style="width:auto;">
+            <div class="popupHeader">
+                {{pageTitle}}<div class="popupclose STDBAddCustomerPopUpTemplateCancelButton" ng-click="onClosePopUpClicked()">
+                    X
+                </div>
+            </div>
+
+            <form name="STDBAddAlertPopUpTemplateAddAlertForm" id="STDBAddAlertPopUpTemplateAddAlertForm" novalidate="novalidate">
+                <div class="popupContainerMain">
+                    <div class="STDBAddCustomerPopUpContainer">
+                    </div>
+                    <div class="informationcontainer_wrapper">
+                        <!--Customer Details Start-->
+                        <div class="informationcontainer Largewidth">
+                            <table class="Section_new" cellpadding="2" cellspacing="0" border="1" >
+                                <tbody>
+                                    <tr>
+                                        <td class="tdContentBar">
+                                            Alert Content
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap="" align="left">
+                                            <table class="Section_new" cellpadding="2" cellspacing="0" border="0">
+                                                <tbody>
+                                                    <tr>
+                                                        <td nowrap="" align="right">
+                                                            <font color="#FF0000">*</font>Header Text:
+                                                        </td>
+                                                        <td nowrap="">
+                                                            <input style="width:300px;"  type="text" ng-class="{'errorcont' : isInvalid && STDBAddAlertPopUpTemplateAddAlertForm.Header.$error.required}" ng-disabled="isBasicDetailsSaved" name="Header" required data-ng-model="Alert.Header" class="STDBAddCustomerPopUpTemplateReadOnly " ng-class="{'onerror' : STDBAddCustomerPopUpTemplateAddCustomerForm.FirstName.$error.required && isBasicDetailsInvalid}">
+                                                            <span class="spanerror" ng-if="isInvalid && STDBAddAlertPopUpTemplateAddAlertForm.Header.$error.required">*Required</span>
+                                                        </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td nowrap="" align="right">
+                                                            <font color="#FF0000">*</font>Alert Text
+                                                        </td>
+                                                        <td nowrap="">
+                                                            <textarea rows="5" cols="10" style="width:300px;" ng-class="{'errorcont' : isInvalid && STDBAddAlertPopUpTemplateAddAlertForm.AlertText.$error.required}" ng-disabled="isBasicDetailsSaved" required name="AlertText" ng-model="Alert.AlertText" class="STDBAddCustomerPopUpTemplateReadOnly" />
+                                                            <span class="spanerror" ng-if="isInvalid && STDBAddAlertPopUpTemplateAddAlertForm.AlertText.$error.required">*Required</span>
+                                                        </td>
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td align="right">Do you want to publish this alert?</td>
+                                                        <td nowrap="">
+                                                            <input type="checkbox" ng-model="Alert.IsPublished" value="Alert.IsPublish">
+                                                        </td>
+
+                                                    </tr>
+
+                                                    <tr>
+                                                        <td colspan="6">
+                                                            <div class="popcontall" style="margin: 15px 0 0px 0;">
+                                                                <div class="submitButton STDBAddCustomerPopUpTemplateReadOnly" ng-click="onAlertDetailsSave(STDBAddAlertPopUpTemplateAddAlertForm)">
+                                                                    Save
+                                                                </div>
+                                                                <div ng-hide="isBasicDetailsSaved" ng-click="onCancelClick()" class="submitButton popupclose STDBAddCustomerPopUpTemplateCancelButton">
+                                                                    Cancel
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+
+
+
+                        </div>
+                        <!--Customer Details End-->
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </div>
+    <!-- content ends -->
+    <!-- header start -->
+    <div class="popupfieldwrap">
+        <div id="popupHeading"><h1>Add Alert</h1></div>
+        <a href="#" class="windowclose" data-dismiss="modal"></a>
+    </div>
+    <!-- header ends -->
+    <div class="clearfix">
+    </div>
+</div>

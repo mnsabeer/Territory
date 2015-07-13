@@ -1,0 +1,1853 @@
+﻿<div ng-controller="subscriptionBuyNowTemplateController">
+    <!---------------------------------------------------- Plan details section -------------------------------------------------------------->
+    <div ng-if="IsPlanDetailsVisible">
+        <div class="BuynowContainer">
+            <section class="block">
+                <div class="container">
+                    <div class="row">
+                        <ul id="crumbs">
+                            <li ng-click="GoToSubscription()"><a href="#">Membership</a></li>
+                            <li>Join Now</li>
+                        </ul>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div ng-class="{'STDB_head_det-Lite' : planId==7 , 'STDB_head_det-Professional' : planId==51, 'STDB_head_det-Platinum' : planId==60 }">
+                                <div class="topstdb">CCIM Associate</div>
+                                <div class="bottomstdb">{{planName}}</div>
+                            </div>
+                        </div>
+                        <div class="col-lg-9 pull-left">
+                            <p><span class="textbold">Description:</span><br />
+
+                            <!--For Professional user-->
+                            <p style="color: #2688C8; font-weight: bold;" ng-if="planId==51">
+                                The CCIM Associate {{planName}} Membership gives members access to:
+                            </p>
+
+                            <!--For Lite user-->
+                            <p ng-if="planId==7">
+                                CCIM Associate {{planName}} - is CCIM Associate's most complete package for the Commercial Realtor, Appraiser, Civil Engineer and Government Data Compilers. With all the tools available in CCIM Associate {{planName}} also gives you:
+                            </p>
+
+
+                            </p> 
+                               
+                            <!--Description for Lite user--> 
+                            <span ng-if="planId==7">
+                                <p><span class="textbold">The Map Presentation Tool</span> provides the ability to annotate any type of map (street, satellite, hybrid, topographic or shaded relief). Create property boundaries, upload images, label major streets, show other multi-family complexes, traffic counts, etc.</p>
+                                <p><span class="textbold">Pictometry Imagery</span> provides high resolution, oblique images of an area or site that can be rotated for a 360 degree view. Images are easily saved to multiple formats that can then be added to marketing packages or for analysis.</p>
+
+                            </span> 
+
+                            <!--Description for Professional user-->                
+                            <ul ng-if="planId==51">
+                                <li>50% discount on CI Intro: Introduction to Commercial Investment Real Estate Analysis</li>
+                                <li>Subscription to CIRE magazine and RERC/CCIIM <em>Investment Trends Quarterly</em></li>
+                                <li>CCIM Conference and publication discounts</li>
+                                <li>Access to ArcGIS Online and ESRI Business Analyst Online (BAO) - The most extensive online data, reporting and mapping toolset for demographic and location analysis. As well as the Database USA Business Directory and interactive Flood Maps. </li>
+                            </ul>
+                            <!--Description for Platinum user-->         
+                            <p ng-if="planId==60">
+                                Professional and the addition of Pictometry obliqueaerial imagery.Pictometry Imagery provides high resolution, oblique images
+                                of an area or site that can be rotated for a 360 degree view. Images are easily saved to multiple formats that can then be added to marketing packages or for analysis.
+                                <a class="popover_top" style="color:#ff0000!important" data-ng-tool-tip ng-position="top"
+                                   ng-content=" &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; Platinum &lt;/p&gt;
+                                    &lt;p&gt; &lt;/p&gt;
+                                    &lt;p&gt;Provides members with all the features of the Professional level plus:   &lt;/p&gt;
+                                    &lt;p&gt; &lt;/p&gt;
+                                    &lt;p&gt; &nbsp; &bull; &nbsp;&nbsp; &lt;b&gt; Pictometry Images&nbsp; &lt;/b&gt;- High quality oblique images &lt;br/&gt;
+                                    &lt;p style=&quot;color:red;font-weight:bold;&quot;&gt; $1,595 / year &lt;/p&gt;  ">
+                                    Mouse over for definition of STDB features
+                                </a>
+                            </p>
+
+
+                            <span style="color: #80497D; font-weight: bold;">
+                                <p>                                    The pricing for membership is based on a single person. For questions regarding membership please contact <br />
+                                    <a href="mailto:membership@ccimtech.com" target="_blank"><font color="#80497D"><strong> membership@ccimtech.com</strong></font></a>
+                                       <span ng-if="planId==51">or 469-232-2600.</span> <span ng-if="planId==60">or 469-232-2600.</span>
+                                </p>
+                                </p>
+                                <!--<p>CCIM Associate {{planName}} MemberShip</p>-->
+                            </span>
+                            <h4 class="detailCategory" style="color: #80497D!important;">CCIM Associate {{planName}} Membership</h4>
+                            <strong>Price:</strong>&nbsp;{{planPrice | currency}}
+                            <form name="addToCartForm" novalidate>
+                                <p style="margin-top: 20px; font-size:14px;">
+                                    Quantity:<input type="number" min="1" ng-class="{ 'errorcont'   : isInValid}" data-ng-model="Quantity.value" style=" margin-left:10px; width:90px;" required>
+                                    <span class="spanerror" ng-show="isInValid">Enter Quantity</span>
+                                </p>
+                                <p>
+                                    <div ng-click='GoBack()' class="stdbbuttons">Back to Membership</div>
+                                    <div class="stdbbuttons" ng-if="hasItem&&(planId!=currentId)" ng-confirm-click="AddToCartClick(addToCartForm)" ng-confirm-text="Cart already has an item, do want to replace it?" data-ng-confirm-message name="AddProduct">Addto Cart</div>
+                                    <div class="stdbbuttons" ng-if="!hasItem||(planId==currentId)" ng-click="AddToCartClick(addToCartForm)" name="AddProduct">Add To Cart</div>
+                                </p>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+    </div>
+    <!---------------------------------------------------- Cart display section -------------------------------------------------------------->
+    <div ng-if="IsCartVisible">
+        <div class="BuynowContainer">
+            <section class="block">
+                <div class="container">
+                    <div class="row">
+
+                        <ul id="crumbs">
+                            <li ng-click="GoToSubscription()"><a href="#">Membership</a></li>
+                            <li ng-click="GoToBuyNow()"><a href="#">Join Now</a></li>
+                            <li>Add to cart</li>
+                        </ul>
+                        <div class="col-lg-12 pull-left">
+                            <p>Order Summary</p>
+                            <p class="ordersummarybox">Please review your order as shown below. To modify the quantity, simply change the number in the quantity box below.</p>
+                            <table width="100%" border="0" cellspacing="1" cellpadding="3">
+                                <tbody>
+                                    <tr>
+                                        <td class="tdContent2" align="center">
+                                            <div id="ssThanks"></div>
+                                            <font class="Content_Large"><b>Thank You!</b></font><br>
+
+                                            <div ng-show="isAlertVisible">
+                                                <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                                            </div>
+
+                                            <!--<b>{{Quantity}}&nbsp;STDB {{planName}} Subscription&nbsp;have been added to your order.</b>-->
+                                            <!--<input type="button" class="inputbutton continueshopping" alt="Continue Shopping" border="0">-->
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="center" class="tdContent2"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0">
+                                <tbody>
+                                    <tr>
+                                        <td width="1%" class="tdContentBar"></td>
+                                        <td width="40%" class="tdContentBar">Item</td>
+                                        <td width="15%" class="tdContentBar">Qty</td>
+                                        <td width="15%" class="tdContentBar">Unit Price</td>
+                                        <td width="29%" class="tdContentBar">Total</td>
+                                        <td></td>
+                                    </tr>
+                                    <tr ng-repeat="plan in CartItems" style="border:1px solid #dddddd">
+                                        <td class="tdAltFont2" valign="top" align="left"></td>
+                                        <td valign="top" class="tdAltFont2" align="left" style="margin:0px 10px 0 0; float:left; font-weight:600; font-size:15px; color:#444444;">
+                                            CCIM Associate {{plan.Plan}} Member
+
+                                        </td>
+                                        <td class="tdAltFont2" valign="top">
+                                            <input type="number" min="1" class="formDesign" id="txtQuantity" ng-class="{ 'errorcont'   : isInValid}" data-ng-model="updatedQuantity.value" data-ng-change="onChangeQuantity(updatedQuantity.value)" style=" margin-left:10px; width:90px;" required>
+                                            <span class="spanerror" ng-show="isInValid">Enter Quantity</span>
+                                            <!--<input type="text" ng-class="{'errorcont'   : (!isValidQuantity)}" class="formDesign" size="2" data-ng-model="updatedQuantity" data-ng-change="onChangeQuantity(updatedQuantity)" value="{{plan.Qty}}" style="padding:5px; height:24px;"><span ng-hide="isValidQuantity" style="padding-left: 5px;">invalid quantity</span>-->
+                                        </td>
+                                        <td class="tdAltFont2" valign="top">{{plan.Price | currency}}</td>
+                                        <td class="tdAltFont2" valign="top" style="border-right:1px solid #dddddd">
+                                            <p ng-show="!isPromoApplied" style="margin:0px">{{plan.Total | currency}}</p>
+                                            <div class="promocodeapplydiv" ng-show="isPromoApplied">
+                                                <p><span class="valuecont">Old Amount </span><span class="detailcont">: {{actualPrice | currency}}</span></p>
+                                                <p class="redspan"><span class="valuecont">You Save </span><span class="detailcont">:-{{deduction | currency}} </span></p>
+                                                <p class="greenspan"><span class="valuecont">New Amount </span><span class="detailcont">: {{amountShoulBePaid | currency}}</span></p>
+                                            </div>
+
+                                        </td>
+                                    </tr>
+                                    <tr style="border:1px solid #dddddd">
+                                        <td colspan="5" class="tdAltFont2" style="background: #f3f3f3; border-right: 1px solid #dddddd">
+                                            <div class="promotioncontainer">
+                                                <form name="applyPromoCodeForm" novalidate>
+                                                    <span>Promo Code</span><input type="text" ng-class="{'errorcont'   : (isPromoCodeNotEntered)}" name="PromoCode" ng-model="PromoCode" required />
+                                                    <span class="spanerror" ng-show="(isPromoCodeNotEntered)">Enter promo code</span>
+                                                    <input type="submit" value="Apply" ng-show="!isPromoApplied" data-ng-click="ApplyPromoCode(applyPromoCodeForm)" />
+                                                    <input type="submit" value="Remove Code" ng-show="isPromoApplied" data-ng-click="onRemovePromoCode(applyPromoCodeForm)" />
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+
+                                    <!--<tr>
+                                        <td colspan="3" align="right" valign="top">
+                                            <font class="Error">&nbsp;</font>
+                                        </td>
+                                        <td colspan="2" align="right" valign="top">
+                                            <input type="button" class="inputbutton updatequqntity" style="margin-top:5px;" data-ng-click="RefreshOrderTotal()" />
+                                            <input type="button" class="inputbutton checkoutnow" style="margin-top:5px;" data-ng-click="OnCheckOutClick()" />
+
+                                        </td>
+                                    </tr>-->
+                                </tbody>
+                            </table>
+
+                            <p style="color: #333333; font-weight: 600;">Primary Membership Information</p>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" class="readonlydetails bottom">
+                                <tr>
+                                    <td rowspan="2" width="45%" style="background-color: #f3f3f3;font-weight:bold;">{{UserEmailId}}</td>
+                                    <td class="tdContentBar">Current Expiration Date</td>
+                                    <td class="tdContentBar">New Expiration Date</td>
+                                </tr>
+                                <tr>
+                                    <td>{{expiredate}}</td>
+                                    <td>{{nextExpireDate}}</td>
+                                </tr>
+                            </table>
+
+
+                            <form name="additionalInformationForm" novalidate>
+                                <div ng-show="isAdditonalInfoVisible">
+                                    <p style="color: #333333; font-weight: 600;">Additional User Information</p>
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="readonlydetails bottoms" style="margin-top:10px; margin-bottom:0">
+                                        <tr>
+                                            <td class="tdContentBar" width="50%">Email Address</td>
+                                            <td class="tdContentBar" width="25%" style="padding-left:0px;">Current Expiration Date</td>
+                                            <td class="tdContentBar" width="25%" style="padding-left:0px;">New Expiration Date</td>
+                                        </tr>
+                                    </table>
+                                    <div style="width: 100%; max-height: 229px; overflow-y: auto;">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="readonlydetails bottoms" style="margin-top:0px">
+                                            <tr ng-repeat="user in AdditionalInformation">
+                                                <td width="50%">
+                                                    <input style="width:300px;" type="email" ng-pattern="emailPattern" name="userId" ng-class="{'errorcont'   : user.IsError}" ng-model="user.UserId" ng-model-onblur ng-change="ValidateCustomerUsingPersonify(user.UserId,user.UserIndex)" required />
+                                                    <span class="spanerror" ng-show="!user.InvalidEmail && user.IsError && !user.UserId">Enter user id</span>
+                                                    <span class="spanerror" ng-show="user.InvalidEmail">Invalid Email</span>
+                                                    <span class="spanerror" ng-show="user.userIdAlreadyEntered">Already entered the Email</span>
+                                                    <span class="spanerror" ng-show="user.IsExists">User already exists</span>
+                                                    <!--<span class="spanerror" ng-show="user.isUserIdNotEntered">Enter user id</span>-->
+
+                                                    <div class="inputbuttondeletenomar" data-ng-click="RemoveAdditionalInformation(user.UserIndex)"></div>
+                                                </td>
+                                                <td width="25%">{{user.ExpDate |  date:'dd-MMM-yyyy'}}</td>
+                                                <td width="25%">{{user.NextExpDate |  date:'dd-MMM-yyyy'}}</td>
+                                            </tr>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="stdbbuttons ADTCNM" data-ng-click="OnCheckOutClick(additionalInformationForm)">Continue</div>
+                                    <div ng-click='GoBack()' class="stdbbuttons  ADTC">Back to Join Now</div>
+                                </div>
+
+
+                            </form>
+
+
+                            <!--<div id="divMainCheckout">
+                                <div id="divOrderSummaryWrapper">
+                                    <table border="0" cellspacing="0" cellpadding="2" class="tdContent2" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <th colspan="2" class="tdTopBanner" nowrap="">Order Summary:</th>
+                                            </tr>
+                                            <tr><td width="75%" align="right">Sub Total: </td><td align="right">${{CartTotal}}</td></tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div id="divCheckoutWrapper">
+                                    <input type="button" class="inputbutton checkoutnow" style="margin-top:5px;" data-ng-click="OnCheckOutClick()" />
+                                    <div class="Content_Small">You will go to our secure server to finish your transaction.</div><br>
+                                    <table border="0" cellspacing="0" cellpadding="2" class="styleb1" width="100%">
+                                        <tbody>
+                                            <tr>
+                                                <td align="center" nowrap="">
+                                                    <input type="text" value="">&nbsp;<input type="submit" value="Enter"><br>
+                                                    <span style="font-size:13px">STDB Special Promotion Code</span>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>-->
+
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <!---------------------------------------------------- Cart checkout section -------------------------------------------------------------->
+    <div class="BuynowContainer" ng-if="IsCheckOutVisible">
+
+        <section class="block">
+            <div class="container">
+                <div class="row">
+                    <ul id="crumbs">
+                        <li ng-click="GoToSubscription()"><a href="#">Membership</a></li>
+                        <li ng-click="GoToBuyNow()"><a href="#">Join Now</a></li>
+                        <li ng-click="GoToCart()"><a href="#">Add to cart</a></li>
+                        <li>Membership Information</li>
+                    </ul>
+                    <div class="col-lg-12 pull-left">
+                        <p class="heading_Member_Info">Member Information</p>
+                        <p class="ordersummarybox">Please complete your account and billing information.  On the next page, you will enter your credit card to complete this transaction.</p>
+                        <p><b>Step 1 </b>: Member Profile Information | <b>Step 2</b>: Payment Information | <b>Step 3</b>: Complete Sign-up</p>
+                        <div>
+                            <form name="subscriptionBuyNowTemplateForm">
+                                <div class="informationcontainer">
+
+                                    <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="95%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="tdContentBar">
+                                                    Profile Information
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap="" align="left">
+                                                    <table class="Section_new" cellpadding="2" cellspacing="0" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td nowrap="" align="right" width="30%"><font color="#FF0000">*</font>First Name:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.FirstName.$error.required&&!IsDatasValid}" maxlength="50" required name="FirstName" data-ng-model="PersonalDetails.FirstName">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.FirstName.$error.required&&!IsDatasValid">Required</span>
+                                                                </td>
+
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">MI:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" name="MiddleInitial" ng-model="PersonalDetails.MiddleInitial">
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Last Name:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.LastName.$error.required&&!IsDatasValid}" name="LastName" required ng-model="PersonalDetails.LastName">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.LastName.$error.required&&!IsDatasValid">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">Company:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" name="Company" ng-model="PersonalDetails.Company">
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Address 1</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.Address1.$error.required&&!IsDatasValid}" name="Address1" required ng-model="PersonalDetails.Address1">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.Address1.$error.required&&!IsDatasValid">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right" height="15">Address 2:</td>
+                                                                <td nowrap="" height="15">
+                                                                    <input type="text" name="Address2" ng-model="PersonalDetails.Address2">
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>City:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.City.$error.required&&!IsDatasValid}" name="City" ng-model="PersonalDetails.City" required>
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.City.$error.required&&!IsDatasValid">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="right" valign="top"><font color="#FF0000">*</font>State or Province:</td>
+                                                                <td nowrap="">
+                                                                    <div id="divBillingState">
+                                                                        <select name="State" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.State.$error.required&&!IsDatasValid}" required ng-model="PersonalDetails.State">
+                                                                            <option value="" disabled="disabled">--Select State--</option>
+                                                                            <option value="AL">Alabama</option>
+                                                                            <option value="AK">Alaska</option>
+                                                                            <option value="AB">Alberta</option>
+                                                                            <option value="AS">American Samoa</option>
+                                                                            <option value="AZ">Arizona</option>
+                                                                            <option value="AR">Arkansas</option>
+                                                                            <option value="AA">Armed Forces America</option>
+                                                                            <option value="AE">Armed Forces Other Areas</option>
+                                                                            <option value="AP">Armed Forces Pacific</option>
+                                                                            <option value="BC">British Columbia</option>
+                                                                            <option value="CA">California</option>
+                                                                            <option value="CO">Colorado</option>
+                                                                            <option value="CT">Connecticut</option>
+                                                                            <option value="DE">Delaware</option>
+                                                                            <option value="DC">District of Columbia</option>
+                                                                            <option value="FL">Florida</option>
+                                                                            <option value="GA">Georgia</option>
+                                                                            <option value="GU">Guam</option>
+                                                                            <option value="HI">Hawaii</option>
+                                                                            <option value="ID">Idaho</option>
+                                                                            <option value="IL">Illinois</option>
+                                                                            <option value="IN">Indiana</option>
+                                                                            <option value="IA">Iowa</option>
+                                                                            <option value="KS">Kansas</option>
+                                                                            <option value="KY">Kentucky</option>
+                                                                            <option value="LA">Louisiana</option>
+                                                                            <option value="ME">Maine</option>
+                                                                            <option value="MB">Manitoba</option>
+                                                                            <option value="MH">Marshall Islands</option>
+                                                                            <option value="MD">Maryland</option>
+                                                                            <option value="MA">Massachusetts</option>
+                                                                            <option value="MI">Michigan</option>
+                                                                            <option value="FM">Micronesia</option>
+                                                                            <option value="MN">Minnesota</option>
+                                                                            <option value="MS">Mississippi</option>
+                                                                            <option value="MO">Missouri</option>
+                                                                            <option value="MT">Montana</option>
+                                                                            <option value="NE">Nebraska</option>
+                                                                            <option value="NV">Nevada</option>
+                                                                            <option value="NB">New Brunswick</option>
+                                                                            <option value="NH">New Hampshire</option>
+                                                                            <option value="NJ">New Jersey</option>
+                                                                            <option value="NM">New Mexico</option>
+                                                                            <option value="NY">New York</option>
+                                                                            <option value="NF">Newfoundland</option>
+                                                                            <option value="NC">North Carolina</option>
+                                                                            <option value="ND">North Dakota</option>
+                                                                            <option value="MP">Northern Mariana Islands</option>
+                                                                            <option value="NT">Northwest Territories</option>
+                                                                            <option value="N/A">Not Applicable</option>
+                                                                            <option value="NS">Nova Scotia</option>
+                                                                            <option value="NU">Nunavat</option>
+                                                                            <option value="OH">Ohio</option>
+                                                                            <option value="OK">Oklahoma</option>
+                                                                            <option value="ON">Ontario</option>
+                                                                            <option value="OR">Oregon</option>
+                                                                            <option value="PW">Palau</option>
+                                                                            <option value="PA">Pennsylvania</option>
+                                                                            <option value="PE">Prince Edward Island</option>
+                                                                            <option value="PR">Puerto Rico</option>
+                                                                            <option value="QC">Quebec</option>
+                                                                            <option value="RI">Rhode Island</option>
+                                                                            <option value="SK">Saskatchewan</option>
+                                                                            <option value="SC">South Carolina</option>
+                                                                            <option value="SD">South Dakota</option>
+                                                                            <option value="TN">Tennessee</option>
+                                                                            <option value="TX">Texas</option>
+                                                                            <option value="UT">Utah</option>
+                                                                            <option value="VT">Vermont</option>
+                                                                            <option value="VI">Virgin Islands</option>
+                                                                            <option value="VA">Virginia</option>
+                                                                            <option value="WA">Washington</option>
+                                                                            <option value="WV">West Virginia</option>
+                                                                            <option value="WI">Wisconsin</option>
+                                                                            <option value="WY">Wyoming</option>
+                                                                            <option value="YK">Yukon</option>
+                                                                        </select>
+                                                                        <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.State.$error.required&&!IsDatasValid">Required</span>
+                                                                        <br><font size="-1">For U.S./Canadian addresses</font>
+                                                                    </div>
+                                                                    <div id="divBillingProvince" style="display: none;">
+                                                                        <input type="text">
+                                                                        <br><font size="-1">For addresses outside the U.S./Canada</font>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Postal Code:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-pattern="postalCodePattern" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.PostalCode.$error.required&&!IsDatasValid}" maxlength="5" name="PostalCode" required ng-model="PersonalDetails.PostalCode">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.PostalCode.$error.required&&!IsDatasValid">Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.PostalCode.$error.pattern&&!IsDatasValid">Invalid Postal code</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right" height="15"><font color="#FF0000">*</font>Country:</td>
+                                                                <td nowrap="" height="15">
+                                                                    <select name="Country" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.Country.$error.required&&!IsDatasValid}" required ng-model="PersonalDetails.Country">
+                                                                        <option value="AL">Albania</option>
+                                                                        <option value="DZ">Algeria</option>
+                                                                        <option value="AS">American Samoa</option>
+                                                                        <option value="AD">Andorra</option>
+                                                                        <option value="AI">Anguilla</option>
+                                                                        <option value="AG">Antigua Barbuda</option>
+                                                                        <option value="AR">Argentina</option>
+                                                                        <option value="AW">Aruba</option>
+                                                                        <option value="AU">Australia</option>
+                                                                        <option value="AT">Austria</option>
+                                                                        <option value="AP">Azores</option>
+                                                                        <option value="BS">Bahamas</option>
+                                                                        <option value="BH">Bahrain</option>
+                                                                        <option value="BD">Bangladesh</option>
+                                                                        <option value="BB">Barbados</option>
+                                                                        <option value="BY">Belarus</option>
+                                                                        <option value="BE">Belgium</option>
+                                                                        <option value="BZ">Belize</option>
+                                                                        <option value="BJ">Benin</option>
+                                                                        <option value="BM">Bermuda</option>
+                                                                        <option value="BO">Bolivia</option>
+                                                                        <option value="BL">Bonaire</option>
+                                                                        <option value="BA">Bosnia-Herzegovina</option>
+                                                                        <option value="BW">Botswana</option>
+                                                                        <option value="BR">Brazil</option>
+                                                                        <option value="VG">British Virgin Islands</option>
+                                                                        <option value="BN">Brunei</option>
+                                                                        <option value="BG">Bulgaria</option>
+                                                                        <option value="BF">Burkina Faso</option>
+                                                                        <option value="BI">Burundi</option>
+                                                                        <option value="KH">Cambodia</option>
+                                                                        <option value="CM">Cameroon</option>
+                                                                        <option value="CA">Canada</option>
+                                                                        <option value="IC">Canary Islands</option>
+                                                                        <option value="CV">Cape Verde Islands</option>
+                                                                        <option value="KY">Cayman Islands</option>
+                                                                        <option value="CF">Central African Republic</option>
+                                                                        <option value="TD">Chad</option>
+                                                                        <option value="CD">Channel Islands</option>
+                                                                        <option value="CL">Chile</option>
+                                                                        <option value="CN">China</option>
+                                                                        <option value="CO">Colombia</option>
+                                                                        <option value="CG">Congo</option>
+                                                                        <option value="CK">Cook Islands</option>
+                                                                        <option value="CR">Costa Rica</option>
+                                                                        <option value="HR">Croatia</option>
+                                                                        <option value="CB">Curacao</option>
+                                                                        <option value="CY">Cyprus</option>
+                                                                        <option value="CZ">Czech Republic</option>
+                                                                        <option value="DK">Denmark</option>
+                                                                        <option value="DJ">Djibouti</option>
+                                                                        <option value="DM">Dominica</option>
+                                                                        <option value="DO">Dominican Republic</option>
+                                                                        <option value="EC">Ecuador</option>
+                                                                        <option value="EG">Egypt</option>
+                                                                        <option value="SV">El Salvador</option>
+                                                                        <option value="EN">England (Great Britain and Northern Ireland)</option>
+                                                                        <option value="GQ">Equitorial Guinea</option>
+                                                                        <option value="ER">Eritrea</option>
+                                                                        <option value="EE">Estonia</option>
+                                                                        <option value="ET">Ethiopia</option>
+                                                                        <option value="FO">Faeroe Islands</option>
+                                                                        <option value="FM">Federated States of Micronesia</option>
+                                                                        <option value="FJ">Fiji</option>
+                                                                        <option value="FI">Finland</option>
+                                                                        <option value="FR">France</option>
+                                                                        <option value="GF">French Guiana</option>
+                                                                        <option value="PF">French Polynesia</option>
+                                                                        <option value="GA">Gabon</option>
+                                                                        <option value="GM">Gambia</option>
+                                                                        <option value="GE">Georgia</option>
+                                                                        <option value="DE">Germany</option>
+                                                                        <option value="GH">Ghana</option>
+                                                                        <option value="GI">Gibraltar</option>
+                                                                        <option value="GR">Greece</option>
+                                                                        <option value="GL">Greenland</option>
+                                                                        <option value="GD">Grenada</option>
+                                                                        <option value="GP">Guadeloupe</option>
+                                                                        <option value="GU">Guam</option>
+                                                                        <option value="GT">Guatemala</option>
+                                                                        <option value="GN">Guinea</option>
+                                                                        <option value="GW">Guinea-Bissau</option>
+                                                                        <option value="GY">Guyana</option>
+                                                                        <option value="HT">Haiti</option>
+                                                                        <option value="HO">Holland (Netherlands)</option>
+                                                                        <option value="HN">Honduras</option>
+                                                                        <option value="HK">Hong Kong</option>
+                                                                        <option value="HU">Hungary</option>
+                                                                        <option value="IS">Iceland</option>
+                                                                        <option value="IN">India</option>
+                                                                        <option value="ID">Indonesia</option>
+                                                                        <option value="IE">Ireland</option>
+                                                                        <option value="IR">Ireland</option>
+                                                                        <option value="IL">Israel</option>
+                                                                        <option value="IT">Italy</option>
+                                                                        <option value="CI">Ivory Coast</option>
+                                                                        <option value="JM">Jamaica</option>
+                                                                        <option value="JP">Japan</option>
+                                                                        <option value="JO">Jordan</option>
+                                                                        <option value="KZ">Kazakhstan</option>
+                                                                        <option value="KE">Kenya</option>
+                                                                        <option value="KI">Kiribati</option>
+                                                                        <option value="KO">Kosrae</option>
+                                                                        <option value="KW">Kuwait</option>
+                                                                        <option value="KG">Kyrgyzstan</option>
+                                                                        <option value="LA">Laos</option>
+                                                                        <option value="LV">Latvia</option>
+                                                                        <option value="LB">Lebanon</option>
+                                                                        <option value="LS">Lesotho</option>
+                                                                        <option value="LR">Liberia</option>
+                                                                        <option value="LI">Liechtenstein</option>
+                                                                        <option value="LT">Lithuania</option>
+                                                                        <option value="LU">Luxembourg</option>
+                                                                        <option value="MO">Macau</option>
+                                                                        <option value="MK">Macedonia</option>
+                                                                        <option value="MG">Madagascar</option>
+                                                                        <option value="ME">Madeira</option>
+                                                                        <option value="MW">Malawi</option>
+                                                                        <option value="MY">Malaysia</option>
+                                                                        <option value="MV">Maldives</option>
+                                                                        <option value="ML">Mali</option>
+                                                                        <option value="MT">Malta</option>
+                                                                        <option value="MH">Marshall Islands</option>
+                                                                        <option value="MQ">Martinique</option>
+                                                                        <option value="MR">Mauritania</option>
+                                                                        <option value="MU">Mauritius</option>
+                                                                        <option value="MX">Mexico</option>
+                                                                        <option value="MD">Moldova</option>
+                                                                        <option value="MC">Monaco (France)</option>
+                                                                        <option value="MS">Montserrat</option>
+                                                                        <option value="MA">Morocco</option>
+                                                                        <option value="MZ">Mozambique</option>
+                                                                        <option value="MM">Myanmar</option>
+                                                                        <option value="NA">Namibia</option>
+                                                                        <option value="NP">Nepal</option>
+                                                                        <option value="NL">Netherlands</option>
+                                                                        <option value="AN">Netherlands Antilles</option>
+                                                                        <option value="NC">New Caledonia</option>
+                                                                        <option value="NZ">New Zealand</option>
+                                                                        <option value="NI">Nicaragua</option>
+                                                                        <option value="NE">Niger</option>
+                                                                        <option value="NG">Nigeria</option>
+                                                                        <option value="NF">Norfolk Island</option>
+                                                                        <option value="NB">Northern Ireland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="MP">Northern Mariana Islands</option>
+                                                                        <option value="NO">Norway</option>
+                                                                        <option value="OM">Oman</option>
+                                                                        <option value="PK">Pakistan</option>
+                                                                        <option value="PW">Palau</option>
+                                                                        <option value="PA">Panama</option>
+                                                                        <option value="PG">Papua New Guinea</option>
+                                                                        <option value="PY">Paraguay</option>
+                                                                        <option value="PE">Peru</option>
+                                                                        <option value="PH">Philippines</option>
+                                                                        <option value="PL">Poland</option>
+                                                                        <option value="PO">Ponape</option>
+                                                                        <option value="PT">Portugal</option>
+                                                                        <option value="PR">Puerto Rico</option>
+                                                                        <option value="QA">Qatar</option>
+                                                                        <option value="YE">Republic of Yemen</option>
+                                                                        <option value="RE">Reunion</option>
+                                                                        <option value="RO">Romania</option>
+                                                                        <option value="RT">Rota</option>
+                                                                        <option value="RU">Russia</option>
+                                                                        <option value="RW">Rwanda</option>
+                                                                        <option value="SS">Saba</option>
+                                                                        <option value="SP">Saipan</option>
+                                                                        <option value="SA">Saudi Arabia</option>
+                                                                        <option value="SF">Scotland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="SN">Senegal</option>
+                                                                        <option value="SC">Seychelles</option>
+                                                                        <option value="SL">Sierra Leone</option>
+                                                                        <option value="SG">Singapore</option>
+                                                                        <option value="SK">Slovakia</option>
+                                                                        <option value="SI">Slovenia</option>
+                                                                        <option value="SB">Solomon Islands</option>
+                                                                        <option value="ZA">South Africa</option>
+                                                                        <option value="KR">South Korea (Korea, Republic of)</option>
+                                                                        <option value="ES">Spain</option>
+                                                                        <option value="LK">Sri Lanka</option>
+                                                                        <option value="NT">St. Barthelemy</option>
+                                                                        <option value="SW">St. Christopher</option>
+                                                                        <option value="SX">St. Croix</option>
+                                                                        <option value="EU">St. Eustatius</option>
+                                                                        <option value="UV">St. John</option>
+                                                                        <option value="KN">St. Kitts Nevis</option>
+                                                                        <option value="LC">St. Lucia</option>
+                                                                        <option value="MB">St. Maarten</option>
+                                                                        <option value="TB">St. Martin</option>
+                                                                        <option value="VL">St. Thomas</option>
+                                                                        <option value="VC">St. Vincent the Grenadines</option>
+                                                                        <option value="SD">Sudan</option>
+                                                                        <option value="SR">Suriname</option>
+                                                                        <option value="SZ">Swaziland</option>
+                                                                        <option value="SE">Sweden</option>
+                                                                        <option value="CH">Switzerland</option>
+                                                                        <option value="SY">Syrian Arab Republic</option>
+                                                                        <option value="TA">Tahiti (French Polynesia)</option>
+                                                                        <option value="TW">Taiwan</option>
+                                                                        <option value="TJ">Tajikistan</option>
+                                                                        <option value="TZ">Tanzania</option>
+                                                                        <option value="TH">Thailand</option>
+                                                                        <option value="TI">Tinian</option>
+                                                                        <option value="TG">Togo</option>
+                                                                        <option value="TO">Tonga</option>
+                                                                        <option value="TL">Tortola</option>
+                                                                        <option value="TT">Trinidad Tobago</option>
+                                                                        <option value="TU">Truk</option>
+                                                                        <option value="TN">Tunisia</option>
+                                                                        <option value="TR">Turkey</option>
+                                                                        <option value="TC">Turks Caicos Islands</option>
+                                                                        <option value="TV">Tuvalu</option>
+                                                                        <option value="UG">Uganda</option>
+                                                                        <option value="UA">Ukraine</option>
+                                                                        <option value="UI">Union Island</option>
+                                                                        <option value="AE">United Arab Emirates</option>
+                                                                        <option value="US">United States</option>
+                                                                        <option value="UY">Uruguay</option>
+                                                                        <option value="VI">US Virgin Islands</option>
+                                                                        <option value="UZ">Uzbekistan</option>
+                                                                        <option value="VU">Vanuatu</option>
+                                                                        <option value="VE">Venezuela</option>
+                                                                        <option value="VN">Vietnam</option>
+                                                                        <option value="VR">Virgin Gorda</option>
+                                                                        <option value="WK">Wake Island</option>
+                                                                        <option value="WL">Wales (Great Britain and Northern Ireland)</option>
+                                                                        <option value="WF">Wallis Futuna Islands</option>
+                                                                        <option value="WS">Western Samoa</option>
+                                                                        <option value="YA">Yap</option>
+                                                                        <option value="ZR">Zaire</option>
+                                                                        <option value="ZM">Zambia</option>
+                                                                        <option value="ZW">Zimbabwe</option>
+                                                                    </select>
+                                                                    <!--<span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.Country.$error.required&&!IsDatasValid">Required</span>-->
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Phone:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" maxlength="10" ng-pattern="numberPattern" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.Phone.$error.required&&!IsDatasValid}" name="Phone" required ng-model="PersonalDetails.Phone">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.Phone.$error.required&&!IsDatasValid">Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.Phone.$error.pattern&&!IsDatasValid">Invalid Phone Number</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">Fax:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" name="Fax" maxlength="10" ng-pattern="numberPattern" ng-model="PersonalDetails.Fax">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.Fax.$error.pattern&&!IsDatasValid">Invalid Fax</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>E-Mail:</td>
+                                                                <td nowrap="">
+                                                                    <input type="email" ng-pattern="emailPattern" name="EMail" ng-class="{'errorcont'   :(subscriptionBuyNowTemplateForm.EMail.$error.required&&!IsDatasValid)||(subscriptionBuyNowTemplateForm.EMail.$error.email)}" required ng-model="PersonalDetails.Email">
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.EMail.$error.required&&!IsDatasValid">* Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="subscriptionBuyNowTemplateForm.EMail.$error.pattern&&!IsDatasValid">Invalid Email </span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="informationcontainer">
+                                    <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="95%">
+                                        <tbody>
+                                            <tr>
+                                                <td class="tdContentBar">
+                                                    Billing Information
+                                                    <span class="sameinformation"><input type="checkbox" name="sameAsProfileInfo" ng-true-value="Yes" ng-false-value="No" ng-model="sameAsProfileInfo" ng-change="sameAsProfileInfoCheck(subscriptionBuyNowTemplateForm)" /><label> &nbsp;Same as profile info</label></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap="" align="left">
+                                                    <table class="Section_new" cellpadding="2" cellspacing="0" border="0">
+                                                        <tbody>
+                                                            <tr>
+                                                                <td nowrap="" align="right" width="30%"><font color="#FF0000">*</font>First Name:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" maxlength="50" ng-if="sameAsProfileInfo" data-ng-model="PersonalDetails.FirstName">
+                                                                    <input type="text" maxlength="50" required name="SameFirstName" ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameFirstName.$error.required&&!IsDatasValid}" data-ng-model="BillingDetails.FirstName">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameFirstName.$error.required)&&(!IsDatasValid)">Required</span>
+
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">MI:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.MiddleInitial">
+                                                                    <input type="text" name="SameMiddleInitial" ng-if="!sameAsProfileInfoFlag" ng-model="BillingDetails.MiddleInitial">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Last Name:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.LastName">
+                                                                    <input type="text" name="SameLastName" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameLastName.$error.required&&!IsDatasValid}" ng-model="BillingDetails.LastName">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameLastName.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">Company:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.Company">
+                                                                    <input type="text" name="SameCompany" ng-if="!sameAsProfileInfoFlag" ng-model="BillingDetails.Company">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Address 1</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.Address1">
+                                                                    <input type="text" name="SameAddress1" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameAddress1.$error.required&&!IsDatasValid}" ng-model="BillingDetails.Address1">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameAddress1.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right" height="15">Address 2:</td>
+                                                                <td nowrap="" height="15">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.Address2">
+                                                                    <input type="text" name="SameAddress2" ng-if="!sameAsProfileInfoFlag" ng-model="BillingDetails.Address2">
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>City:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.City">
+                                                                    <input type="text" name="SameCity" ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameCity.$error.required&&!IsDatasValid}" ng-model="BillingDetails.City" required>
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameCity.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td align="right" valign="top"><font color="#FF0000">*</font>State or Province:</td>
+                                                                <td nowrap="">
+                                                                    <div id="divBillingState">
+                                                                        <select ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.State">
+                                                                            <option value="" selected="" disabled="disabled">--Select State--</option>
+                                                                            <option value="AL">Alabama</option>
+                                                                            <option value="AK">Alaska</option>
+                                                                            <option value="AB">Alberta</option>
+                                                                            <option value="AS">American Samoa</option>
+                                                                            <option value="AZ">Arizona</option>
+                                                                            <option value="AR">Arkansas</option>
+                                                                            <option value="AA">Armed Forces America</option>
+                                                                            <option value="AE">Armed Forces Other Areas</option>
+                                                                            <option value="AP">Armed Forces Pacific</option>
+                                                                            <option value="BC">British Columbia</option>
+                                                                            <option value="CA">California</option>
+                                                                            <option value="CO">Colorado</option>
+                                                                            <option value="CT">Connecticut</option>
+                                                                            <option value="DE">Delaware</option>
+                                                                            <option value="DC">District of Columbia</option>
+                                                                            <option value="FL">Florida</option>
+                                                                            <option value="GA">Georgia</option>
+                                                                            <option value="GU">Guam</option>
+                                                                            <option value="HI">Hawaii</option>
+                                                                            <option value="ID">Idaho</option>
+                                                                            <option value="IL">Illinois</option>
+                                                                            <option value="IN">Indiana</option>
+                                                                            <option value="IA">Iowa</option>
+                                                                            <option value="KS">Kansas</option>
+                                                                            <option value="KY">Kentucky</option>
+                                                                            <option value="LA">Louisiana</option>
+                                                                            <option value="ME">Maine</option>
+                                                                            <option value="MB">Manitoba</option>
+                                                                            <option value="MH">Marshall Islands</option>
+                                                                            <option value="MD">Maryland</option>
+                                                                            <option value="MA">Massachusetts</option>
+                                                                            <option value="MI">Michigan</option>
+                                                                            <option value="FM">Micronesia</option>
+                                                                            <option value="MN">Minnesota</option>
+                                                                            <option value="MS">Mississippi</option>
+                                                                            <option value="MO">Missouri</option>
+                                                                            <option value="MT">Montana</option>
+                                                                            <option value="NE">Nebraska</option>
+                                                                            <option value="NV">Nevada</option>
+                                                                            <option value="NB">New Brunswick</option>
+                                                                            <option value="NH">New Hampshire</option>
+                                                                            <option value="NJ">New Jersey</option>
+                                                                            <option value="NM">New Mexico</option>
+                                                                            <option value="NY">New York</option>
+                                                                            <option value="NF">Newfoundland</option>
+                                                                            <option value="NC">North Carolina</option>
+                                                                            <option value="ND">North Dakota</option>
+                                                                            <option value="MP">Northern Mariana Islands</option>
+                                                                            <option value="NT">Northwest Territories</option>
+                                                                            <option value="N/A">Not Applicable</option>
+                                                                            <option value="NS">Nova Scotia</option>
+                                                                            <option value="NU">Nunavat</option>
+                                                                            <option value="OH">Ohio</option>
+                                                                            <option value="OK">Oklahoma</option>
+                                                                            <option value="ON">Ontario</option>
+                                                                            <option value="OR">Oregon</option>
+                                                                            <option value="PW">Palau</option>
+                                                                            <option value="PA">Pennsylvania</option>
+                                                                            <option value="PE">Prince Edward Island</option>
+                                                                            <option value="PR">Puerto Rico</option>
+                                                                            <option value="QC">Quebec</option>
+                                                                            <option value="RI">Rhode Island</option>
+                                                                            <option value="SK">Saskatchewan</option>
+                                                                            <option value="SC">South Carolina</option>
+                                                                            <option value="SD">South Dakota</option>
+                                                                            <option value="TN">Tennessee</option>
+                                                                            <option value="TX">Texas</option>
+                                                                            <option value="UT">Utah</option>
+                                                                            <option value="VT">Vermont</option>
+                                                                            <option value="VI">Virgin Islands</option>
+                                                                            <option value="VA">Virginia</option>
+                                                                            <option value="WA">Washington</option>
+                                                                            <option value="WV">West Virginia</option>
+                                                                            <option value="WI">Wisconsin</option>
+                                                                            <option value="WY">Wyoming</option>
+                                                                            <option value="YK">Yukon</option>
+                                                                        </select>
+                                                                        <select name="SameState" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameState.$error.required&&!IsDatasValid}" ng-model="BillingDetails.State">
+                                                                            <option value="" selected="" disabled="disabled">--Select State--</option>
+                                                                            <option value="AL">Alabama</option>
+                                                                            <option value="AK">Alaska</option>
+                                                                            <option value="AB">Alberta</option>
+                                                                            <option value="AS">American Samoa</option>
+                                                                            <option value="AZ">Arizona</option>
+                                                                            <option value="AR">Arkansas</option>
+                                                                            <option value="AA">Armed Forces America</option>
+                                                                            <option value="AE">Armed Forces Other Areas</option>
+                                                                            <option value="AP">Armed Forces Pacific</option>
+                                                                            <option value="BC">British Columbia</option>
+                                                                            <option value="CA">California</option>
+                                                                            <option value="CO">Colorado</option>
+                                                                            <option value="CT">Connecticut</option>
+                                                                            <option value="DE">Delaware</option>
+                                                                            <option value="DC">District of Columbia</option>
+                                                                            <option value="FL">Florida</option>
+                                                                            <option value="GA">Georgia</option>
+                                                                            <option value="GU">Guam</option>
+                                                                            <option value="HI">Hawaii</option>
+                                                                            <option value="ID">Idaho</option>
+                                                                            <option value="IL">Illinois</option>
+                                                                            <option value="IN">Indiana</option>
+                                                                            <option value="IA">Iowa</option>
+                                                                            <option value="KS">Kansas</option>
+                                                                            <option value="KY">Kentucky</option>
+                                                                            <option value="LA">Louisiana</option>
+                                                                            <option value="ME">Maine</option>
+                                                                            <option value="MB">Manitoba</option>
+                                                                            <option value="MH">Marshall Islands</option>
+                                                                            <option value="MD">Maryland</option>
+                                                                            <option value="MA">Massachusetts</option>
+                                                                            <option value="MI">Michigan</option>
+                                                                            <option value="FM">Micronesia</option>
+                                                                            <option value="MN">Minnesota</option>
+                                                                            <option value="MS">Mississippi</option>
+                                                                            <option value="MO">Missouri</option>
+                                                                            <option value="MT">Montana</option>
+                                                                            <option value="NE">Nebraska</option>
+                                                                            <option value="NV">Nevada</option>
+                                                                            <option value="NB">New Brunswick</option>
+                                                                            <option value="NH">New Hampshire</option>
+                                                                            <option value="NJ">New Jersey</option>
+                                                                            <option value="NM">New Mexico</option>
+                                                                            <option value="NY">New York</option>
+                                                                            <option value="NF">Newfoundland</option>
+                                                                            <option value="NC">North Carolina</option>
+                                                                            <option value="ND">North Dakota</option>
+                                                                            <option value="MP">Northern Mariana Islands</option>
+                                                                            <option value="NT">Northwest Territories</option>
+                                                                            <option value="N/A">Not Applicable</option>
+                                                                            <option value="NS">Nova Scotia</option>
+                                                                            <option value="NU">Nunavat</option>
+                                                                            <option value="OH">Ohio</option>
+                                                                            <option value="OK">Oklahoma</option>
+                                                                            <option value="ON">Ontario</option>
+                                                                            <option value="OR">Oregon</option>
+                                                                            <option value="PW">Palau</option>
+                                                                            <option value="PA">Pennsylvania</option>
+                                                                            <option value="PE">Prince Edward Island</option>
+                                                                            <option value="PR">Puerto Rico</option>
+                                                                            <option value="QC">Quebec</option>
+                                                                            <option value="RI">Rhode Island</option>
+                                                                            <option value="SK">Saskatchewan</option>
+                                                                            <option value="SC">South Carolina</option>
+                                                                            <option value="SD">South Dakota</option>
+                                                                            <option value="TN">Tennessee</option>
+                                                                            <option value="TX">Texas</option>
+                                                                            <option value="UT">Utah</option>
+                                                                            <option value="VT">Vermont</option>
+                                                                            <option value="VI">Virgin Islands</option>
+                                                                            <option value="VA">Virginia</option>
+                                                                            <option value="WA">Washington</option>
+                                                                            <option value="WV">West Virginia</option>
+                                                                            <option value="WI">Wisconsin</option>
+                                                                            <option value="WY">Wyoming</option>
+                                                                            <option value="YK">Yukon</option>
+                                                                        </select>
+                                                                        <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameState.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                        <br><font size="-1">For U.S./Canadian addresses</font>
+                                                                    </div>
+                                                                    <div id="divBillingProvince" style="display: none;">
+                                                                        <input type="text">
+                                                                        <br><font size="-1">For addresses outside the U.S./Canada</font>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Postal Code:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" maxlength="5" required ng-if="sameAsProfileInfoFlag" data-ng-model="PersonalDetails.PostalCode">
+                                                                    <input type="text" maxlength="5" ng-pattern="postalCodePattern" name="SamePostalCode" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SamePostalCode.$error.required&&!IsDatasValid}" ng-model="BillingDetails.PostalCode">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SamePostalCode.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SamePostalCode.$error.pattern)&&(!IsDatasValid)">Invalid PostalCode</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right" height="15"><font color="#FF0000">*</font>Country:</td>
+                                                                <td nowrap="" height="15">
+                                                                    <select ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.Country">
+                                                                        <option value="AL">Albania</option>
+                                                                        <option value="DZ">Algeria</option>
+                                                                        <option value="AS">American Samoa</option>
+                                                                        <option value="AD">Andorra</option>
+                                                                        <option value="AI">Anguilla</option>
+                                                                        <option value="AG">Antigua Barbuda</option>
+                                                                        <option value="AR">Argentina</option>
+                                                                        <option value="AW">Aruba</option>
+                                                                        <option value="AU">Australia</option>
+                                                                        <option value="AT">Austria</option>
+                                                                        <option value="AP">Azores</option>
+                                                                        <option value="BS">Bahamas</option>
+                                                                        <option value="BH">Bahrain</option>
+                                                                        <option value="BD">Bangladesh</option>
+                                                                        <option value="BB">Barbados</option>
+                                                                        <option value="BY">Belarus</option>
+                                                                        <option value="BE">Belgium</option>
+                                                                        <option value="BZ">Belize</option>
+                                                                        <option value="BJ">Benin</option>
+                                                                        <option value="BM">Bermuda</option>
+                                                                        <option value="BO">Bolivia</option>
+                                                                        <option value="BL">Bonaire</option>
+                                                                        <option value="BA">Bosnia-Herzegovina</option>
+                                                                        <option value="BW">Botswana</option>
+                                                                        <option value="BR">Brazil</option>
+                                                                        <option value="VG">British Virgin Islands</option>
+                                                                        <option value="BN">Brunei</option>
+                                                                        <option value="BG">Bulgaria</option>
+                                                                        <option value="BF">Burkina Faso</option>
+                                                                        <option value="BI">Burundi</option>
+                                                                        <option value="KH">Cambodia</option>
+                                                                        <option value="CM">Cameroon</option>
+                                                                        <option value="CA">Canada</option>
+                                                                        <option value="IC">Canary Islands</option>
+                                                                        <option value="CV">Cape Verde Islands</option>
+                                                                        <option value="KY">Cayman Islands</option>
+                                                                        <option value="CF">Central African Republic</option>
+                                                                        <option value="TD">Chad</option>
+                                                                        <option value="CD">Channel Islands</option>
+                                                                        <option value="CL">Chile</option>
+                                                                        <option value="CN">China</option>
+                                                                        <option value="CO">Colombia</option>
+                                                                        <option value="CG">Congo</option>
+                                                                        <option value="CK">Cook Islands</option>
+                                                                        <option value="CR">Costa Rica</option>
+                                                                        <option value="HR">Croatia</option>
+                                                                        <option value="CB">Curacao</option>
+                                                                        <option value="CY">Cyprus</option>
+                                                                        <option value="CZ">Czech Republic</option>
+                                                                        <option value="DK">Denmark</option>
+                                                                        <option value="DJ">Djibouti</option>
+                                                                        <option value="DM">Dominica</option>
+                                                                        <option value="DO">Dominican Republic</option>
+                                                                        <option value="EC">Ecuador</option>
+                                                                        <option value="EG">Egypt</option>
+                                                                        <option value="SV">El Salvador</option>
+                                                                        <option value="EN">England (Great Britain and Northern Ireland)</option>
+                                                                        <option value="GQ">Equitorial Guinea</option>
+                                                                        <option value="ER">Eritrea</option>
+                                                                        <option value="EE">Estonia</option>
+                                                                        <option value="ET">Ethiopia</option>
+                                                                        <option value="FO">Faeroe Islands</option>
+                                                                        <option value="FM">Federated States of Micronesia</option>
+                                                                        <option value="FJ">Fiji</option>
+                                                                        <option value="FI">Finland</option>
+                                                                        <option value="FR">France</option>
+                                                                        <option value="GF">French Guiana</option>
+                                                                        <option value="PF">French Polynesia</option>
+                                                                        <option value="GA">Gabon</option>
+                                                                        <option value="GM">Gambia</option>
+                                                                        <option value="GE">Georgia</option>
+                                                                        <option value="DE">Germany</option>
+                                                                        <option value="GH">Ghana</option>
+                                                                        <option value="GI">Gibraltar</option>
+                                                                        <option value="GR">Greece</option>
+                                                                        <option value="GL">Greenland</option>
+                                                                        <option value="GD">Grenada</option>
+                                                                        <option value="GP">Guadeloupe</option>
+                                                                        <option value="GU">Guam</option>
+                                                                        <option value="GT">Guatemala</option>
+                                                                        <option value="GN">Guinea</option>
+                                                                        <option value="GW">Guinea-Bissau</option>
+                                                                        <option value="GY">Guyana</option>
+                                                                        <option value="HT">Haiti</option>
+                                                                        <option value="HO">Holland (Netherlands)</option>
+                                                                        <option value="HN">Honduras</option>
+                                                                        <option value="HK">Hong Kong</option>
+                                                                        <option value="HU">Hungary</option>
+                                                                        <option value="IS">Iceland</option>
+                                                                        <option value="IN">India</option>
+                                                                        <option value="ID">Indonesia</option>
+                                                                        <option value="IE">Ireland</option>
+                                                                        <option value="IR">Ireland</option>
+                                                                        <option value="IL">Israel</option>
+                                                                        <option value="IT">Italy</option>
+                                                                        <option value="CI">Ivory Coast</option>
+                                                                        <option value="JM">Jamaica</option>
+                                                                        <option value="JP">Japan</option>
+                                                                        <option value="JO">Jordan</option>
+                                                                        <option value="KZ">Kazakhstan</option>
+                                                                        <option value="KE">Kenya</option>
+                                                                        <option value="KI">Kiribati</option>
+                                                                        <option value="KO">Kosrae</option>
+                                                                        <option value="KW">Kuwait</option>
+                                                                        <option value="KG">Kyrgyzstan</option>
+                                                                        <option value="LA">Laos</option>
+                                                                        <option value="LV">Latvia</option>
+                                                                        <option value="LB">Lebanon</option>
+                                                                        <option value="LS">Lesotho</option>
+                                                                        <option value="LR">Liberia</option>
+                                                                        <option value="LI">Liechtenstein</option>
+                                                                        <option value="LT">Lithuania</option>
+                                                                        <option value="LU">Luxembourg</option>
+                                                                        <option value="MO">Macau</option>
+                                                                        <option value="MK">Macedonia</option>
+                                                                        <option value="MG">Madagascar</option>
+                                                                        <option value="ME">Madeira</option>
+                                                                        <option value="MW">Malawi</option>
+                                                                        <option value="MY">Malaysia</option>
+                                                                        <option value="MV">Maldives</option>
+                                                                        <option value="ML">Mali</option>
+                                                                        <option value="MT">Malta</option>
+                                                                        <option value="MH">Marshall Islands</option>
+                                                                        <option value="MQ">Martinique</option>
+                                                                        <option value="MR">Mauritania</option>
+                                                                        <option value="MU">Mauritius</option>
+                                                                        <option value="MX">Mexico</option>
+                                                                        <option value="MD">Moldova</option>
+                                                                        <option value="MC">Monaco (France)</option>
+                                                                        <option value="MS">Montserrat</option>
+                                                                        <option value="MA">Morocco</option>
+                                                                        <option value="MZ">Mozambique</option>
+                                                                        <option value="MM">Myanmar</option>
+                                                                        <option value="NA">Namibia</option>
+                                                                        <option value="NP">Nepal</option>
+                                                                        <option value="NL">Netherlands</option>
+                                                                        <option value="AN">Netherlands Antilles</option>
+                                                                        <option value="NC">New Caledonia</option>
+                                                                        <option value="NZ">New Zealand</option>
+                                                                        <option value="NI">Nicaragua</option>
+                                                                        <option value="NE">Niger</option>
+                                                                        <option value="NG">Nigeria</option>
+                                                                        <option value="NF">Norfolk Island</option>
+                                                                        <option value="NB">Northern Ireland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="MP">Northern Mariana Islands</option>
+                                                                        <option value="NO">Norway</option>
+                                                                        <option value="OM">Oman</option>
+                                                                        <option value="PK">Pakistan</option>
+                                                                        <option value="PW">Palau</option>
+                                                                        <option value="PA">Panama</option>
+                                                                        <option value="PG">Papua New Guinea</option>
+                                                                        <option value="PY">Paraguay</option>
+                                                                        <option value="PE">Peru</option>
+                                                                        <option value="PH">Philippines</option>
+                                                                        <option value="PL">Poland</option>
+                                                                        <option value="PO">Ponape</option>
+                                                                        <option value="PT">Portugal</option>
+                                                                        <option value="PR">Puerto Rico</option>
+                                                                        <option value="QA">Qatar</option>
+                                                                        <option value="YE">Republic of Yemen</option>
+                                                                        <option value="RE">Reunion</option>
+                                                                        <option value="RO">Romania</option>
+                                                                        <option value="RT">Rota</option>
+                                                                        <option value="RU">Russia</option>
+                                                                        <option value="RW">Rwanda</option>
+                                                                        <option value="SS">Saba</option>
+                                                                        <option value="SP">Saipan</option>
+                                                                        <option value="SA">Saudi Arabia</option>
+                                                                        <option value="SF">Scotland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="SN">Senegal</option>
+                                                                        <option value="SC">Seychelles</option>
+                                                                        <option value="SL">Sierra Leone</option>
+                                                                        <option value="SG">Singapore</option>
+                                                                        <option value="SK">Slovakia</option>
+                                                                        <option value="SI">Slovenia</option>
+                                                                        <option value="SB">Solomon Islands</option>
+                                                                        <option value="ZA">South Africa</option>
+                                                                        <option value="KR">South Korea (Korea, Republic of)</option>
+                                                                        <option value="ES">Spain</option>
+                                                                        <option value="LK">Sri Lanka</option>
+                                                                        <option value="NT">St. Barthelemy</option>
+                                                                        <option value="SW">St. Christopher</option>
+                                                                        <option value="SX">St. Croix</option>
+                                                                        <option value="EU">St. Eustatius</option>
+                                                                        <option value="UV">St. John</option>
+                                                                        <option value="KN">St. Kitts Nevis</option>
+                                                                        <option value="LC">St. Lucia</option>
+                                                                        <option value="MB">St. Maarten</option>
+                                                                        <option value="TB">St. Martin</option>
+                                                                        <option value="VL">St. Thomas</option>
+                                                                        <option value="VC">St. Vincent the Grenadines</option>
+                                                                        <option value="SD">Sudan</option>
+                                                                        <option value="SR">Suriname</option>
+                                                                        <option value="SZ">Swaziland</option>
+                                                                        <option value="SE">Sweden</option>
+                                                                        <option value="CH">Switzerland</option>
+                                                                        <option value="SY">Syrian Arab Republic</option>
+                                                                        <option value="TA">Tahiti (French Polynesia)</option>
+                                                                        <option value="TW">Taiwan</option>
+                                                                        <option value="TJ">Tajikistan</option>
+                                                                        <option value="TZ">Tanzania</option>
+                                                                        <option value="TH">Thailand</option>
+                                                                        <option value="TI">Tinian</option>
+                                                                        <option value="TG">Togo</option>
+                                                                        <option value="TO">Tonga</option>
+                                                                        <option value="TL">Tortola</option>
+                                                                        <option value="TT">Trinidad Tobago</option>
+                                                                        <option value="TU">Truk</option>
+                                                                        <option value="TN">Tunisia</option>
+                                                                        <option value="TR">Turkey</option>
+                                                                        <option value="TC">Turks Caicos Islands</option>
+                                                                        <option value="TV">Tuvalu</option>
+                                                                        <option value="UG">Uganda</option>
+                                                                        <option value="UA">Ukraine</option>
+                                                                        <option value="UI">Union Island</option>
+                                                                        <option value="AE">United Arab Emirates</option>
+                                                                        <option value="US" selected="">United States</option>
+                                                                        <option value="UY">Uruguay</option>
+                                                                        <option value="VI">US Virgin Islands</option>
+                                                                        <option value="UZ">Uzbekistan</option>
+                                                                        <option value="VU">Vanuatu</option>
+                                                                        <option value="VE">Venezuela</option>
+                                                                        <option value="VN">Vietnam</option>
+                                                                        <option value="VR">Virgin Gorda</option>
+                                                                        <option value="WK">Wake Island</option>
+                                                                        <option value="WL">Wales (Great Britain and Northern Ireland)</option>
+                                                                        <option value="WF">Wallis Futuna Islands</option>
+                                                                        <option value="WS">Western Samoa</option>
+                                                                        <option value="YA">Yap</option>
+                                                                        <option value="ZR">Zaire</option>
+                                                                        <option value="ZM">Zambia</option>
+                                                                        <option value="ZW">Zimbabwe</option>
+                                                                    </select>
+                                                                    <select name="SameCountry" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameCountry.$error.required&&!IsDatasValid}" ng-model="BillingDetails.Country">
+                                                                        <option value="" selected="" disabled="disabled">--Select Country--</option>
+                                                                        <option value="AL">Albania</option>
+                                                                        <option value="DZ">Algeria</option>
+                                                                        <option value="AS">American Samoa</option>
+                                                                        <option value="AD">Andorra</option>
+                                                                        <option value="AI">Anguilla</option>
+                                                                        <option value="AG">Antigua Barbuda</option>
+                                                                        <option value="AR">Argentina</option>
+                                                                        <option value="AW">Aruba</option>
+                                                                        <option value="AU">Australia</option>
+                                                                        <option value="AT">Austria</option>
+                                                                        <option value="AP">Azores</option>
+                                                                        <option value="BS">Bahamas</option>
+                                                                        <option value="BH">Bahrain</option>
+                                                                        <option value="BD">Bangladesh</option>
+                                                                        <option value="BB">Barbados</option>
+                                                                        <option value="BY">Belarus</option>
+                                                                        <option value="BE">Belgium</option>
+                                                                        <option value="BZ">Belize</option>
+                                                                        <option value="BJ">Benin</option>
+                                                                        <option value="BM">Bermuda</option>
+                                                                        <option value="BO">Bolivia</option>
+                                                                        <option value="BL">Bonaire</option>
+                                                                        <option value="BA">Bosnia-Herzegovina</option>
+                                                                        <option value="BW">Botswana</option>
+                                                                        <option value="BR">Brazil</option>
+                                                                        <option value="VG">British Virgin Islands</option>
+                                                                        <option value="BN">Brunei</option>
+                                                                        <option value="BG">Bulgaria</option>
+                                                                        <option value="BF">Burkina Faso</option>
+                                                                        <option value="BI">Burundi</option>
+                                                                        <option value="KH">Cambodia</option>
+                                                                        <option value="CM">Cameroon</option>
+                                                                        <option value="CA">Canada</option>
+                                                                        <option value="IC">Canary Islands</option>
+                                                                        <option value="CV">Cape Verde Islands</option>
+                                                                        <option value="KY">Cayman Islands</option>
+                                                                        <option value="CF">Central African Republic</option>
+                                                                        <option value="TD">Chad</option>
+                                                                        <option value="CD">Channel Islands</option>
+                                                                        <option value="CL">Chile</option>
+                                                                        <option value="CN">China</option>
+                                                                        <option value="CO">Colombia</option>
+                                                                        <option value="CG">Congo</option>
+                                                                        <option value="CK">Cook Islands</option>
+                                                                        <option value="CR">Costa Rica</option>
+                                                                        <option value="HR">Croatia</option>
+                                                                        <option value="CB">Curacao</option>
+                                                                        <option value="CY">Cyprus</option>
+                                                                        <option value="CZ">Czech Republic</option>
+                                                                        <option value="DK">Denmark</option>
+                                                                        <option value="DJ">Djibouti</option>
+                                                                        <option value="DM">Dominica</option>
+                                                                        <option value="DO">Dominican Republic</option>
+                                                                        <option value="EC">Ecuador</option>
+                                                                        <option value="EG">Egypt</option>
+                                                                        <option value="SV">El Salvador</option>
+                                                                        <option value="EN">England (Great Britain and Northern Ireland)</option>
+                                                                        <option value="GQ">Equitorial Guinea</option>
+                                                                        <option value="ER">Eritrea</option>
+                                                                        <option value="EE">Estonia</option>
+                                                                        <option value="ET">Ethiopia</option>
+                                                                        <option value="FO">Faeroe Islands</option>
+                                                                        <option value="FM">Federated States of Micronesia</option>
+                                                                        <option value="FJ">Fiji</option>
+                                                                        <option value="FI">Finland</option>
+                                                                        <option value="FR">France</option>
+                                                                        <option value="GF">French Guiana</option>
+                                                                        <option value="PF">French Polynesia</option>
+                                                                        <option value="GA">Gabon</option>
+                                                                        <option value="GM">Gambia</option>
+                                                                        <option value="GE">Georgia</option>
+                                                                        <option value="DE">Germany</option>
+                                                                        <option value="GH">Ghana</option>
+                                                                        <option value="GI">Gibraltar</option>
+                                                                        <option value="GR">Greece</option>
+                                                                        <option value="GL">Greenland</option>
+                                                                        <option value="GD">Grenada</option>
+                                                                        <option value="GP">Guadeloupe</option>
+                                                                        <option value="GU">Guam</option>
+                                                                        <option value="GT">Guatemala</option>
+                                                                        <option value="GN">Guinea</option>
+                                                                        <option value="GW">Guinea-Bissau</option>
+                                                                        <option value="GY">Guyana</option>
+                                                                        <option value="HT">Haiti</option>
+                                                                        <option value="HO">Holland (Netherlands)</option>
+                                                                        <option value="HN">Honduras</option>
+                                                                        <option value="HK">Hong Kong</option>
+                                                                        <option value="HU">Hungary</option>
+                                                                        <option value="IS">Iceland</option>
+                                                                        <option value="IN">India</option>
+                                                                        <option value="ID">Indonesia</option>
+                                                                        <option value="IE">Ireland</option>
+                                                                        <option value="IR">Ireland</option>
+                                                                        <option value="IL">Israel</option>
+                                                                        <option value="IT">Italy</option>
+                                                                        <option value="CI">Ivory Coast</option>
+                                                                        <option value="JM">Jamaica</option>
+                                                                        <option value="JP">Japan</option>
+                                                                        <option value="JO">Jordan</option>
+                                                                        <option value="KZ">Kazakhstan</option>
+                                                                        <option value="KE">Kenya</option>
+                                                                        <option value="KI">Kiribati</option>
+                                                                        <option value="KO">Kosrae</option>
+                                                                        <option value="KW">Kuwait</option>
+                                                                        <option value="KG">Kyrgyzstan</option>
+                                                                        <option value="LA">Laos</option>
+                                                                        <option value="LV">Latvia</option>
+                                                                        <option value="LB">Lebanon</option>
+                                                                        <option value="LS">Lesotho</option>
+                                                                        <option value="LR">Liberia</option>
+                                                                        <option value="LI">Liechtenstein</option>
+                                                                        <option value="LT">Lithuania</option>
+                                                                        <option value="LU">Luxembourg</option>
+                                                                        <option value="MO">Macau</option>
+                                                                        <option value="MK">Macedonia</option>
+                                                                        <option value="MG">Madagascar</option>
+                                                                        <option value="ME">Madeira</option>
+                                                                        <option value="MW">Malawi</option>
+                                                                        <option value="MY">Malaysia</option>
+                                                                        <option value="MV">Maldives</option>
+                                                                        <option value="ML">Mali</option>
+                                                                        <option value="MT">Malta</option>
+                                                                        <option value="MH">Marshall Islands</option>
+                                                                        <option value="MQ">Martinique</option>
+                                                                        <option value="MR">Mauritania</option>
+                                                                        <option value="MU">Mauritius</option>
+                                                                        <option value="MX">Mexico</option>
+                                                                        <option value="MD">Moldova</option>
+                                                                        <option value="MC">Monaco (France)</option>
+                                                                        <option value="MS">Montserrat</option>
+                                                                        <option value="MA">Morocco</option>
+                                                                        <option value="MZ">Mozambique</option>
+                                                                        <option value="MM">Myanmar</option>
+                                                                        <option value="NA">Namibia</option>
+                                                                        <option value="NP">Nepal</option>
+                                                                        <option value="NL">Netherlands</option>
+                                                                        <option value="AN">Netherlands Antilles</option>
+                                                                        <option value="NC">New Caledonia</option>
+                                                                        <option value="NZ">New Zealand</option>
+                                                                        <option value="NI">Nicaragua</option>
+                                                                        <option value="NE">Niger</option>
+                                                                        <option value="NG">Nigeria</option>
+                                                                        <option value="NF">Norfolk Island</option>
+                                                                        <option value="NB">Northern Ireland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="MP">Northern Mariana Islands</option>
+                                                                        <option value="NO">Norway</option>
+                                                                        <option value="OM">Oman</option>
+                                                                        <option value="PK">Pakistan</option>
+                                                                        <option value="PW">Palau</option>
+                                                                        <option value="PA">Panama</option>
+                                                                        <option value="PG">Papua New Guinea</option>
+                                                                        <option value="PY">Paraguay</option>
+                                                                        <option value="PE">Peru</option>
+                                                                        <option value="PH">Philippines</option>
+                                                                        <option value="PL">Poland</option>
+                                                                        <option value="PO">Ponape</option>
+                                                                        <option value="PT">Portugal</option>
+                                                                        <option value="PR">Puerto Rico</option>
+                                                                        <option value="QA">Qatar</option>
+                                                                        <option value="YE">Republic of Yemen</option>
+                                                                        <option value="RE">Reunion</option>
+                                                                        <option value="RO">Romania</option>
+                                                                        <option value="RT">Rota</option>
+                                                                        <option value="RU">Russia</option>
+                                                                        <option value="RW">Rwanda</option>
+                                                                        <option value="SS">Saba</option>
+                                                                        <option value="SP">Saipan</option>
+                                                                        <option value="SA">Saudi Arabia</option>
+                                                                        <option value="SF">Scotland (Great Britain and Northern Ireland)</option>
+                                                                        <option value="SN">Senegal</option>
+                                                                        <option value="SC">Seychelles</option>
+                                                                        <option value="SL">Sierra Leone</option>
+                                                                        <option value="SG">Singapore</option>
+                                                                        <option value="SK">Slovakia</option>
+                                                                        <option value="SI">Slovenia</option>
+                                                                        <option value="SB">Solomon Islands</option>
+                                                                        <option value="ZA">South Africa</option>
+                                                                        <option value="KR">South Korea (Korea, Republic of)</option>
+                                                                        <option value="ES">Spain</option>
+                                                                        <option value="LK">Sri Lanka</option>
+                                                                        <option value="NT">St. Barthelemy</option>
+                                                                        <option value="SW">St. Christopher</option>
+                                                                        <option value="SX">St. Croix</option>
+                                                                        <option value="EU">St. Eustatius</option>
+                                                                        <option value="UV">St. John</option>
+                                                                        <option value="KN">St. Kitts Nevis</option>
+                                                                        <option value="LC">St. Lucia</option>
+                                                                        <option value="MB">St. Maarten</option>
+                                                                        <option value="TB">St. Martin</option>
+                                                                        <option value="VL">St. Thomas</option>
+                                                                        <option value="VC">St. Vincent the Grenadines</option>
+                                                                        <option value="SD">Sudan</option>
+                                                                        <option value="SR">Suriname</option>
+                                                                        <option value="SZ">Swaziland</option>
+                                                                        <option value="SE">Sweden</option>
+                                                                        <option value="CH">Switzerland</option>
+                                                                        <option value="SY">Syrian Arab Republic</option>
+                                                                        <option value="TA">Tahiti (French Polynesia)</option>
+                                                                        <option value="TW">Taiwan</option>
+                                                                        <option value="TJ">Tajikistan</option>
+                                                                        <option value="TZ">Tanzania</option>
+                                                                        <option value="TH">Thailand</option>
+                                                                        <option value="TI">Tinian</option>
+                                                                        <option value="TG">Togo</option>
+                                                                        <option value="TO">Tonga</option>
+                                                                        <option value="TL">Tortola</option>
+                                                                        <option value="TT">Trinidad Tobago</option>
+                                                                        <option value="TU">Truk</option>
+                                                                        <option value="TN">Tunisia</option>
+                                                                        <option value="TR">Turkey</option>
+                                                                        <option value="TC">Turks Caicos Islands</option>
+                                                                        <option value="TV">Tuvalu</option>
+                                                                        <option value="UG">Uganda</option>
+                                                                        <option value="UA">Ukraine</option>
+                                                                        <option value="UI">Union Island</option>
+                                                                        <option value="AE">United Arab Emirates</option>
+                                                                        <option value="US" selected="">United States</option>
+                                                                        <option value="UY">Uruguay</option>
+                                                                        <option value="VI">US Virgin Islands</option>
+                                                                        <option value="UZ">Uzbekistan</option>
+                                                                        <option value="VU">Vanuatu</option>
+                                                                        <option value="VE">Venezuela</option>
+                                                                        <option value="VN">Vietnam</option>
+                                                                        <option value="VR">Virgin Gorda</option>
+                                                                        <option value="WK">Wake Island</option>
+                                                                        <option value="WL">Wales (Great Britain and Northern Ireland)</option>
+                                                                        <option value="WF">Wallis Futuna Islands</option>
+                                                                        <option value="WS">Western Samoa</option>
+                                                                        <option value="YA">Yap</option>
+                                                                        <option value="ZR">Zaire</option>
+                                                                        <option value="ZM">Zambia</option>
+                                                                        <option value="ZW">Zimbabwe</option>
+                                                                    </select>
+                                                                    <!--<span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameCountry.$error.required)&&(!IsDatasValid)">Required</span>-->
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>Phone:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" data-ng-model="PersonalDetails.Phone" maxlength="10">
+                                                                    <input type="text" name="SamePhone" ng-pattern="numberPattern" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SamePhone.$error.required&&!IsDatasValid}" ng-model="BillingDetails.Phone">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SamePhone.$error.required)&&(!IsDatasValid)">Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SamePhone.$error.pattern)&&(!IsDatasValid)">Invalid Phone Number</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right">Fax:</td>
+                                                                <td nowrap="">
+                                                                    <input type="text" ng-if="sameAsProfileInfoFlag" data-ng-model="PersonalDetails.Fax" maxlength="10">
+                                                                    <input type="text" name="SameFax" ng-pattern="numberPattern" ng-if="!sameAsProfileInfoFlag" ng-model="BillingDetails.Fax">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameFax.$error.pattern)&&(!IsDatasValid)">Invalid Fax</span>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td nowrap="" align="right"><font color="#FF0000">*</font>E-Mail:</td>
+                                                                <td nowrap="">
+                                                                    <input type="email" ng-pattern="emailPattern" ng-if="sameAsProfileInfoFlag" ng-model="PersonalDetails.Email">
+                                                                    <input type="email" ng-pattern="emailPattern" name="SameEmail" required ng-if="!sameAsProfileInfoFlag" ng-class="{'errorcont'   :subscriptionBuyNowTemplateForm.SameEMail.$error.required&&!IsDatasValid||(subscriptionBuyNowTemplateForm.SameEMail.$error.email)}" ng-model="BillingDetails.Email">
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameEMail.$error.required)&&(!IsDatasValid)">* Required</span>
+                                                                    <span class="ErrorMessageDetails" ng-show="(!sameAsProfileInfoFlag)&&(subscriptionBuyNowTemplateForm.SameEMail.$error.pattern)&&(!IsDatasValid)">Invalid Email</span>
+                                                                </td>
+                                                            </tr>
+                                                        </tbody>
+                                                    </table>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </form>
+                            <div>
+                                <div class="stdbbuttons ADTCNMRGT" ng-click="OnSubmitMemberInfo(subscriptionBuyNowTemplateForm)">Continue</div>
+                                <div ng-click='GoBack()' class="stdbbuttons  ADTC">Back to Add to cart</div>
+                            </div>
+                            <!--
+                            <div style="width:50%; float:left;">
+                                <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="100%" id="tblBilling">
+                                    <tbody>
+                                        <tr>
+                                            <td class="tdTopBanner">Payment Method</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+
+                                                <table class="tdContent2" cellpadding="2" cellspacing="0" border="0" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td valign="middle" nowrap="" align="left">
+                                                                <input type="hidden">Credit Card
+
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td class="tdTopBanner">Special Instructions (Optional)</td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap="" align="left">
+                                                <table class="tdContent2" cellpadding="2" cellspacing="0" border="0" width="100%">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td>
+                                                                <textarea></textarea>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="100%" id="tblLogin">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2" class="tdTopBanner">New Customers: Choose Password</td>
+                                        </tr>
+                                        <tr>
+                                            <td align="left">
+                                                <table class="tdContent2" cellpadding="2" cellspacing="0" border="0">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td colspan="2">
+                                                                In Order To Login to STDB you will need to specify a
+                                                                password, please enter it below. Otherwise, a password will be
+                                                                generated for you. This	password	can	be	retrieved	electronically.
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" width="15%">Password:</td>
+                                                            <td align="left" width="85%"><input type="password"></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td align="right" nowrap="">Password Confirmation:</td>
+                                                            <td align="left"><input type="password"></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table class="Section_new" cellpadding="2" cellspacing="0" border="1" width="100%" id="tblSubmit">
+                                    <tbody>
+                                        <tr>
+                                            <td class="tdTopBanner">Click "Submit" to enter payment information if needed </td>
+                                        </tr>
+                                        <tr align="center">
+                                            <td><input type="button" class="inputbutton submit" >
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                            </div>
+                            -->
+
+                        </div>
+
+
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!-------------------------------------------- Order summary details display section ------------------------------------------------------>
+    <div class="BuynowContainer" ng-if="IsOrderSummaryVisible">
+        <section class="block">
+            <div class="container">
+                <div ng-show="isSummaryAlertVisible">
+                    <alert ng-repeat="alert in alerts" type="alert.type" close="closeAlert($index)">{{alert.msg}}</alert>
+                </div>
+                <div class="row">
+                    <ul id="crumbs">
+                        <li ng-click="GoToSubscription()"><a href="#">Membership</a></li>
+                        <li ng-click="GoToBuyNow()"><a href="#">Join Now</a></li>
+                        <li ng-click="GoToCart()"><a href="#">Add to cart</a></li>
+                        <li ng-click="GoToSubscriberInformation()"><a href="#">Membership Information</a></li>
+                        <li>Complete Order</li>
+                    </ul>
+                    <div class="col-lg-12 pull-left">
+                        <p class="heading_Member_Info">Verify Your Order</p>
+                        <p class="ordersummarybox">Please verify all your informations are listed below. Once the Pay Now button is pressed, your transaction will be final</p>
+                        <div id="ErrorMessage" ng-if="!IsPaymentDetailsValid">
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CCType.$error.required">* Select Credit Card Type</div>-->
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CCHolderName.$error.required">* Credit Card Holder Name Required</div>-->
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CCCardNumber.$error.required">* Credit Card Number Required</div>-->
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CCMonth.$error.required">* Select Credit Card Expiry month</div>-->
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CCYear.$error.required">* Select Credit Card Expiry Year</div>-->
+                            <!--<div class="ErrorMessageDetails" ng-show="CreditCardDetailsForm.CC_CVV.$error.required">* Credit Card security number / CCV Required</div>-->
+                        </div>
+                        <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0">
+                            <tbody>
+                                <tr>
+                                    <td width="1%" class="tdContentBar"></td>
+                                    <td width="54%" class="tdContentBar">Item</td>
+                                    <td width="15%" class="tdContentBar">Qty</td>
+                                    <td width="15%" class="tdContentBar">Unit Price</td>
+                                    <td width="15%" class="tdContentBar">Total</td>
+                                    <td></td>
+                                </tr>
+                                <tr style="border:1px solid #dddddd">
+                                    <td class="tdAltFont2" valign="top" align="left"></td>
+                                    <td valign="top" class="tdAltFont2" align="left">
+                                        <span style="margin:0px 10px 0 0; float:left; font-weight:600; font-size:15px; color:#444444;">CCIM Associate {{planName}} Membership</span>
+                                    </td>
+                                    <td class="tdAltFont2" valign="top"><span style="padding-left: 5px;">{{Quantity.value}}</span></td>
+                                    <td class="tdAltFont2" valign="top">${{planPrice}}.00</td>
+                                    <td class="tdAltFont2" valign="top" style="border-right:1px solid #dddddd">{{CartTotal | currency}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0">
+                            <tbody>
+                                <tr>
+                                    <td class="tdContentBar" style="padding-left:8px;">Customer Information</td>
+                                    <td class="tdContentBar" style="padding-left:8px;">Card Info</td>
+                                </tr>
+                                <tr style="border:1px solid #dddddd">
+                                    <td valign="top" class="tdAltFont2" align="left" style="padding-left:8px;" width="50%">
+                                        {{memberDetails.FirstName}} {{memberDetails.LastName}}<br />
+                                        {{memberDetails.Address1}} {{memberDetails.Address2}}<br />
+                                        {{memberDetails.City}}<br />
+                                        {{memberDetails.State}}<br />
+                                        {{memberDetails.Phone}}<br />
+                                        {{memberDetails.Email}}
+                                    </td>
+                                    <td width="50%" style="padding-left:8px; padding-top:8px; position:relative;">
+                                        <form name="CreditCardDetailsForm">
+                                            <p>
+                                                <span class="cardinfolabe">Card Type</span>
+                                                <select ng-class="{'errorcont' : !IsPaymentDetailsValid && CreditCardDetailsForm.CCType.$error.required}" name="CCType" ng-model="CCType" required style="width:200px">
+                                                    <option value="">Select Card Type</option>
+                                                    <option value="Visa">Visa</option>
+                                                    <option value="MasterCard">MasterCard</option>
+                                                    <option value="Discover">Discover</option>
+                                                    <option value="AmericanExpress">American Express</option>
+                                                    <option value="JCB">JCB</option>
+                                                    <option value="DinersClubInternational">Diners Club International</option>
+                                                </select>
+                                                <span class="ErrorMessageDetails" ng-show="!IsPaymentDetailsValid && CreditCardDetailsForm.CCType.$error.required">* Required</span>
+                                            </p>
+                                            <p>
+                                                <span class="cardinfolabe">Name On Card</span>
+                                                <input type="text" ng-class="{'errorcont' : !IsPaymentDetailsValid && CreditCardDetailsForm.CCHolderName.$error.required}" required name="CCHolderName" ng-model="CCHolderName" style="width: 200px; padding-left: 5px;" />
+                                                <span class="ErrorMessageDetails" ng-show="!IsPaymentDetailsValid && CreditCardDetailsForm.CCHolderName.$error.required">* Required</span>
+                                            </p>
+                                            <p>
+                                                <span class="cardinfolabe">Card No</span> <input type="text" ng-class="{'errorcont' : !IsPaymentDetailsValid &&CreditCardDetailsForm.CCCardNumber.$error.required}" name="CCCardNumber" ng-model="CCCardNumber" required style="width: 200px;padding-left:5px;" />
+                                                <span class="ErrorMessageDetails" ng-show="!IsPaymentDetailsValid &&CreditCardDetailsForm.CCCardNumber.$error.required">* Required</span>
+                                            </p>
+                                            <p>
+                                                <span class="cardinfolabe">Expiration Date</span>
+                                                <select ng-change="ValidateDate(CCMonth,CCYear)" ng-class="{'errorcont' : !IsPaymentDetailsValid && (CreditCardDetailsForm.CCMonth.$error.required || IsExpiredCard)}" required name="CCMonth" ng-model="CCMonth" style="width: 94px; margin-right:10px;">
+                                                    <option value="">MM</option>
+                                                    <option value="01">01</option>
+                                                    <option value="02">02</option>
+                                                    <option value="03">03</option>
+                                                    <option value="04">04</option>
+                                                    <option value="05">05</option>
+                                                    <option value="06">06</option>
+                                                    <option value="07">07</option>
+                                                    <option value="08">08</option>
+                                                    <option value="09">09</option>
+                                                    <option value="10">10</option>
+                                                    <option value="11">11</option>
+                                                    <option value="12">12</option>
+                                                </select>
+                                                <select ng-change="ValidateDate(CCMonth,CCYear)" ng-class="{'errorcont' : !IsPaymentDetailsValid && (CreditCardDetailsForm.CCYear.$error.required || IsExpiredCard)}" required name="CCYear" ng-model="CCYear" style="width: 93px;">
+                                                    <option value="">YY</option>
+                                                    <option value="2014">2014</option>
+                                                    <option value="2015">2015</option>
+                                                    <option value="2016">2016</option>
+                                                    <option value="2017">2017</option>
+                                                    <option value="2018">2018</option>
+                                                    <option value="2019">2019</option>
+                                                    <option value="2020">2020</option>
+                                                    <option value="2021">2021</option>
+                                                    <option value="2022">2022</option>
+                                                    <option value="2023">2023</option>
+                                                    <option value="2024">2024</option>
+                                                    <option value="2025">2025</option>
+                                                    <option value="2026">2026</option>
+                                                    <option value="2027">2027</option>
+                                                    <option value="2028">2028</option>
+                                                    <option value="2029">2029</option>
+                                                    <option value="2030">2030</option>
+                                                    <option value="2031">2031</option>
+                                                    <option value="2032">2032</option>
+                                                    <option value="2033">2033</option>
+                                                    <option value="2034">2034</option>
+                                                    <option value="2035">2035</option>
+                                                    <option value="2036">2036</option>
+                                                    <option value="2037">2037</option>
+                                                    <option value="2038">2038</option>
+                                                    <option value="2039">2039</option>
+                                                    <option value="2040">2040</option>
+                                                    <option value="2041">2041</option>
+                                                    <option value="2042">2042</option>
+                                                    <option value="2043">2043</option>
+                                                    <option value="2044">2044</option>
+                                                    <option value="2045">2045</option>
+                                                    <option value="2046">2046</option>
+                                                    <option value="2047">2047</option>
+                                                    <option value="2048">2048</option>
+                                                    <option value="2049">2049</option>
+                                                </select>
+                                                <span class="ErrorMessageDetails" ng-show="!IsPaymentDetailsValid && (CreditCardDetailsForm.CCMonth.$error.required || CreditCardDetailsForm.CCYear.$error.required)">* Required</span>
+                                                <span class="ErrorMessageDetails" ng-show="IsExpiredCard">* Card already expired</span>
+                                            </p>
+                                            <div style="position:relative; width:100%; margin-bottom:10px;">
+                                                <span class="cardinfolabe">CVV/Security Code</span> <input type="password" ng-class="{'errorcont' : !IsPaymentDetailsValid &&CreditCardDetailsForm.CC_CVV.$error.required}" ng-model="CC_CVV" required name="CC_CVV" style="width:200px; padding-left:5px;" />
+                                                <div class="creditcardcvv"></div>
+                                                <span class="ErrorMessageDetails" ng-show="!IsPaymentDetailsValid &&CreditCardDetailsForm.CC_CVV.$error.required" style="padding-left: 122px;">* Required</span>
+                                            </div>
+                                        </form>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!--<table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0">
+                            <tbody>
+                                <tr>
+                                    <td width="54%" class="tdContentBar" style="padding-left:8px;">Special Instruction</td>
+                                </tr>
+                                <tr style="border:1px solid #dddddd">
+                                    <td valign="top" class="tdAltFont2" align="left" style="padding-left:8px;">
+                                        Not Specified
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>-->
+                        <p>
+                            <input type="checkbox" ng-model="TermsAndConditions" ng-change="TermsAndConditionsToggle(TermsAndConditions)" required style="margin-right:5px;" />I have read and agree to the <span class="verification" ng-click="showTermsPopUp()">Terms & Conditions</span>.
+                            <span class="ErrorMessageDetails" ng-show="!TermsAndConditions && !IsPaymentDetailsValid" style="padding-left: 122px;">* Approve Terms and conditions</span>
+                        </p>
+                        <div>
+                            <div class="stdbbuttons ADTCNM" ng-click="OnCheckOutNowClick(CreditCardDetailsForm)">Pay Now</div>
+                            <div ng-click='GoBack()' class="stdbbuttons  ADTC">Back to Member Information</div>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </div>
+    <!-------------------------------------------- Payment summary details display section ------------------------------------------------------>
+    <div id="PaymentSummaryDetails" ng-if="IsPaymentSummaryVisible">
+        <div class="BuynowContainer">
+            <section class="block">
+                <div class="container">
+                    <div class="row">
+
+                        <div class="col-lg-12 pull-left">
+                            <p>Order Number : <span style="font-weight:bold;">{{InvoiceNumber}}</span></p>
+                            <p class="ordersummaryboxbord">Thank you for your payment for a CCIM Associate {{planName}} Membership</p>
+                            <div class="printreciept" ng-print print-element-id="printContent"><span>Print your receipt</span><div class="printicon"></div></div>
+                            <div id="printContent">
+                                <p>You will receive a follow up email with directions on getting started.</p>
+                                <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0" class="ordersummaryinfo">
+                                    <tbody>
+                                        <tr>
+                                            <td width="54%" class="tdContentBar" style="padding-left:10px;" colspan="2">Order Information</td>
+                                        </tr>
+                                        <tr style="border: 1px solid #dddddd;">
+                                            <td class="tdAltFont2" valign="top" align="left" style="padding-left:10px;" colspan="2">
+                                                <p><span class="detailscont">Merchant:</span>	<span class="descriptioncont">CCIMTECH and STDB, Inc.</span></p>
+                                                <p><span class="detailscont">Description:</span>	<span class="descriptioncont">CCIM Associate membership to include access to STDB</span></p>
+                                                <!--<p><span class="detailscont">Invoice Number:</span>	<span class="descriptioncont">{{InvoiceNumber}}</span></p>-->
+                                                <p><span class="detailscont">CustomerID:</span>	<span class="descriptioncont">{{CustomerID}}</span></p>
+                                            </td>
+                                        </tr>
+                                        <tr style="border:1px solid #dddddd; background:#eeeeee;">
+                                            <td style="padding-left:10px;">Billing Information</td>
+                                            <td style="padding-left:10px;">Shipping Information</td>
+                                        </tr>
+                                        <tr style="border:1px solid #dddddd">
+                                            <td valign="top" class="tdAltFont2" align="left" style="padding-left:10px;">
+                                                <p>{{BillingInfo.FirstName}} {{BillingInfo.LastName}}</p>
+                                                <p>{{BillingInfo.Address1}}<span ng-show="BillingInfo.Address2">, {{BillingInfo.Address2}} , {{BillingInfo.City}}</span></p>
+                                                <p>{{BillingInfo.State}} {{BillingInfo.PostalCode}}, {{BillingInfo.Country}}</p>
+                                                <p>{{BillingInfo.Email}}</p>
+                                                <p>{{BillingInfo.Phone}}</p>
+                                            </td>
+                                            <td valign="top" class="tdAltFont2" align="left" style="padding-left:10px;">
+                                                <p>{{BillingInfo.FirstName}} {{BillingInfo.LastName}}</p>
+                                                <p>{{BillingInfo.Address1}}<span ng-show="BillingInfo.Address2">, {{BillingInfo.Address2}} , {{BillingInfo.City}}</span></p>
+                                                <p>{{BillingInfo.State}} {{BillingInfo.PostalCode}}, {{BillingInfo.Country}}</p>
+                                                <p>{{BillingInfo.Email}}</p>
+                                                <p>{{BillingInfo.Phone}}</p>
+                                            </td>
+                                        </tr>
+                                        <tr style="border:1px solid #dddddd; background:#eeeeee;">
+                                            <td style="padding-right:10px;text-align:right; font-weight:600" colspan="2">Total : {{TotalAmount | currency}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <table border="0" width="100%" cellspacing="0" cellpadding="0" style="margin:10px 0" class="ordersummaryinfo">
+                                    <tbody>
+                                        <tr>
+                                            <td width="54%" class="tdContentBar" style="padding-left:8px;">{{Card_Type}}</td>
+                                        </tr>
+                                        <tr style="border:1px solid #dddddd">
+                                            <td valign="top" class="tdAltFont2" align="left" style="padding-left:8px;">
+                                                <p><span class="detailscont">Date :</span>	<span class="descriptioncont">{{TransactionDate}}</span></p>
+                                                <p><span class="detailscont">Transaction ID:</span>	<span class="descriptioncont">{{PaymentResponse.TransactionID}}</span></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+
+                                <p>If you have any questions, please contact Customer Service at 469-232-2615</p>
+                            </div>
+                            <div><input type="button" class="inputbutton StartYourServiceNow" style="float:none; margin-left:45%;" ng-click="OnStartServiceClick()"></div>
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+        </div>
+
+
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[data-toggle='tooltip']").tooltip({ html: true });
+        $(".popover_top").popover({ html: true });
+
+    });
+</script>
+
+
+

@@ -1,0 +1,27 @@
+﻿<div class="popupwrap" id="modalWindowPopUpContainer">
+    <!-- content starts -->
+    <div id="popupContent">
+
+        <div class="popupHeader">
+            View Error
+            <div class="popupclose" ng-click="onClosePopUpClicked()">
+                X
+            </div>
+        </div>
+      
+        <div class="popupContainerMain">
+            <p><label>  Error ID:</label> &nbsp;{{Error.ErrorID}}</p>
+            <p><label>  Error Url:</label> &nbsp;{{Error.ErrorUrl}}</p>
+            <p><label>   Error Event: </label>&nbsp;{{Error.ErrorEvent}}</p>
+            <p><label>   Error Details:</label> &nbsp;{{Error.ErrorDetails}}</p>
+            <p><label>    System Details:</label> &nbsp;<div style="margin-left: 126px; margin-top: -50px;" ng-bind-html="convertToHtml(Error.SystemDetails)"></div></p>
+            <p><label>   Error Time:</label> &nbsp;{{Error.ErrorTime | date:'medium'}}</p>
+</div>
+
+    </div>
+
+    <!-- content ends -->
+  
+    <div class="clearfix">
+    </div>
+</div>
